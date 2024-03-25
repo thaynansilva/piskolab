@@ -34,7 +34,7 @@ This project uses some third-party icons from the following authors:
 This website is free software, which means you can modify or redistribute as
 you wish!
 
-This project is available under [LGPL 3.0](LICENSE.txt), and the Pisk Lab
+This project is available under [LGPL 3.0](LICENSE.txt), and the Pisko Lab
 logo is available under [CC BY-SA 4.0](LICENSE_CC-BY-SA-4.0.txt).
 
 Each third-party resource is available on its respective licenses:
