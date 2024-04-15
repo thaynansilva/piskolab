@@ -3,10 +3,10 @@
 
 /* Animations */
 
-@keyframes pop-in { 0% { opacity: 0; transform: translateY(10px) scale(99%); } }
-
-@keyframes fade-in  { 0% { opacity: 0; } }
-@keyframes spin     { 0% { transform: rotate(-1turn); } }
+@keyframes pop-in  { 0%   { opacity: 0; transform: translateY(15px); scale: 0.99; } }
+@keyframes pop-out { 100% { opacity: 0; transform: translateY(-5px); scale: 0.99; } }
+@keyframes fade-in { 0%   { opacity: 0; } }
+@keyframes spin    { 0%   { transform: rotate(-1turn); } }
 
 /* Root */
 
@@ -187,12 +187,17 @@ span.bubble[data-status="deprecated"] {
     background-color: var(--pl-bubble-deprecated);
 }
 
-/* Modifier classes */
+/* Animation classes */
 
-.dynamic-content {
-    transform-style: preserve-3d;
+.anim-enter {
     animation: pop-in 0.3s ease;
 }
+
+.anim-exit {
+    animation: pop-out 0.2s ease;
+}
+
+/* Modifier classes */
 
 .nonselectable {
     -webkit-user-select: none;

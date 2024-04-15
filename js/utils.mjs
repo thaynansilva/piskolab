@@ -157,11 +157,12 @@ export const ContentManager = {
    */
   present(element, resolve, reject=null) {
     (async () => {
-      element.classList.remove("dynamic-content");
+      element.classList.replace("anim-enter", "anim-exit");
       element.ariaBusy = true;
+      await Utils.sleep(100);
 
       this.replace(element, "<span class='spinner'></span>");
-      await Utils.sleep(50);
+      // await Utils.sleep(50);
 
       let data = null;
 
@@ -172,9 +173,11 @@ export const ContentManager = {
         console.error(reason);
       }
 
-      this.replace(element, data);
+      element.classList.remove("anim-exit");
+      element.classList.add("anim-enter");
+      await Utils.sleep(50);
 
-      element.classList.add("dynamic-content");
+      this.replace(element, data);
       element.ariaBusy = false;
     })();
   }
