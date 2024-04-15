@@ -1,0 +1,177 @@
+[
+  {
+    "type": "h1",
+    "text": "Heading 1"
+  },
+  {
+    "type": "group",
+    "children": [
+      {
+        "type": "paragraph",
+        "text": "This paragraph is regular"
+      },
+      {
+        "type": "paragraph",
+        "text": "This paragraph is italic",
+        "style": ["italic"]
+      },
+      {
+        "type": "paragraph",
+        "text": "This paragraph is bold",
+        "style": ["bold"]
+      },
+      {
+        "type": "paragraph",
+        "text": "This paragraph is deleted",
+        "style": ["deleted"]
+      },
+      {
+        "type": "paragraph",
+        "text": "This paragraph is marked",
+        "style": ["marked"]
+      },
+      {
+        "type": "paragraph",
+        "text": "This paragraph is underlined",
+        "style": ["underlined"]
+      },
+      {
+        "type": "paragraph",
+        "stripBlank": true,
+        "children": [
+          {
+            "type": "span",
+            "text": "Each"
+          },
+          {
+            "type": "span",
+            "text": "bit",
+            "style": ["italic"]
+          },
+          {
+            "type": "span",
+            "text": "of",
+            "style": ["bold"]
+          },
+          {
+            "type": "span",
+            "text": "text",
+            "style": ["underlined"]
+          },
+          {
+            "type": "span",
+            "text": "is",
+            "style": ["deleted"]
+          },
+          {
+            "type": "span",
+            "text": "different",
+            "style": ["marked"]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "h2",
+    "text": "Heading 2"
+  },
+  {
+    "type": "quote",
+    "text": "This is a regular quote",
+    "cite": "example.org"
+  },
+  {
+    "type": "blockquote",
+    "text": "This is a block quote"
+  },
+  {
+    "type": "h3",
+    "text": "Heading 3"
+  },
+  {
+    "type": "list",
+    "children": [
+      {
+        "type": "listitem",
+        "text": "Item 1"
+      },
+      {
+        "type": "listitem",
+        "text": "Item 2"
+      },
+      {
+        "type": "listitem",
+        "text": "Item 3"
+      }
+    ]
+  },
+  {
+    "type": "h4",
+    "text": "Heading 4"
+  },
+  {
+    "type": "code",
+    "text": "some-code"
+  },
+  {
+    "type": "blockcode",
+    "syntax": "c",
+    "highlight": true,
+    "lines": [
+      "#include <stdio.h>",
+      "",
+      "int main(int argc, char const *argv[]) {",
+      "    printf(\"Hello, World\")",
+      "}"
+    ]
+  },
+  {
+    "type": "h5",
+    "text": "Heading 5"
+  },
+  {
+    "type": "link",
+    "text": "Example link",
+    "href": "https://example.org"
+  },
+  {
+    "type": "link",
+    "href": "https://example.org",
+    "overlay": {
+      "label": "Open external link",
+      "icon": "external-link"
+    },
+    "openInNew": true,
+    "children": [
+      {
+        "type": "image",
+        "alt": "example image with link",
+        "src": "meta/posts/assets/hyperjson-testing-article/example.png"
+      }
+    ],
+    "style": ["block"]
+  },
+  {
+    "type": "h6",
+    "text": "Heading 6"
+  },
+  {
+    "type": "table",
+    "caption": "Programming language rating",
+    "head": [
+      ["Name", "Rating [1/5★]", "Pros", "Cons"]
+    ],
+    "body": [
+      ["Rust", 4, "Fast, robust, and safe.", "Resulting binaries are fat."],
+      ["C", 4, "Traditional, mature, and efficient.", "Unsafe and lacks modern features."],
+      ["C++", 3, "Very powerful and feature-rich.", "Takes some time to compile."],
+      ["C#", 3, "Very powerful and coherent.", "Windows first."],
+      ["Python", 4, "Powerful base, rich ecosystem.", "Too slow."],
+      ["Lua", 5, "Excellent for modding.", "None"],
+      ["Java", 3, "Simple, extensible and easy to learn.", "Too verbose and memory heavy."],
+      ["Kotlin", 5, "Modern syntax and new features.", "Memory heavy when on JVM."],
+      ["JavaScript", 3, "Very flexible.", "Single threaded, weak typing."]
+    ]
+  }
+]

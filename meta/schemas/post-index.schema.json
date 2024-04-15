@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "posts"
+  ],
+  "properties": {
+    "posts": {
+      "title": "List of posts",
+      "type": "array",
+      "items": {
+        "title": "A post entry",
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "title"
+        ],
+        "properties": {
+          "id": {
+            "title": "Post ID",
+            "type": "string"
+          },
+          "date": {
+            "title": "Post date",
+            "description": "Formatted in ISO 8601, e.g. `1970-12-31 07:00 -03`",
+            "type": "string"
+          },
+          "title": {
+            "title": "Post title",
+            "type": "string"
+          },
+          "description": {
+            "title": "Brief description about the post",
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

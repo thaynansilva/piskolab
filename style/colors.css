@@ -1,0 +1,89 @@
+/* Light Theme: Backrooms */
+
+:root {
+    --pl-accent: #6e1e95;
+    --pl-glow-color: #aaa5;
+    --pl-shadow-color: #0002;
+    --pl-header-color: #dc8;
+    --pl-body-color: #eec;
+    --pl-view-color: #ffe;
+    --pl-border-color: #ccc4;
+    --pl-view-border-color: #0003;
+    --pl-marker-color: #c93;
+    --pl-overlay-color: #fca;
+    --pl-text-normal: #331;
+    --pl-text-dimmed: #886;
+    --pl-text-bright: #000;
+    --pl-text-marker: #fff;
+    --pl-link-color: #e85;
+    --pl-link-visited-color: #a71;
+    --pl-control-accent: #e85;
+    --pl-control-normal: #ed95;
+    --pl-control-hover: #ed97;
+    --pl-control-active: #ed9a;
+    --pl-control-selected: var(--pl-body-color);
+    --pl-control-text-normal: var(--pl-text-normal);
+    --pl-control-text-hover: #442;
+    --pl-control-text-active: #442;
+    --pl-control-text-selected: #110;
+    --pl-control-border-color: #aaa2;
+    --pl-table-accent: var(--pl-view-color);
+    --pl-table-border: #0001;
+    --pl-table-background: var(--pl-table-accent);
+    --pl-table-caption: #fff2;
+    --pl-table-row-color-head: #bba1;
+    --pl-table-row-color-body1: #bba3;
+    --pl-table-row-color-body2: #bba5;
+    --pl-bubble-drafting: #69fc;
+    --pl-bubble-canceled: #f77c;
+    --pl-bubble-active: #7d6f;
+    --pl-bubble-unmaintained: #f82c;
+    --pl-bubble-deprecated: #445c;
+}
+
+/* Dark Theme: Darcula? */
+
+@media (prefers-color-scheme: dark) {
+
+    :root {
+        --pl-accent: #6e1e95;
+        --pl-glow-color: #aaa5;
+        --pl-shadow-color: #0003;
+        --pl-header-color: #6e1e95;
+        --pl-body-color: #15071d;
+        --pl-view-color: #2b0e3a;
+        --pl-border-color: #bbb3;
+        --pl-view-border-color: #aaa2;
+        --pl-marker-color: #7a389c;
+        --pl-overlay-color: #000c;
+        --pl-text-normal: #eee;
+        --pl-text-dimmed: #aaa;
+        --pl-text-bright: #fff;
+        --pl-text-marker: #fff;
+        --pl-link-color: #0cf;
+        --pl-link-visited-color: #acf;
+        --pl-control-accent: #ac5fd3;
+        --pl-control-normal: #bbf1;
+        --pl-control-hover: #bbf2;
+        --pl-control-active: #bbf3;
+        --pl-control-selected: #15071d;
+        --pl-control-text-normal: #fff;
+        --pl-control-text-hover: #fff;
+        --pl-control-text-active: #eee;
+        --pl-control-text-selected: #fff;
+        --pl-control-border-color: #aaa3;
+        --pl-table-accent: var(--pl-view-color);
+        --pl-table-caption: #fff2;
+        --pl-table-background: #0003;
+        --pl-table-border: #0002;
+        --pl-table-row-color-head: #fff2;
+        --pl-table-row-color-body1: #fff0;
+        --pl-table-row-color-body2: #fff1;
+        --pl-bubble-drafting: #08fc;
+        --pl-bubble-canceled: #e55c;
+        --pl-bubble-active: #3e37;
+        --pl-bubble-unmaintained: #5568;
+        --pl-bubble-deprecated: #445c;
+    }
+
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "../schemas/project-index.schema.json",
+  "projects": [
+    {
+      "uuid": "cd412fc9-9fdb-46d9-9acf-75217c6f78c6",
+      "name": "Pisko Lab",
+      "logo": "img/logo.svg",
+      "status": "active",
+      "url": "https://github.com/thaynansilva/piskolab",
+      "description": "Pisko's little space – A personal website",
+      "details": {
+        "licenses": [
+          {
+            "identifier": "LGPL-3.0",
+            "title": "GNU Lesser General Public License version 3.0",
+            "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE.txt"
+          },
+          {
+            "identifier": "CC BY-SA 4.0",
+            "title": "Creative Commons Attibution By Share-Alike version 4.0",
+            "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE_CC-BY-SA-4.0.txt"
+          }
+        ]
+      }
+    },
+    {
+      "uuid": "453cf657-0c44-4e6c-9c7c-784187d382bb",
+      "name": "Versa",
+      "status": "active",
+      "url": "https://gitlab.com/versa-lang",
+      "description": "A powerful versatile cross-platform programming language",
+      "details": {
+        "licenses": [
+          {
+            "identifier": "LGPL-3.0",
+            "title": "GNU Lesser General Public License version 3.0",
+            "url": "https://gitlab.com/versa-lang/versa/-/blob/main/COPYING"
+          }
+        ],
+        "docs": [
+          {
+            "title": "Documentation",
+            "url": "https://gitlab.com/versa-lang/versa-docs"
+          }
+        ]
+      }
+    }
+  ]
+}

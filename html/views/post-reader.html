@@ -1,0 +1,29 @@
+<template id="root">
+  <div class="view-post-reader">
+    <div class="toolbar" role="toolbar">
+      <div>
+        <a class="button icon-button-small nonselectable" href="#"
+           aria-label="Previous page" draggable="false" data-name="return">
+          <pl-svg class="icon" src="img/icons/navigate-previous.svg" alt="Previous" aria-hidden="true"></pl-svg>
+        </a>
+      </div>
+      <div class="align-right">
+        <a class="button icon-button-small nonselectable" href="#"
+           aria-label="Font type" draggable="false" data-name="change-font">
+          <pl-svg class="icon" src="img/icons/font-type.svg" alt="Font type" aria-hidden="true"></pl-svg>
+        </a>
+      </div>
+    </div>
+    <article>
+      <header>
+        <h1 data-name="title"></h1>
+        <p data-name="description"></p>
+        <p class="publish-date">
+          Published on <time datetime="" data-name="date">&lt;unknown&gt;</time>
+        </p>
+      </header>
+      <hr>
+      <div class="hyperjson" data-name="content"></div>
+    </article>
+  </div>
+</template>

@@ -1,0 +1,143 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "projects"
+  ],
+  "properties": {
+    "projects": {
+      "title": "List of projects",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "uuid",
+          "name",
+          "url",
+          "status",
+          "description"
+        ],
+        "properties": {
+          "uuid": {
+            "title": "Project UUID",
+            "type": "string"
+          },
+          "name": {
+            "title": "Project name",
+            "type": "string"
+          },
+          "logo": {
+            "title": "Project logo",
+            "type": "string"
+          },
+          "url": {
+            "title": "Project URL",
+            "description": "A link to the project page, e.g. GitHub.",
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "title": "Project status",
+            "description": "Defines the health status of the project.",
+            "type": "string",
+            "enum": [
+              "drafting",
+              "canceled",
+              "active",
+              "deprecated",
+              "unmaintained"
+            ]
+          },
+          "description": {
+            "title": "Project description",
+            "description": "A brief description about the project's purpose.",
+            "type": "string"
+          },
+          "details": {
+            "title": "Project details",
+            "type": "object",
+            "description": "Licensing, documentation, links and notes.",
+            "properties": {
+              "licenses": {
+                "title": "Licensing details",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "title": "Title of the license",
+                      "description": "e.g. GNU General Public License version 2.1",
+                      "type": "string"
+                    },
+                    "identifier": {
+                      "title": "Identifier of the license",
+                      "description": "",
+                      "type": "string"
+                    },
+                    "url": {
+                      "title": "URL to the license",
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "identifier"
+                  ]
+                }
+              },
+              "docs": {
+                "title": "A list of links to documentation",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "title": "A title to the URL page",
+                      "type": "string"
+                    },
+                    "url": {
+                      "title": "URL to the documentation",
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              },
+              "links": {
+                "title": "A list of links",
+                "type": "array",
+                "properties": {
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "title": "The title of the link",
+                        "type": "string"
+                      },
+                      "url": {
+                        "title": "The URL of the link",
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": [
+                      "url"
+                    ]
+                  }
+                }
+              },
+              "notes": {
+                "title": "A list of short text notes",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
