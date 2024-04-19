@@ -64,24 +64,18 @@
                 "items": {
                   "type": "object",
                   "properties": {
-                    "title": {
-                      "title": "Title of the license",
-                      "description": "e.g. GNU General Public License version 2.1",
-                      "type": "string"
-                    },
                     "identifier": {
-                      "title": "Identifier of the license",
+                      "title": "License identifier",
                       "description": "",
                       "type": "string"
                     },
                     "url": {
-                      "title": "URL to the license",
+                      "title": "URL to the license file or website",
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "required": [
-                    "title",
                     "identifier"
                   ]
                 }
