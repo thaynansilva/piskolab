@@ -5,40 +5,34 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Views } from "./views.mjs";
-import { PLSVG } from "./plsvg.mjs";
+import { PiskoLab } from "./core/PiskoLab.mjs";
+import { Fetcher } from "./utils/Fetcher.mjs";
 
-function setupCallbacks() {
-  const links = document.querySelectorAll("#links a.button");
-
-  for (let li of links) {
-    li.addEventListener("click", e => {
-      e.preventDefault();
-      Views.view(li.getAttribute("data-view"));
-    });
-  }
-
-  document.addEventListener("view-changed", e => {
-    for (let li of links) {
-      let targetView = li.getAttribute("data-view");
-
-      if (targetView === e.detail.currentView ||
-          targetView === e.detail.currentViewParent) {
-        li.setAttribute("data-selected", true);
-        li.ariaSelected = true;
-      } else {
-        li.removeAttribute("data-selected", false);
-        li.ariaSelected = false;
-      }
-    }
-  });
-}
+const AssetList = Object.freeze([
+  "html/PiskoLab.html",
+  "html/Home.html",
+  "html/About.html",
+  "html/Error.html",
+  "html/PostFeed.html",
+  "html/PostReader.html",
+  "html/Portfolio.html",
+  "html/ProjectViewer.html",
+  "img/socials/github.svg",
+  "img/socials/gitlab.svg",
+  "img/socials/mastodon.svg",
+  "img/icons/nav-prev.svg",
+  "img/icons/nav-next.svg",
+  "img/icons/font-type.svg",
+  "img/icons/open-in-new.svg",
+  "img/brand.svg",
+  "img/logo.svg",
+  "img/profile.jpg"
+]);
 
 function main() {
-  setupCallbacks();
-
-  PLSVG.setup();
-  Views.setup();
+  PiskoLab.initialize(async () => {
+    await Fetcher.preload(AssetList);
+  });
 }
 
 main()

@@ -142,15 +142,15 @@
       "label": "Open external link",
       "icon": "external-link"
     },
+    "block": true,
     "openInNew": true,
     "children": [
       {
         "type": "image",
         "alt": "example image with link",
-        "src": "meta/posts/assets/hyperjson-testing-article/example.png"
+        "src": "meta/posts/assets/docjson-testing-article/example.png"
       }
-    ],
-    "style": ["block"]
+    ]
   },
   {
     "type": "h6",

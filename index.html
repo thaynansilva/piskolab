@@ -6,51 +6,17 @@
   <meta http-equiv="Content-Security-Policy" content="style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline';">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="style/index.css">
+  <link rel="stylesheet" type="text/css" href="style/docjson.css">
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <script src="js/index.mjs" type="module" defer></script>
   <title>Pisko Lab</title>
 </head>
 <body>
-  <header id="header">
-    <a class="home nonselectable" href="/" aria-label="Pisko Lab">
-      <pl-svg src="img/brand.svg" alt="Pisko Lab"></pl-svg>
-    </a>
-    <div class="scrolled-window">
-      <nav id="links" aria-roledescription="Website sections">
-        <ul>
-          <li>
-            <a class="button nonselectable" href="/?view=home" role="switch" draggable="false" data-view="home">
-              <span>Home</span>
-            </a>
-          </li>
-          <li>
-            <a class="button nonselectable" href="/?view=posts" role="switch" draggable="false" data-view="posts">
-              <span>Posts</span>
-            </a>
-          </li>
-          <li>
-            <a class="button nonselectable" href="/?view=projects" role="switch" draggable="false" data-view="projects">
-              <span>Projects</span>
-            </a>
-          </li>
-          <li>
-            <a class="button nonselectable" href="/?view=about" role="switch" draggable="false" data-view="about">
-              <span>About</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-  <main>
-    <div id="frame">
-      <noscript>
-        <div class="error">
-          <p>Sorry, it won't work :&lpar;</p>
-          <p>You need JavaScript support to run this site.</p>
-        </div>
-      </noscript>
-    </div>
-  </main>
+  <div id="root">
+    <noscript>
+      <p>Sorry, it won't work :&lpar;</p>
+      <p>You need JavaScript support to run this site.</p>
+    </noscript>
+  </div>
 </body>
 </html>

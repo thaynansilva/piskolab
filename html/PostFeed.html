@@ -1,0 +1,29 @@
+<template id="root">
+  <div class="PostFeed">
+    <ul class="standard-list separators" role="feed" aria-roledescription="Blog posts" data-name="feed"></ul>
+    <div class="paginator" role="group" aria-label="Paginator controllers" data-name="paginator">
+      <button class="flat icon-small" aria-label="Previous page" data-name="prev-page">
+        <embed-svg src="img/icons/nav-prev.svg" aria-hidden="true"></embed-svg>
+      </button>
+      <div aria-roledescription="Current page">
+        <span data-name="page-index">-</span>
+        <span aria-label="of">/</span>
+        <span data-name="total-pages">-</span>
+      </div>
+      <button class="flat icon-small" aria-label="Next page" data-name="next-page">
+        <embed-svg src="img/icons/nav-next.svg" aria-hidden="true"></embed-svg>
+      </button>
+    </div>
+  </div>
+</template>
+<template id="post">
+  <li class="post">
+    <a href="" data-name="link">
+      <div>
+        <time data-name="publish-date"></time>
+        <h1 data-name="title"></h1>
+        <p data-name="description"></p>
+      </div>
+    </a>
+  </li>
+</template>

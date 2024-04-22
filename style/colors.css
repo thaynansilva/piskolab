@@ -1,7 +1,7 @@
-/* Light Theme: Backrooms */
+/* Light Theme: Backrooms (named by <https://github.com/iUseMintBTW>) */
 
 :root {
-    --pl-accent: #6e1e95;
+    --pl-accent: #e85;
     --pl-glow-color: #aaa5;
     --pl-shadow-color: #0002;
     --pl-header-color: #dc8;
@@ -43,7 +43,7 @@
 
 /* Dark Theme: Darcula? */
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: clover) {
 
     :root {
         --pl-accent: #6e1e95;

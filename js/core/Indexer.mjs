@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Utils } from "./utils.mjs";
+import { Fetcher } from "../utils/Fetcher.mjs";
 
 const MAXIMUM_AGE = 15000; // 15s
 
@@ -43,7 +43,7 @@ class Index {
     this.#store = [];
     this.#lastRefresh = now;
 
-    await Utils.get(this.#url, "json")
+    await Fetcher.get(this.#url, "json")
       .then(j => this.#parse(j, this.#store))
       .catch(e => { throw new Error(e); });
 
@@ -55,13 +55,15 @@ class Index {
 }
 
 /**
- * @type {Index<{
+ * @typedef {{
  *  id: string,
  *  date: Date,
  *  title: string,
  *  description: string
- *  resourceUrl: string
- * }>}
+ *  resourcePath: string
+ * }} Post
+ *
+ * @type {Index<Post>}
  */
 const postsIndex = new Index(
   "meta/posts/index.json",
@@ -72,7 +74,7 @@ const postsIndex = new Index(
         date: new Date(post.date ?? 0),
         title: post.title ?? "N/A",
         description: post.description ?? "N/A",
-        resourceUrl: `meta/posts/repo/${post.id}`
+        resourcePath: `meta/posts/repo/${post.id}.json`
       });
     });
 
@@ -82,16 +84,17 @@ const postsIndex = new Index(
 );
 
 /**
- * @type {Index<{
+ * @typedef {{
  *  uuid: string,
  *  name: string,
  *  logo: string?,
  *  url: string,
  *  status: string,
  *  description: string,
- *  details: [],
- *  resourceUrl: string
- * }>}
+ *  details: []
+ * }} Project
+ *
+ * @type {Index<Project>}
  */
 const projectsIndex = new Index(
   "meta/projects/index.json",
@@ -104,14 +107,13 @@ const projectsIndex = new Index(
         url: proj.url,
         status: proj.status,
         description: proj.description,
-        details: proj.details ?? [],
-        resourceUrl: `meta/projects/repo/${proj.uuid}`
+        details: proj.details ?? []
       });
     })
   })
 );
 
-export const Provider = {
+export const Indexer = Object.freeze({
 
   async getPosts(forceRefresh=false) {
     return await postsIndex.get(forceRefresh);
@@ -121,12 +123,12 @@ export const Provider = {
     return await projectsIndex.get(forceRefresh);
   },
 
-  async getPostInfo(postId) {
-    return (await postsIndex.get())?.find(p => p.id === postId);
+  async getPostInfo(id) {
+    return (await this.getPosts())?.find(p => p.id == id);
   },
 
-  async getProjectInfo(projectUuid) {
-    return (await projectsIndex.get())?.find(p => p.uuid == projectUuid);
+  async getProjectInfo(uuid) {
+    return (await this.getProjects())?.find(p => p.uuid == uuid);
   }
 
-};
+});

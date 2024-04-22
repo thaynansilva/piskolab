@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Utils } from "./utils.mjs";
+import { Fetcher } from "./Fetcher.mjs";
 
 export class Template {
 
@@ -22,24 +22,34 @@ export class Template {
   /**
    * Builds the UI from the template.
    *
-   * @param {(self: Template, root: HTMLElement) => void} construct
-   *  a function that constructs the UI
    * @returns {Promise<DocumentFragment>}
    *  the constructed UI.
    */
-  async build(construct) {
-    await this.#load();
+  async build() {
+    return await this.buildAndSetup(null);
+  }
 
-    let frag = document.createDocumentFragment();
+  /**
+   * Builds the UI from the template.
+   *
+   * @param {(root: HTMLElement) => void} setup
+   *  a function to set up the UI
+   * @returns {Promise<DocumentFragment>}
+   *  the constructed UI.
+   */
+  async buildAndSetup(setup) {
+    await this.#loadTemplate();
+
     let root = this.queryRoot();
+    let frag = document.createDocumentFragment();
 
     if (!root) {
       root = document.createElement("div");
       console.warn("Template has no root node. Using <div> as fallback.");
     }
 
-    construct(this, root);
-    frag.appendChild(root);
+    setup?.(root);
+    frag.append(root);
 
     return frag;
   }
@@ -50,13 +60,13 @@ export class Template {
     }
 
     /** @type {HTMLTemplateElement} */
-    let template = this.#doc.querySelector(selectors);
+    let target = this.#doc.querySelector(selectors);
 
-    if (!template) {
+    if (!target) {
       throw new Error(`No such template for selectors: '${selectors}'`);
     }
 
-    let templateChildrenCount = template.content.children.length;
+    let templateChildrenCount = target.content.children.length;
     if (templateChildrenCount == 0) {
       throw new Error(`Template '${selectors}' has no children.`);
     } else if (templateChildrenCount > 1) {
@@ -66,7 +76,7 @@ export class Template {
       );
     }
 
-    return template.content.firstElementChild.cloneNode(true);
+    return target.content.firstElementChild.cloneNode(true);
   }
 
   queryById(id) {
@@ -84,16 +94,12 @@ export class Template {
   /**
    * Loads the template document.
    */
-  async #load() {
+  async #loadTemplate() {
     if (this.#doc) {
       return;
     }
 
-    this.#doc = await Utils.get(this.#url, "html");
-  }
-
-  get document() {
-    return this.#doc;
+    this.#doc = await Fetcher.get(this.#url, "html");
   }
 
 }

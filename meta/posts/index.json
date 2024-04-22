@@ -2,10 +2,10 @@
   "$schema": "../schemas/post-index.schema.json",
   "posts": [
     {
-      "id": "hyperjson-testing-article",
+      "id": "docjson-testing-article",
       "date": "2024-04-02 08:28 UTC",
-      "title": "HyperJSON Testing Article",
-      "description": "A testing article for HyperJSON"
+      "title": "DocJSON Testing Article",
+      "description": "A testing article for DocJSON"
     }
   ]
 }

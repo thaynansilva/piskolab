@@ -5,17 +5,17 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { TextUtils } from "./utils.mjs";
+import { Text } from "./Text.mjs";
 
 /**
- * HyperJSON parser
+ * DocJSON parser
  */
-export const HyperJSON = {
+export const DocJSON = {
 
   /**
-   * Parses HyperJSON into HTML.
+   * Parses DocJSON into HTML.
    *
-   * @param {[]} data
+   * @param {{}[]} data
    *  the json
    * @returns {Promise<string>}
    */
@@ -25,19 +25,20 @@ export const HyperJSON = {
 };
 
 /**
+ * Selects properties from a node and
+ * wraps then into an object.
  *
- * @param {{}} n
+ * @param {{}} node
  *  target node
- * @param {{}} prefixProperties
+ * @param {{}} prefix
  *  pre-defined properties
  * @param  {...string} what
- *
- * @returns {prefixProperties}
+ * @returns {{}}
  */
-function getNodeProperties(n, prefixProperties, ...what) {
+function getNodeProperties(node, prefix, ...what) {
   return Object.fromEntries([
-    ...Object.entries(n).filter(v => what.includes(v[0])),
-    ...Object.entries(prefixProperties)
+    ...Object.entries(node).filter(v => what.includes(v[0])),
+    ...Object.entries(prefix)
   ]);
 }
 
@@ -85,7 +86,7 @@ function parseNode(n) {
       return compose("p", attrs, props, true);
     },
     link(n) {
-      let attrs = getNodeProperties(n, {}, "style", "href", "openInNew");
+      let attrs = getNodeProperties(n, {}, "style", "href", "openInNew", "block");
       let props = getNodeProperties(n, {}, "text", "lines", "children", "overlay");
       return compose("a", attrs, props, true);
     },
@@ -134,7 +135,7 @@ function parseNode(n) {
   };
 
   if (!(n.type in rules)) {
-    return `<p>${TextUtils.sanitize(JSON.stringify(n))}</p>`;
+    return `<p>${Text.escape(JSON.stringify(n))}</p>`;
   }
 
   return rules[n.type](n);
@@ -164,13 +165,16 @@ function parseNodes(nodes) {
  * @param {{
  *  text?: string,
  *  lines?: string[],
- *  children?: {}[],
- *  head?: {}[]
- *  body?: {}[],
- *  stripBlank?: boolean
- *  openInNew?: boolean
- *  verticalScroll?: boolean
- *  overlay
+ *  children?: DocNode[],
+ *  head?: DocNode[],
+ *  body?: DocNode[],
+ *  stripBlank?: boolean,
+ *  openInNew?: boolean,
+ *  verticalScroll?: boolean,
+ *  overlay: {
+ *    text: string,
+ *    icon: string,
+ *  }
  * }} props
  *  tag properties
  * @returns {string}
@@ -196,7 +200,7 @@ function compose(tag, attrs={}, props={}, closable=false) {
   }
 
   if (props.verticalScroll) {
-    result = `<div class="hj-scrolled-window">${result}</div>`
+    result = `<div class="meta-scrolled-window">${result}</div>`
   }
 
   if (!props.stripBlank) {
@@ -230,14 +234,14 @@ function composeAttributes(attrs) {
       case "src":
       case "cite":
       case "href":
-        tmp.push(`${k}="${TextUtils.sanitize(v)}"`);
+        tmp.push(`${k}="${Text.escape(v)}"`);
         break;
       case "style":
-        let classes = v.map(t => `hj-${t}`).join(" ");
+        let classes = v.map(t => `style-${t}`).join(" ");
         tmp.push(`class="${classes}"`);
         break;
       case "language":
-        tmp.push(`data-language="${TextUtils.sanitize(v)}"`);
+        tmp.push(`data-language="${Text.escape(v)}"`);
         break;
       case "draggable":
         let d = (typeof(v) === "boolean" && v);
@@ -286,8 +290,8 @@ function composeOverlay(overlay) {
   }
 
   const icons = {
-    "external-link": "img/icons/open-in-new.svg",
     "link": "img/icons/link.svg",
+    "external-link": "img/icons/open-in-new.svg",
   };
 
   let result = "<div>";
@@ -297,19 +301,19 @@ function composeOverlay(overlay) {
   }
 
   if (overlay.icon && icons[overlay.icon]) {
-    result += `<pl-svg src='${icons[overlay.icon]}'></pl-svg>`;
+    result += `<embed-svg src='${icons[overlay.icon]}'></embed-svg>`;
   }
 
   result += "</div>"
 
-  return `<div class='hj-overlay'>${result}</div>`;
+  return `<div class='meta-overlay'>${result}</div>`;
 }
 
 function processText(text) {
   if (typeof(text) === "string") {
-    return TextUtils.sanitize(text);
+    return Text.escape(text);
   } else if (text instanceof Array) {
-    return TextUtils.sanitizeLines(text).join("\n");
+    return Text.escapeLines(text).join("\n");
   } else {
     console.debug(`Invalid content type: ${Object.getPrototypeOf(text)}`);
   }
@@ -327,7 +331,7 @@ function makeTable(caption, head, body) {
     for (let row of head) {
       table += "<tr>";
       for (let cell of row) {
-        table += `<th>${TextUtils.sanitize(cell)}</th>`;
+        table += `<th>${Text.escape(cell.toString())}</th>`;
       }
       table += "</tr>"
     }
@@ -339,7 +343,7 @@ function makeTable(caption, head, body) {
     for (let row of body) {
       table += "<tr>";
       for (let cell of row) {
-        table += `<td>${TextUtils.sanitize(cell)}</td>`;
+        table += `<td>${Text.escape(cell.toString())}</td>`;
       }
       table += "</tr>"
     }

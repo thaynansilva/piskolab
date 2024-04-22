@@ -12,12 +12,10 @@
         "licenses": [
           {
             "identifier": "LGPL-3.0",
-            "title": "GNU Lesser General Public License version 3.0",
             "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE.txt"
           },
           {
             "identifier": "CC BY-SA 4.0",
-            "title": "Creative Commons Attibution By Share-Alike version 4.0",
             "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE_CC-BY-SA-4.0.txt"
           }
         ]
@@ -33,7 +31,6 @@
         "licenses": [
           {
             "identifier": "LGPL-3.0",
-            "title": "GNU Lesser General Public License version 3.0",
             "url": "https://gitlab.com/versa-lang/versa/-/blob/main/COPYING"
           }
         ],
