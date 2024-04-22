@@ -1,0 +1,10 @@
+@keyframes pop-in  { 0%   { opacity: 0; transform: translateY(15px); scale: 0.99; } }
+@keyframes pop-out { 100% { opacity: 0; transform: translateY(-5px); scale: 0.99; } }
+
+.anim-pop-in {
+    animation: pop-in 300ms ease;
+}
+
+.anim-pop-out {
+    animation: pop-out 200ms ease;
+}

@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Timer } from "./Timer.mjs";
+import { Animator } from "../core/Animator.mjs";
 
 /**
  * @typedef {HTMLElement|DocumentFragment|string} ContentType
@@ -62,12 +62,9 @@ export const Presenter = {
    *  an async function that returns a fallback content.
    */
   present(element, resolve, reject=null) {
-    (async () => {
-      element.classList.replace("anim-enter", "anim-exit");
-      element.ariaBusy = true;
-      await Timer.sleep(100);
-
+    Animator.animateInAndOut(async () => {
       this.replace(element, "<span class='spinner'></span>");
+      element.ariaBusy = true;
 
       let data = null;
 
@@ -77,13 +74,9 @@ export const Presenter = {
         data = await reject?.(reason);
       }
 
-      element.classList.remove("anim-exit");
-      element.classList.add("anim-enter");
-      await Timer.sleep(50);
-
       this.replace(element, data);
       element.ariaBusy = false;
-    })();
+    }, "pop-in", "pop-out", element);
   }
 
 };

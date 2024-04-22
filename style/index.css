@@ -1,4 +1,5 @@
 @import url("colors.css");
+@import url("animations.css");
 
 :root {
     --pl-font: "Fira Sans", Arial, sans-serif;
@@ -8,20 +9,8 @@
 
 /* Animations */
 
-@keyframes pop-in  { 0%   { opacity: 0; transform: translateY(15px); scale: 0.99; } }
-@keyframes pop-out { 100% { opacity: 0; transform: translateY(-5px); scale: 0.99; } }
-@keyframes fade-in { 0%   { opacity: 0; } }
-@keyframes spin    { 0%   { transform: rotate(-1turn); } }
-
-/* Animation classes */
-
-.anim-enter {
-    animation: pop-in 0.3s ease;
-}
-
-.anim-exit {
-    animation: pop-out 0.2s ease;
-}
+@keyframes spinner-fade-in { 0%   { opacity: 0; } }
+@keyframes spinner-spin    { 0%   { transform: rotate(-1turn); } }
 
 /* Body */
 
@@ -30,18 +19,6 @@ body {
     font: 14pt var(--pl-font);
     color: var(--pl-text-normal);
     background-color: var(--pl-body-color);
-}
-
-/* Root */
-
-div#root {
-    display: flex;
-    flex-flow: column;
-    overflow-x: hidden;
-    margin: auto;
-    padding: 20px;
-    min-height: 64px;
-    max-width: var(--pl-max-content-width);
 }
 
 /* Button */
@@ -144,6 +121,18 @@ hr {
     height: 1px;
     border: none;
     background-color: var(--pl-border-color);
+}
+
+/* Root */
+
+div#root {
+    display: flex;
+    flex-flow: column;
+    overflow-x: hidden;
+    margin: auto;
+    padding: 20px;
+    min-height: 64px;
+    max-width: var(--pl-max-content-width);
 }
 
 /* Header */
@@ -454,7 +443,7 @@ span.spinner {
     display: block;
     margin: auto;
     width: fit-content;
-    animation: fade-in 0.5s ease;
+    animation: spinner-fade-in 0.5s ease;
 }
 
 span.spinner::after {
@@ -464,10 +453,10 @@ span.spinner::after {
     aspect-ratio: 1;
     border-radius: 100%;
     color: var(--pl-accent);
-    background: radial-gradient(farthest-side, currentColor 94%, #000) top/4px 4px no-repeat,
+    background: radial-gradient(farthest-side, currentColor 94%, transparent) top/4px 4px no-repeat,
                 conic-gradient(transparent 20%, currentColor);
     mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
-    animation: spin 1s infinite linear;
+    animation: spinner-spin 1s infinite linear;
 }
 
 /* == Rules == */
