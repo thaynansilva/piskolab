@@ -1,3 +1,10 @@
+/*
+ * Pisko Lab - Personal website
+ * Copyright (C) Thaynan Silva
+ *
+ * SPDX-License-Identifier: LGPL-3.0
+ */
+
 import { Template } from "../utils/Template.mjs";
 import { Presenter } from "../utils/Presenter.mjs";
 import { ViewManager } from "../utils/ViewManager.mjs";
