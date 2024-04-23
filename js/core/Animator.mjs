@@ -10,11 +10,11 @@ import { Timer } from "../utils/Timer.mjs";
 const Animations = Object.freeze({
   "pop-in": {
     name: "anim-pop-in",
-    duration: 300,
+    delay: 150,
   },
   "pop-out": {
     name: "anim-pop-out",
-    duration: 200,
+    delay: 150,
   }
 });
 
@@ -37,7 +37,7 @@ export const Animator = Object.freeze({
     }
 
     element.classList.add(anim.name);
-    await Timer.sleep(anim.duration);
+    await Timer.sleep(anim.delay);
     element.classList.remove(anim.name);
   },
 
