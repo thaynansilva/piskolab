@@ -123,21 +123,16 @@ hr {
     background-color: var(--pl-border-color);
 }
 
-/* Root */
+/* == Pisko Lab == */
 
-div#root {
-    display: flex;
-    flex-flow: column;
-    overflow-x: hidden;
-    margin: auto;
-    padding: 20px;
-    min-height: 64px;
-    max-width: var(--pl-max-content-width);
+div.PiskoLab {
+    width: 100vw;
+    height: 100vh;
 }
 
 /* Header */
 
-header#header {
+div.PiskoLab header#header {
     display: flex;
     background-image: linear-gradient(to top, var(--pl-shadow-color), transparent 5%);
     background-repeat: no-repeat;
@@ -148,7 +143,7 @@ header#header {
                 background-color 0.3s ease;
 }
 
-header#header embed-svg.logo {
+div.PiskoLab header#header embed-svg.logo {
     display: flex;
     margin: auto;
     color: var(--pl-text-normal);
@@ -158,9 +153,7 @@ header#header embed-svg.logo {
     aspect-ratio: 200/48;
 }
 
-/* Tabs */
-
-header#header div#tabs {
+div.PiskoLab header#header div#tabs {
     display: flex;
     padding: 8px 8px 0;
     width: fit-content;
@@ -169,14 +162,14 @@ header#header div#tabs {
     overflow-x: auto;
 }
 
-header#header div#tabs > button {
+div.PiskoLab header#header div#tabs > button {
     border-top: 2px solid transparent;
     border-radius: 4px 4px 0 0;
     text-transform: lowercase;
     cursor: pointer;
 }
 
-header#header div#tabs > button[data-selected="true"] {
+div.PiskoLab header#header div#tabs > button[data-selected="true"] {
     color: var(--pl-control-text-selected);
     background-color: var(--pl-control-selected);
     box-shadow: 0 0 3px var(--pl-shadow-color);
@@ -184,8 +177,18 @@ header#header div#tabs > button[data-selected="true"] {
     cursor: default;
 }
 
-header#header div#tabs > button + button {
+div.PiskoLab header#header div#tabs > button + button {
     margin-left: 8px;
+}
+
+div.PiskoLab div#pane {
+    display: flex;
+    flex-flow: column;
+    overflow-x: hidden;
+    margin: auto;
+    padding: 20px;
+    min-height: 64px;
+    max-width: var(--pl-max-content-width);
 }
 
 /* == Posts Feed View == */
