@@ -61,8 +61,8 @@ export const Presenter = {
    * @param {?(reason: string) => Promise<ContentType>} reject
    *  an async function that returns a fallback content.
    */
-  present(element, resolve, reject=null) {
-    Animator.animateInAndOut(async () => {
+  async present(element, resolve, reject=null) {
+    await Animator.animateInAndOut(async () => {
       this.replace(element, "<span class='spinner'></span>");
       element.ariaBusy = true;
 
