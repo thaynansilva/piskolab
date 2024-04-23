@@ -39,7 +39,7 @@ export const Presenter = {
         break;
       case "replaceNode":
         if (isFragmentOrElement) {
-        element.replaceWith(content);
+          element.replaceWith(content);
         } else {
           element.outerHTML = content;
         }
