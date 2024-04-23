@@ -43,7 +43,7 @@
 
 /* Dark Theme: Darcula? */
 
-@media (prefers-color-scheme: clover) {
+@media (prefers-color-scheme: dark) {
 
     :root {
         --pl-accent: #6e1e95;
