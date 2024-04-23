@@ -140,8 +140,7 @@ export const ViewManager = Object.freeze({
           break;
         case "view-project":
           Session.currentView = "ProjectViewer";
-          console.log(Search.id);
-          Session.currentViewOptions = { projectUuid: Search.id };
+          Session.currentViewOptions = { projectUuid: Search.uuid };
           break;
         default:
           break;
