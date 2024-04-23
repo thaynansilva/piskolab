@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Animator } from "../core/Animator.mjs";
+import { Animator } from "../utils/Animator.mjs";
 
 /**
  * @typedef {HTMLElement|DocumentFragment|string} ContentType

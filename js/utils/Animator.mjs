@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Timer } from "../utils/Timer.mjs";
+import { Timer } from "./Timer.mjs";
 
 const Animations = Object.freeze({
   "pop-in": {
