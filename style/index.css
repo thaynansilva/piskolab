@@ -21,6 +21,13 @@ body {
     background-color: var(--pl-body-color);
 }
 
+/* Root */
+
+div#root {
+    width: 100vw;
+    height: 100vh;
+}
+
 /* Button */
 
 button {
@@ -124,13 +131,6 @@ hr {
 }
 
 /* == Pisko Lab == */
-
-div.PiskoLab {
-    width: 100vw;
-    height: 100vh;
-}
-
-/* Header */
 
 div.PiskoLab header#header {
     display: flex;
@@ -440,26 +440,30 @@ div.Error > div.dialog div.buttons button + button {
     margin-left: 8px;
 }
 
-/* Spinner - from CSS Loaders <https://css-loaders.com/spinner/> (Adapted) */
+/* Spinner - from CSS Loaders (Adapted) <https://css-loaders.com/spinner/> */
 
 span.spinner {
+    position: absolute;
     display: block;
-    margin: auto;
-    width: fit-content;
-    animation: spinner-fade-in 0.5s ease;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+    min-width: 50px;
+    min-height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 span.spinner::after {
-    content: "";
+    position: relative;
     display: block;
-    width: 50px;
+    content: "";
     aspect-ratio: 1;
     border-radius: 100%;
     color: var(--pl-accent);
     background: radial-gradient(farthest-side, currentColor 94%, transparent) top/4px 4px no-repeat,
                 conic-gradient(transparent 20%, currentColor);
     mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 0);
-    animation: spinner-spin 1s infinite linear;
+    animation: spinner-fade-in 0.5s ease, spinner-spin 1s infinite linear;
 }
 
 /* == Rules == */
