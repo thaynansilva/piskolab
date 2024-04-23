@@ -15,6 +15,10 @@ const Animations = Object.freeze({
   "pop-out": {
     name: "anim-pop-out",
     delay: 150,
+  },
+  "zoom-in": {
+    name: "anim-zoom-in",
+    delay: 150
   }
 });
 
