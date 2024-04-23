@@ -28,9 +28,12 @@ async function initialize(preinitCallback) {
 }
 
 async function initApp() {
-  let root = document.getElementById("root");
+  let root = document.querySelector("#root");
+  await Presenter.present(root, build, null);
+}
 
-  let content = await template.buildAndSetup(root => {
+async function build() {
+  return await template.buildAndSetup(root => {
     for (let tab of root.querySelectorAll("#tabs>button")) {
       let view = tab.getAttribute("data-view");
       tab.addEventListener("click", () => ViewManager.showView(view));
@@ -42,6 +45,4 @@ async function initApp() {
       });
     }
   });
-
-  Presenter.replace(root, content, "replaceNode");
 }
