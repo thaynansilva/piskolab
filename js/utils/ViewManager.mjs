@@ -166,13 +166,13 @@ export const ViewManager = Object.freeze({
    *  When the view is activated or refreshed
    */
   showView(view, options=null) {
-    const root = document.getElementById("root");
+    const pane = document.getElementById("pane");
 
     if (!ViewRegistry.isValid(view)) {
       this.reset();
     }
 
-    Presenter.present(root,
+    Presenter.present(pane,
       async () => {
         ViewEventManager.dispatchEvent("view-changed", {
           view, parent: ViewRegistry.getParent(view)
