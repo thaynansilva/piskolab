@@ -339,6 +339,76 @@ div.Portfolio ul li.project a > div > div p {
     margin: 0;
 }
 
+/* == Project Viewer == */
+
+div.ProjectViewer div.project {
+    text-align: center;
+    padding: 8px;
+}
+
+div.ProjectViewer div.project > embed-svg {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 256px;
+    aspect-ratio: 1;
+    background-color: var(--pl-view-color);
+    box-shadow: 0 0 5px var(--pl-shadow-color);
+    border-radius: 8px;
+}
+
+div.ProjectViewer div.details {
+    display: block;
+}
+
+div.ProjectViewer div.details {
+    display: block;
+    margin: auto;
+}
+
+div.ProjectViewer div.details > div.block {
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    padding: 20px;
+    min-height: 50px;
+    border-radius: 8px;
+    background-color: var(--pl-view-color);
+    border: 1px solid var(--pl-view-border-color);
+    box-shadow: 0 0 5px var(--pl-shadow-color);
+}
+
+div.ProjectViewer div.details > div.block + div.block {
+    margin-top: 15px;
+}
+
+div.ProjectViewer div.details > div.block > div {
+    display: flex;
+}
+
+div.ProjectViewer div.details > div.block h3 {
+    margin: 0 0 0 8px;
+}
+
+div.ProjectViewer div.details > div.block hr {
+    margin-bottom: 20px;
+}
+
+div.ProjectViewer div.details > div.block ul {
+    margin: 0;
+    padding-left: 30px;
+}
+
+div.ProjectViewer div.details > div.block ul li {
+    padding: 2px 0;
+    list-style-type: '〉';
+}
+
+div.ProjectViewer div.details > div.block ul li.empty {
+    display: block;
+    font-style: italic;
+    color: var(--pl-text-dimmed);
+}
+
 /* == About View == */
 
 div.About section:first-child > h1:first-child {
