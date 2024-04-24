@@ -46,7 +46,7 @@ const SVGStorage = {
  */
 export class EmbedSVGElement extends HTMLElement {
 
-  static observedAttributes = ["src", "alt"];
+  static observedAttributes = ["src", "alt", "no-embed"];
 
   /** @type {ShadowRoot?} */
   #shadow = null;
@@ -64,7 +64,14 @@ export class EmbedSVGElement extends HTMLElement {
 
   #update() {
     SVGStorage.get(this.src).then(svg => {
-      this.#shadow.replaceChildren(svg);
+      if (!this.noEmbed) {
+        this.#shadow.replaceChildren(svg);
+      } else {
+        let img = document.createElement("img");
+        img.src = this.src;
+        img.ariaHidden = true;
+        this.#shadow.replaceChildren(img);
+      }
       this.dispatchEvent(new Event("load", { cancelable: false }));
     }).catch(reason => {
       this.#shadow.innerHTML = this.alt ?? "<span style='color:#f44;display:flex;margin:auto;'>✖</span>";
@@ -83,6 +90,10 @@ export class EmbedSVGElement extends HTMLElement {
   }
 
   attributeChangedCallback(name, _oldValue, newValue) {
+    if (_oldValue == newValue) {
+      return;
+    }
+
     switch (name) {
       case "alt":
         this.#internals.ariaLabel = newValue;
@@ -102,12 +113,20 @@ export class EmbedSVGElement extends HTMLElement {
     this.setAttribute("alt", value);
   }
 
+  set noEmbed(value) {
+    this.setAttribute("no-embed", value);
+  }
+
   get src() {
     return this.getAttribute("src");
   }
 
   get alt() {
     return this.getAttribute("alt");
+  }
+
+  get noEmbed() {
+    return this.getAttribute("no-embed");
   }
 }
 
