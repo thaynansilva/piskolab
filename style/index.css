@@ -21,6 +21,15 @@ body {
     background-color: var(--pl-body-color);
 }
 
+/* No script */
+
+div.noscript {
+    display: block;
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
 /* Root */
 
 div#root {
