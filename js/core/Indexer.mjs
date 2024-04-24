@@ -10,14 +10,14 @@ import { Fetcher } from "../utils/Fetcher.mjs";
 const MAXIMUM_AGE = 15000; // 15s
 
 /**
- * @template {{}} T
+ * @template T
  */
 class Index {
 
   /** @type {string} */
   #url;
 
-  /** @type {(data: {}, store: T[]) => void} */
+  /** @type {(data) => T[]} */
   #parse;
 
   /** @type {T[]?} */
@@ -26,7 +26,8 @@ class Index {
 
   /**
    * @param {string} url
-   * @param {(data: {}, store: T[]) => void} parse
+   * @param {(data) => T[]} parse
+   *  a comparison function, used to sort data
    */
   constructor (url, parse) {
     this.#url = url;
@@ -43,9 +44,8 @@ class Index {
     this.#store = [];
     this.#lastRefresh = now;
 
-    await Fetcher.get(this.#url, "json")
-      .then(j => this.#parse(j, this.#store))
-      .catch(e => { throw new Error(e); });
+    let data = await Fetcher.get(this.#url, "json");
+    this.#store = this.#parse(data);
 
     return this.#store;
   }
@@ -65,23 +65,22 @@ class Index {
  *
  * @type {Index<Post>}
  */
-const postsIndex = new Index(
-  "meta/posts/index.json",
-  ((data, store) => {
-    data.posts.forEach((post) => {
-      store.push({
-        id: post.id ?? "the-void",
-        date: new Date(post.date ?? 0),
-        title: post.title ?? "N/A",
-        description: post.description ?? "N/A",
-        resourcePath: `meta/posts/repo/${post.id}.json`
-      });
-    });
+const postIndex = new Index("meta/posts/index.json", (data) => {
+  let items = [];
 
-    /* sort posts by recency */
-    store.sort((a, b) => b.date - a.date);
-  })
-);
+  for (let post of data.posts) {
+    items.push({
+      id: post.id,
+      date: new Date(post.date ?? 0),
+      title: post.title,
+      description: post.description,
+      resourcePath: `meta/posts/repo/${post.id}.json`
+    });
+  }
+
+  /* sort posts by recency */
+  return items.sort((a, b) => b.date - a.date);
+});
 
 /**
  * @typedef {{
@@ -91,6 +90,7 @@ const postsIndex = new Index(
  *  url: string,
  *  status: string,
  *  description: string,
+ *  longDescription?: string[],
  *  details?: {
  *    licenses?: {
  *      identifier: string,
@@ -103,38 +103,22 @@ const postsIndex = new Index(
  *    links?: {
  *      title?: string,
  *      url: string,
- *    }[],
- *    notes?: string[],
+ *    }[]
  *  }
  * }} Project
  *
  * @type {Index<Project>}
  */
-const projectsIndex = new Index(
-  "meta/projects/index.json",
-  ((data, store) => {
-    data.projects.forEach((proj) => {
-      store.push({
-        uuid: proj.uuid,
-        name: proj.name,
-        logo: proj.logo ?? null,
-        url: proj.url,
-        status: proj.status,
-        description: proj.description,
-        details: proj.details ?? []
-      });
-    })
-  })
-);
+const projectIndex = new Index("meta/projects/index.json", x => x.projects);
 
 export const Indexer = Object.freeze({
 
   async getPosts(forceRefresh=false) {
-    return await postsIndex.get(forceRefresh);
+    return await postIndex.get(forceRefresh);
   },
 
   async getProjects(forceRefresh=false) {
-    return await projectsIndex.get(forceRefresh);
+    return await projectIndex.get(forceRefresh);
   },
 
   async getPostInfo(id) {
