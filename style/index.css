@@ -12,13 +12,25 @@
 @keyframes spinner-fade-in { 0%   { opacity: 0; } }
 @keyframes spinner-spin    { 0%   { transform: rotate(-1turn); } }
 
-/* Body */
+/* General elements */
 
 body {
     margin: 0;
     font: 14pt var(--pl-font);
     color: var(--pl-text-normal);
     background-color: var(--pl-body-color);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+hr {
+    width: auto;
+    height: 1px;
+    border: none;
+    background-color: var(--pl-border-color);
 }
 
 /* No script */
@@ -125,22 +137,6 @@ ul.separators li:not(:last-child)::after {
     width: 80%;
     height: 1px;
     margin: 8px auto;
-    background-color: var(--pl-border-color);
-}
-
-/* Image */
-
-img {
-    display: block;
-    max-width: 100%;
-}
-
-/* Separator */
-
-hr {
-    width: auto;
-    height: 1px;
-    border: none;
     background-color: var(--pl-border-color);
 }
 
