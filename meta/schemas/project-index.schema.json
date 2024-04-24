@@ -53,6 +53,14 @@
             "description": "A brief description about the project's purpose.",
             "type": "string"
           },
+          "longDescription": {
+            "title": "A longer description of the project",
+            "description": "Each item is a paragraph.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "details": {
             "title": "Project details",
             "type": "object",
@@ -81,7 +89,7 @@
                 }
               },
               "docs": {
-                "title": "A list of links to documentation",
+                "title": "An array of links to documentation",
                 "type": "array",
                 "items": {
                   "type": "object",
@@ -99,7 +107,7 @@
                 }
               },
               "links": {
-                "title": "A list of links",
+                "title": "An array of links",
                 "type": "array",
                 "properties": {
                   "items": {
@@ -119,13 +127,6 @@
                       "url"
                     ]
                   }
-                }
-              },
-              "notes": {
-                "title": "A list of short text notes",
-                "type": "array",
-                "items": {
-                  "type": "string"
                 }
               }
             }
