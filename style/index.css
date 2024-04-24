@@ -27,7 +27,7 @@ img {
 }
 
 hr {
-    width: auto;
+    width: 100%;
     height: 1px;
     border: none;
     background-color: var(--pl-border-color);
