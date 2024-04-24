@@ -91,7 +91,21 @@ const postsIndex = new Index(
  *  url: string,
  *  status: string,
  *  description: string,
- *  details: []
+ *  details?: {
+ *    licenses?: {
+ *      identifier: string,
+ *      url?: string,
+ *    },
+ *    docs?: {
+ *      title: string,
+ *      url: string,
+ *    }[],
+ *    links?: {
+ *      title?: string,
+ *      url: string,
+ *    }[],
+ *    notes?: string[],
+ *  }
  * }} Project
  *
  * @type {Index<Project>}
