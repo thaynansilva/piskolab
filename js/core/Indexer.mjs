@@ -87,10 +87,10 @@ const postIndex = new Index("meta/posts/index.json", (data) => {
  *  uuid: string,
  *  name: string,
  *  logo: string?,
- *  url: string,
+ *  brief: string,
  *  status: string,
- *  description: string,
- *  longDescription?: string[],
+ *  url: string,
+ *  description?: string[],
  *  details?: {
  *    licenses?: {
  *      identifier: string,
