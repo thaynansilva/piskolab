@@ -48,6 +48,10 @@ export const Text = {
    *  the strings
    */
   escapeLines(lines) {
+    if (!lines) {
+      return;
+    }
+
     if (!(lines instanceof Array))
       throw new Error(`lines must be string[], not ${typeof(lines)}`);
 
