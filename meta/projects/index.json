@@ -5,9 +5,9 @@
       "uuid": "cd412fc9-9fdb-46d9-9acf-75217c6f78c6",
       "name": "Pisko Lab",
       "logo": "img/logo.svg",
+      "brief": "Pisko's little space – A personal website",
       "status": "active",
       "url": "https://github.com/thaynansilva/piskolab",
-      "description": "Pisko's little space – A personal website",
       "details": {
         "licenses": [
           {
@@ -24,9 +24,9 @@
     {
       "uuid": "453cf657-0c44-4e6c-9c7c-784187d382bb",
       "name": "Versa",
+      "brief": "A powerful versatile cross-platform programming language",
       "status": "active",
       "url": "https://gitlab.com/versa-lang",
-      "description": "A powerful versatile cross-platform programming language",
       "details": {
         "licenses": [
           {

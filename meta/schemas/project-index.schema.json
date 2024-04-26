@@ -13,9 +13,9 @@
         "required": [
           "uuid",
           "name",
-          "url",
+          "brief",
           "status",
-          "description"
+          "url"
         ],
         "properties": {
           "uuid": {
@@ -30,11 +30,10 @@
             "title": "Project logo",
             "type": "string"
           },
-          "url": {
-            "title": "Project URL",
-            "description": "A link to the project page, e.g. GitHub.",
-            "type": "string",
-            "format": "uri"
+          "brief": {
+            "title": "Project brief",
+            "description": "A brief description about the project's purpose.",
+            "type": "string"
           },
           "status": {
             "title": "Project status",
@@ -48,12 +47,13 @@
               "unmaintained"
             ]
           },
-          "description": {
-            "title": "Project description",
-            "description": "A brief description about the project's purpose.",
-            "type": "string"
+          "url": {
+            "title": "Project URL",
+            "description": "A link to the project page, e.g. GitHub.",
+            "type": "string",
+            "format": "uri"
           },
-          "longDescription": {
+          "description": {
             "title": "A longer description of the project",
             "description": "Each item is a paragraph.",
             "type": "array",
@@ -63,8 +63,8 @@
           },
           "details": {
             "title": "Project details",
-            "type": "object",
             "description": "Licensing, documentation, links and notes.",
+            "type": "object",
             "properties": {
               "licenses": {
                 "title": "Licensing details",
@@ -74,7 +74,6 @@
                   "properties": {
                     "identifier": {
                       "title": "License identifier",
-                      "description": "",
                       "type": "string"
                     },
                     "url": {
@@ -99,7 +98,7 @@
                       "type": "string"
                     },
                     "url": {
-                      "title": "URL to the documentation",
+                      "title": "URL to the documentation page",
                       "type": "string",
                       "format": "uri"
                     }
