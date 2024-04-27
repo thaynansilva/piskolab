@@ -9,6 +9,14 @@ export const ProjectViewerView = Object.freeze({
   secret: false
 });
 
+const statusMessages = {
+  "drafting": "Drafting phase",
+  "canceled": "Canceled",
+  "active": "Active development",
+  "unmaintained": "Unmaintained",
+  "deprecated": "Deprecated"
+};
+
 async function build(options) {
   let projectUuid = options.projectUuid;
   let projectInfo = await Indexer.getProjectInfo(projectUuid);
@@ -28,50 +36,74 @@ async function build(options) {
     let name = root.querySelector("[data-name='name']");
     name.textContent = projectInfo.name;
 
+    let link = root.querySelector("[data-name='link']");
+    link.href = projectInfo.url;
+
+    let brief = root.querySelector("[data-name='brief']");
+    brief.textContent = projectInfo.brief;
+
+    let status = root.querySelector("[data-name='status']");
+    status.setAttribute("data-status", projectInfo.status);
+    status.textContent = statusMessages[projectInfo.status];
+
     let description = root.querySelector("[data-name='description']");
-    description.textContent = projectInfo.description;
+    let descriptionSection = root.querySelector("[data-name='sect-description']");
+    putItems(projectInfo.description, "description", description, descriptionSection);
 
-    let licenses = root.querySelector("[data-name='lst-licenses']");
-    insertItems(projectInfo.details?.licenses, "licenses", licenses);
+    let licensing = root.querySelector("[data-name='licensing']");
+    let licensingSection = root.querySelector("[data-name='sect-licensing']");
+    putItems(projectInfo.details?.licenses, "licensing", licensing, licensingSection);
 
-    let docs = root.querySelector("[data-name='lst-docs']");
-    insertItems(projectInfo.details?.docs, "docs", docs);
+    let docs = root.querySelector("[data-name='docs']");
+    let docsSection = root.querySelector("[data-name='sect-docs']");
+    putItems(projectInfo.details?.docs, "docs", docs, docsSection);
 
-    let links = root.querySelector("[data-name='lst-links']");
-    insertItems(projectInfo.details?.links, "links", links);
+    let links = root.querySelector("[data-name='links']");
+    let linksSection = root.querySelector("[data-name='sect-links']")
+    putItems(projectInfo.details?.links, "links", links, linksSection);
   });
 }
 
-function insertItems(items, type, list) {
-  const isEmpty = !items;
+function putItems(items, type, container, targetSection) {
+  if (!items) {
+    if (targetSection) {
+      targetSection.hidden = true;
+    }
+
+    return;
+  }
 
   switch (type) {
-    case "licenses":
-      if (!isEmpty) {
-        items.forEach((x) => {
-          let item = template.queryById("item");
-          let a = item.querySelector("a");
-          a.textContent = x.identifier;
-          a.href = x.url;
-          list.appendChild(item);
-        });
-      } else {
-        list.appendChild(template.queryById("empty-item"));
-      }
+    case "description":
+      items.forEach((x) => {
+        let line = x.trim();
+        if (line.length > 0) {
+          let p = template.queryById("item-paragraph")
+          p.textContent = line;
+          container.appendChild(p);
+        }
+      });
+      break;
+    case "licensing":
+      items.forEach((x) => {
+        let item = template.queryById("item");
+        let a = item.querySelector("a");
+        let t = a.querySelector("span");
+        t.textContent = x.identifier;
+        a.href = x.url;
+        container.appendChild(item);
+      });
       break;
     case "docs":
     case "links":
-      if (!isEmpty) {
-        items.forEach((x) => {
-          let item = template.queryById("item");
-          let a = item.querySelector("a");
-          a.textContent = x.title ?? x.url;
-          a.href = x.url;
-          list.appendChild(item);
-        });
-      } else {
-        list.appendChild(template.queryById("empty-item"));
-      }
+      items.forEach((x) => {
+        let item = template.queryById("item");
+        let a = item.querySelector("a");
+        let t = a.querySelector("span");
+        t.textContent = x.title ?? x.url;
+        a.href = x.url;
+        container.appendChild(item);
+      });
       break;
     default:
       break;

@@ -3,43 +3,64 @@
     <div class="project">
       <embed-svg src="img/icons/project.svg" alt="Project logo" data-name="logo"></embed-svg>
       <h1 translate="no" data-name="name"></h1>
-      <p data-name="description"></p>
-    </div>
-    <hr>
-    <div>
-      <h2>Project Details</h2>
-      <div class="details">
-        <div class="block">
-          <div>
-            <embed-svg src="img/icons/licensing.svg"></embed-svg>
-            <h3>Licensing</h3>
-          </div>
-          <hr>
-          <ul data-name="lst-licenses"></ul>
-        </div>
-        <div class="block">
-          <div>
-            <embed-svg src="img/icons/docs.svg"></embed-svg>
-            <h3>Documentation</h3>
-          </div>
-          <hr>
-          <ul data-name="lst-docs"></ul>
-        </div>
-        <div class="block">
+      <p data-name="brief"></p>
+      <div class="resources">
+        <span class="status-badge" data-name="status"></span>
+        <div class="vl"></div>
+        <a class="text-icon-link" href="" target="_blank" data-name="link">
           <div>
             <embed-svg src="img/icons/link.svg"></embed-svg>
-            <h3>Links</h3>
+            <span>Source Code</span>
           </div>
-          <hr>
-          <ul data-name="lst-links"></ul>
-        </div>
+        </a>
       </div>
+    </div>
+    <div class="details">
+      <section data-name="sect-description">
+        <div>
+          <embed-svg src="img/icons/notes.svg"></embed-svg>
+          <h3>Description</h3>
+        </div>
+        <hr>
+        <div data-name="description"></div>
+      </section>
+      <section data-name="sect-licensing">
+        <div>
+          <embed-svg src="img/icons/licensing.svg"></embed-svg>
+          <h3>Licensing</h3>
+        </div>
+        <hr>
+        <ul data-name="licensing"></ul>
+      </section>
+      <section data-name="sect-docs">
+        <div>
+          <embed-svg src="img/icons/docs.svg"></embed-svg>
+          <h3>Documentation</h3>
+        </div>
+        <hr>
+        <ul data-name="docs"></ul>
+      </section>
+      <section data-name="sect-links">
+        <div>
+          <embed-svg src="img/icons/link.svg"></embed-svg>
+          <h3>Links</h3>
+        </div>
+        <hr>
+        <ul data-name="links"></ul>
+      </section>
     </div>
   </div>
 </template>
-<template id="empty-item">
-  <li class="empty">No info available</li>
-</template>
 <template id="item">
-  <li><a href="" target="_blank"></a></li>
+  <li>
+    <a class="text-icon-link" href="" target="_blank">
+      <div>
+        <span></span>
+        <embed-svg src="img/icons/open-in-new.svg" loading="eager"></embed-svg>
+      </div>
+    </a>
+  </li>
+</template>
+<template id="item-paragraph">
+  <p></p>
 </template>

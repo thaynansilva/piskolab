@@ -34,11 +34,12 @@
     --pl-table-row-color-head: #bba1;
     --pl-table-row-color-body1: #bba3;
     --pl-table-row-color-body2: #bba5;
-    --pl-bubble-drafting: #69fc;
-    --pl-bubble-canceled: #f77c;
-    --pl-bubble-active: #7d6f;
-    --pl-bubble-unmaintained: #f82c;
-    --pl-bubble-deprecated: #445c;
+    --pl-badge-text-color: #111c;
+    --pl-badge-drafting: #69fc;
+    --pl-badge-canceled: #f77c;
+    --pl-badge-active: #7d6f;
+    --pl-badge-unmaintained: #f82c;
+    --pl-badge-deprecated: #445c;
 }
 
 /* Dark Theme: Darcula? */
@@ -79,11 +80,12 @@
         --pl-table-row-color-head: #fff2;
         --pl-table-row-color-body1: #fff0;
         --pl-table-row-color-body2: #fff1;
-        --pl-bubble-drafting: #08fc;
-        --pl-bubble-canceled: #e55c;
-        --pl-bubble-active: #3e37;
-        --pl-bubble-unmaintained: #5568;
-        --pl-bubble-deprecated: #445c;
+        --pl-badge-text-color: #fffd;
+        --pl-badge-drafting: #08fd;
+        --pl-badge-canceled: #e33d;
+        --pl-badge-active: #3e39;
+        --pl-badge-unmaintained: #5568;
+        --pl-badge-deprecated: #445c;
     }
 
 }
