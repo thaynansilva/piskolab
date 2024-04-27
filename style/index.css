@@ -97,7 +97,7 @@ button:focus-visible {
 
 a {
     color: var(--pl-link-color);
-    display: inline-block;
+    display: inline-flex;
     text-decoration: none;
     min-width: fit-content;
     outline: 0px solid var(--pl-control-accent);
@@ -116,6 +116,19 @@ a:focus-visible {
 
 a:visited {
     color: var(--pl-link-visited-color);
+}
+
+a.text-icon-link > div {
+    display: flex;
+}
+
+a.text-icon-link > div > span {
+    margin: auto 0;
+}
+
+a.text-icon-link > div > :first-child {
+    display: flex;
+    margin: auto 4px auto 0;
 }
 
 /* List */
@@ -138,6 +151,46 @@ ul.separators li:not(:last-child)::after {
     height: 1px;
     margin: 8px auto;
     background-color: var(--pl-border-color);
+}
+
+/* == Status Badge == */
+
+span.status-badge {
+    display: flex;
+    color: var(--pl-badge-text-color);
+}
+
+span.status-badge::before {
+    display: inline-flex;
+    content: "";
+    width: 0.8rem;
+    height: 0.8rem;
+    min-width: 0.8rem;
+    min-height: 0.8rem;
+    border-radius: 25%;
+    margin: auto 6px auto 0;
+    border: 1px solid var(--pl-view-border-color);
+    background-color: #fff;
+}
+
+span.status-badge[data-status="drafting"]::before {
+    background-color: var(--pl-badge-drafting);
+}
+
+span.status-badge[data-status="canceled"]::before {
+    background-color: var(--pl-badge-canceled);
+}
+
+span.status-badge[data-status="active"]::before {
+    background-color: var(--pl-badge-active);
+}
+
+span.status-badge[data-status="unmaintained"]::before {
+    background-color: var(--pl-badge-unmaintained);
+}
+
+span.status-badge[data-status="deprecated"]::before {
+    background-color: var(--pl-badge-deprecated);
 }
 
 /* == Pisko Lab == */
@@ -356,8 +409,18 @@ div.ProjectViewer div.project > embed-svg {
     border-radius: 8px;
 }
 
-div.ProjectViewer div.details {
-    display: block;
+div.ProjectViewer div.project > div.resources {
+    display: inline-flex;
+}
+
+div.ProjectViewer div.project > div.resources > div.vl {
+    display: flex;
+    width: 1px;
+    min-width: 1px;
+    height: 90%;
+    min-height: 0.9em;
+    margin: auto 10px;
+    background-color: var(--pl-border-color);
 }
 
 div.ProjectViewer div.details {
@@ -365,7 +428,7 @@ div.ProjectViewer div.details {
     margin: auto;
 }
 
-div.ProjectViewer div.details > div.block {
+div.ProjectViewer div.details > section {
     overflow: hidden;
     display: flex;
     flex-flow: column;
@@ -377,36 +440,46 @@ div.ProjectViewer div.details > div.block {
     box-shadow: 0 0 5px var(--pl-shadow-color);
 }
 
-div.ProjectViewer div.details > div.block + div.block {
+div.ProjectViewer div.details > section[hidden] {
+    display: none;
+}
+
+div.ProjectViewer div.details > section + section {
     margin-top: 15px;
 }
 
-div.ProjectViewer div.details > div.block > div {
+div.ProjectViewer div.details > section > div {
     display: flex;
 }
 
-div.ProjectViewer div.details > div.block h3 {
+div.ProjectViewer div.details > section embed-svg {
+    min-width: 24px;
+}
+
+div.ProjectViewer div.details > section h3 {
     margin: 0 0 0 8px;
 }
 
-div.ProjectViewer div.details > div.block hr {
+div.ProjectViewer div.details > section hr {
     margin-bottom: 20px;
 }
 
-div.ProjectViewer div.details > div.block ul {
+div.ProjectViewer div.details > section ul {
     margin: 0;
     padding-left: 30px;
 }
 
-div.ProjectViewer div.details > div.block ul li {
+div.ProjectViewer div.details > section ul li {
     padding: 2px 0;
     list-style-type: '〉';
 }
 
-div.ProjectViewer div.details > div.block ul li.empty {
-    display: block;
-    font-style: italic;
-    color: var(--pl-text-dimmed);
+div.ProjectViewer div.details > section p {
+    margin: 0;
+}
+
+div.ProjectViewer div.details > section p + p {
+    margin-top: 20px;
 }
 
 /* == About View == */
