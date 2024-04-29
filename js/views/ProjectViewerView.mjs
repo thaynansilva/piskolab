@@ -1,3 +1,10 @@
+/*
+ * Pisko Lab - Personal website
+ * Copyright (C) Thaynan Silva
+ *
+ * SPDX-License-Identifier: LGPL-3.0
+ */
+
 import { Template } from "../utils/Template.mjs";
 import { Indexer } from "../core/Indexer.mjs";
 
@@ -29,7 +36,7 @@ async function build(options) {
     let logo = root.querySelector("[data-name='logo']");
 
     if (projectInfo.logo) {
-      logo.noEmbed = true;
+      logo.isolated = true;
       logo.src = projectInfo.logo;
     }
 

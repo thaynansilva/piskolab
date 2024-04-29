@@ -23,23 +23,26 @@ async function build(_options) {
   return await template.buildAndSetup((root) => {
     let ul = root.querySelector("ul");
 
-    for (let proj of projects) {
+    for (let projectInfo of projects) {
       let li = template.queryById("project");
 
       let logo = li.querySelector("[data-name='logo']");
-      logo.src = proj.logo ?? "img/icons/project.svg";
+      if (projectInfo.logo) {
+        logo.isolated = true;
+        logo.src = projectInfo.logo;
+      }
 
       let name = li.querySelector("[data-name='name']");
-      name.textContent = proj.name;
+      name.textContent = projectInfo.name;
 
-      let description = li.querySelector("[data-name='description']");
-      description.textContent = proj.description;
+      let brief = li.querySelector("[data-name='brief']");
+      brief.textContent = projectInfo.brief;
 
       let link = li.querySelector("[data-name='link']");
-      link.href = `/?q=view-project&uuid=${proj.uuid}`;
+      link.href = `/?q=view-project&uuid=${projectInfo.uuid}`;
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        ViewManager.showProject(proj.uuid);
+        ViewManager.showProject(projectInfo.uuid);
       });
 
       ul.appendChild(li);
