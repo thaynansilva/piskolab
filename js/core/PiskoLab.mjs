@@ -13,36 +13,33 @@ import { EmbedSVG } from "../elements/EmbedSVG.mjs";
 const template = new Template("html/PiskoLab.html");
 
 export const PiskoLab = Object.freeze({
-  initialize
+  async initialize() {
+    await initApp();
+
+    ViewManager.initialize();
+  }
 });
 
-/**
- * @param {() => Promise<void>} preinitCallback
- */
-async function initialize(preinitCallback) {
-  await preinitCallback();
-  await initApp();
-
-  EmbedSVG.initialize();
-  ViewManager.initialize();
-}
-
 async function initApp() {
+  EmbedSVG.registerElement();
+
+  const build = async () => {
+    return await template.buildAndSetup(root => {
+      for (let tab of root.querySelectorAll("#tabs>button")) {
+        let view = tab.getAttribute("data-view");
+        tab.addEventListener("click", () => ViewManager.showView(view));
+
+        document.addEventListener("view-changed", (e) => {
+          let selected = Object.values(e.detail).includes(view);
+          tab.setAttribute("data-selected", selected);
+          tab.ariaSelected = selected;
+        });
+      }
+    })
+  };
+
   let root = document.querySelector("#root");
   await Presenter.present(root, build, null);
 }
 
-async function build() {
-  return await template.buildAndSetup(root => {
-    for (let tab of root.querySelectorAll("#tabs>button")) {
-      let view = tab.getAttribute("data-view");
-      tab.addEventListener("click", () => ViewManager.showView(view));
-
-      document.addEventListener("view-changed", (e) => {
-        let selected = Object.values(e.detail).includes(view);
-        tab.setAttribute("data-selected", selected);
-        tab.ariaSelected = selected;
-      });
-    }
-  });
-}
+PiskoLab.initialize();
