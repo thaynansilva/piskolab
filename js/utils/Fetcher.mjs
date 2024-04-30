@@ -5,10 +5,25 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
+import { SVGUtils } from "../utils/SVGUtils.mjs";
+
 /**
  * @enum {"text"|"json"|"svg"|"html"|"none"}
  */
 const FetchTypes = "none";
+
+/**
+ * Request options
+ *a
+ * @param {boolean?} sanitize
+ * defines whether the SVG should be sanitized or not.
+ *
+ * @param {boolean?} urgent
+ * defines whether the request is urgent or not.
+ *
+ * @typedef {{ urgent?: boolean, sanitize?: boolean }}
+ */
+const RequestOptions = {};
 
 export const Fetcher = {
 
@@ -17,17 +32,17 @@ export const Fetcher = {
    *
    * @param {string} url
    *  resource URL
-   * @param {FetchTypes} type
+   * @param {FetchTypes} [type="text"]
    *  response type
-   * @param {RequestInit?} options
+   * @param {RequestOptions} [options=undefined]
    *  request options
    * @returns {Promise<(object | string | Document | XMLDocument)>}
    *  The resource data according to `type`
    *  or `null` if the response was not ok.
    */
-  async get(url, type="text", urgent=false) {
+  async get(url, type="text", options=undefined) {
     const mimeType = {
-      "json": "text/json",
+      "json": "application/json",
       "text": "text/plain",
       "html": "text/html",
       "svg": "image/svg+xml"
@@ -41,8 +56,9 @@ export const Fetcher = {
       throw new Error(`Invalid type: '${type}'.`);
     }
 
-    let request = await this.getRequest(url, urgent);
+    let request = await this.getRequest(url, options?.urgent, mimeType);
     let data = null;
+    let parser = null;
 
     if (!request.ok)
       return null;
@@ -54,11 +70,19 @@ export const Fetcher = {
       case "text":
         data = await request.text();
         break;
-      case "svg":
       case "html":
         data = await request.text();
-        let parser = new DOMParser();
+        parser = new DOMParser();
         data = parser.parseFromString(data, mimeType);
+        break;
+      case "svg":
+        data = await request.text();
+        parser = new DOMParser();
+        data = parser.parseFromString(data, mimeType);
+        if (options?.sanitize) {
+          SVGUtils.sanitize(data);
+        }
+        break;
       default:
         break;
     }
@@ -71,24 +95,12 @@ export const Fetcher = {
    *
    * @param {string} url
    *  resource URL
-   * @returns {Promise<RMap[type]>}
-   *  The resource data according to `type`
-   *  or `null` if the response was not ok.
    */
-  async getRequest(url, urgent=false) {
+  async getRequest(url, urgent=false, mimeType=undefined) {
     return await fetch(url, {
       priority: urgent ? "high" : "auto",
+      headers: { Accept: mimeType ?? "*/*" }
     });
-  },
-
-  /**
-   *
-   * @param {*} urls
-   */
-  async preload(urls) {
-    return await Promise.allSettled(
-      urls.map(async r => await this.getRequest(r))
-    );
   }
 
 };
