@@ -7,7 +7,7 @@ async function getSVG(url, urgent=false) {
   let svg = svgCache[url];
 
   if (!svg) {
-    svg = await Fetcher.get(url, "svg", urgent, { sanitize: true });
+    svg = await Fetcher.get(url, "svg", { urgent, sanitize: true });
     svg.rootElement.ariaHidden = true;
     svg.rootElement.style.width = "100%";
     svg.rootElement.style.height = "100%";
