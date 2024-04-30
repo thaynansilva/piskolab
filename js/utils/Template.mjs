@@ -41,7 +41,6 @@ export class Template {
     await this.#loadTemplate();
 
     let root = this.queryRoot();
-    let frag = document.createDocumentFragment();
 
     if (!root) {
       root = document.createElement("div");
@@ -49,9 +48,8 @@ export class Template {
     }
 
     setup?.(root);
-    frag.append(root);
 
-    return frag;
+    return root;
   }
 
   query(selectors) {
@@ -76,7 +74,7 @@ export class Template {
       );
     }
 
-    return target.content.firstElementChild.cloneNode(true);
+    return document.importNode(target.content, true);
   }
 
   queryById(id) {
