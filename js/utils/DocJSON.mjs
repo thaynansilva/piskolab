@@ -106,17 +106,17 @@ function parseNode(n) {
     },
     listitem(n) {
       let attrs = getNodeProperties(n, {}, "style", "classes");
-      let props = getNodeProperties(n, {}, "lines", "text", "children");
+      let props = getNodeProperties(n, {}, "text", "lines", "children");
       return compose("li", attrs, props, true);
     },
     quote(n) {
-      let attrs = getNodeProperties(n, {}, "stripBlank", "cite");
-      let props = getNodeProperties(n, {}, "text", "children");
+      let attrs = getNodeProperties(n, {}, "cite");
+      let props = getNodeProperties(n, {}, "stripBlank", "text", "children");
       return compose("q", attrs, props, true);
     },
     blockquote(n) {
-      let attrs = getNodeProperties(n, {}, "stripBlank", "cite");
-      let props = getNodeProperties(n, {}, "text", "children");
+      let attrs = getNodeProperties(n, {}, "cite");
+      let props = getNodeProperties(n, {}, "stripBlank", "text", "lines", "children");
       return compose("blockquote", attrs, props, true);
     },
     code(n) {
