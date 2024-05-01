@@ -83,7 +83,10 @@
   },
   {
     "type": "blockquote",
-    "text": "This is a block quote"
+    "lines": [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "Eu lobortis elementum nibh tellus molestie nunc non blandit massa. Convallis convallis tellus id interdum velit laoreet id."
+    ]
   },
   {
     "type": "h3",
