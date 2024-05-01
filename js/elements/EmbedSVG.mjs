@@ -1,20 +1,35 @@
 import { Fetcher } from "../utils/Fetcher.mjs";
 import { Text } from "../utils/Text.mjs";
 
+/**
+ * @type {Map<string, XMLDocument>}
+ */
 const svgCache = new Map();
 
+/**
+ * Fetches and sanitizes a SVG document.
+ *
+ * @param {string} url
+ *  url to the svg file
+ * @param {boolean} urgent
+ *  defines if the request should be prioritized.
+ */
 async function getSVG(url, urgent=false) {
-  let svg = svgCache[url];
+  if (!url) {
+    return;
+  }
+
+  let svg = svgCache.get(url);
 
   if (!svg) {
     svg = await Fetcher.get(url, "svg", { urgent, sanitize: true });
-    svg.rootElement.ariaHidden = true;
-    svg.rootElement.style.width = "100%";
-    svg.rootElement.style.height = "100%";
+    svg.documentElement.ariaHidden = true;
+    svg.documentElement.style.width = "100%";
+    svg.documentElement.style.height = "100%";
     svgCache[url] = svg;
   }
 
-  return document.importNode(svg.rootElement, true);
+  return document.importNode(svg.documentElement, true);
 }
 
 /**
@@ -68,7 +83,8 @@ export class EmbedSVG extends HTMLElement {
       }
 
       this.dispatchEvent(new Event("load", { cancelable: false }));
-    }).catch(() => {
+    }).catch((reason) => {
+      console.debug(`[embed-svg] ${reason}`);
       const text = Text.escape(this.alt) ?? "⨯";
       const style = "margin:auto;-webkit-user-select:none;user-select:none;";
       this.#shadow.innerHTML = `<span style="${style}">${text}</span>`;
