@@ -5,44 +5,44 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Timer } from "./Timer.mjs";
+const validAnimations = ["pop-in", "pop-out", "zoom-in", "zoom-out"];
 
-const Animations = Object.freeze({
-  "pop-in": {
-    name: "anim-pop-in",
-    delay: 150,
-  },
-  "pop-out": {
-    name: "anim-pop-out",
-    delay: 150,
-  },
-  "zoom-in": {
-    name: "anim-zoom-in",
-    delay: 150
-  }
-});
-
+/**
+ * @typedef {"none"|"zoom-in"|"zoom-out"|"pop-in"|"pop-out"} Animations
+ */
 export const Animator = Object.freeze({
 
   /**
    * Animates an element.
    *
-   * @param {keyof Animations} animation
+   * @param {Animations} animation
    *  animation name
    * @param {HTMLElement} element
    *  target element
    */
   async animate(animation, element) {
-    let anim = Animations[animation];
-
-    if (!anim) {
-      console.warn(`Invalid animation: ${anim}`);
+    if (animation === "none") {
       return;
     }
 
-    element.classList.add(anim.name);
-    await Timer.sleep(anim.delay);
-    element.classList.remove(anim.name);
+    if (!validAnimations.includes(animation)) {
+      console.debug(`[Animator] Invalid animation: ${animation}`);
+      return;
+    }
+
+    let animClassName = `anim-${animation}`;
+    let animationEnded;
+
+    element.onanimationend = element.onanimationcancel = (ev) => {
+      if (ev.animationName === animation) {
+        ev.target.classList.remove(animClassName);
+        animationEnded();
+      }
+    }
+
+    element.classList.add(animClassName);
+
+    await new Promise((r) => { animationEnded = r });
   },
 
   /**

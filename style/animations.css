@@ -1,15 +1,43 @@
-@keyframes pop-in  { 0%   { opacity: 0; transform: translateY(15px); scale: 0.99; } }
-@keyframes pop-out { 100% { opacity: 0; transform: translateY(-5px); scale: 0.99; } }
-@keyframes zoom-in { 100% { opacity: 0; scale: 0.95; } }
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes pop-out {
+    100% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes zoom-out {
+    100% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
 
 .anim-pop-in {
-    animation: pop-in 0.2s ease;
+    animation: pop-in 0.3s cubic-bezier(.55,1.67,.45,1.5);
 }
 
 .anim-pop-out {
-    animation: pop-out 0.2s ease;
+    animation: pop-out 0.1s cubic-bezier(.34,-0.13,.91,.74);
 }
 
 .anim-zoom-in {
-    animation: zoom-in 0.2 ease;
+    animation: zoom-in 0.3s ease;
+}
+
+.anim-zoom-out {
+    animation: zoom-out 0.3s ease;
 }
