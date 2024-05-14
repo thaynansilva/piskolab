@@ -14,14 +14,14 @@ const FetchTypes = "none";
 
 /**
  * Request options
- *a
- * @param {boolean?} sanitize
- * defines whether the SVG should be sanitized or not.
  *
  * @param {boolean?} urgent
  * defines whether the request is urgent or not.
  *
- * @typedef {{ urgent?: boolean, sanitize?: boolean }}
+ * @param {boolean?} unsanitized
+ * defines whether the SVG should NOT be sanitized.
+ *
+ * @typedef {{ urgent?: boolean, unsanitized?: boolean }}
  */
 const RequestOptions = {};
 
@@ -79,7 +79,7 @@ export const Fetcher = {
         data = await request.text();
         parser = new DOMParser();
         data = parser.parseFromString(data, mimeType);
-        if (options?.sanitize) {
+        if (!options?.unsanitized) {
           SVGUtils.sanitize(data);
         }
         break;

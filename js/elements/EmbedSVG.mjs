@@ -7,7 +7,7 @@ import { Text } from "../utils/Text.mjs";
 const svgCache = new Map();
 
 /**
- * Fetches and sanitizes a SVG document.
+ * Fetches an SVG document.
  *
  * @param {string} url
  *  url to the svg file
@@ -22,7 +22,7 @@ async function getSVG(url, urgent=false) {
   let svg = svgCache.get(url);
 
   if (!svg) {
-    svg = await Fetcher.get(url, "svg", { urgent, sanitize: true });
+    svg = await Fetcher.get(url, "svg", { urgent });
     svg.documentElement.ariaHidden = true;
     svg.documentElement.style.width = "100%";
     svg.documentElement.style.height = "100%";
