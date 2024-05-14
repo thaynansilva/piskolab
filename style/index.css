@@ -2,7 +2,6 @@
 @import url("animations.css");
 
 :root {
-    --pl-font: "Fira Sans", Arial, sans-serif;
     --pl-font-mono: "Fira Mono", Consolas, monospace;
     --pl-max-content-width: 800px;
 }
@@ -14,9 +13,13 @@
 
 /* General elements */
 
+html {
+    font-family: "Fira Sans", Arial, sans-serif;
+    font-size: 14pt;
+}
+
 body {
     margin: 0;
-    font: 14pt var(--pl-font);
     color: var(--pl-text-normal);
     background-color: var(--pl-body-color);
 }
