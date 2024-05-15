@@ -15,8 +15,8 @@ export const SVGUtils = Object.freeze({
    * - Script tags;
    * - Inline scripts;
    * - Event attributes;
-   * - Anchors (tag: \<a\>);
-   * - External resources (tag: \<link\>).
+   * - Anchors (tag: `<a>`);
+   * - External resources (tag: `<link>`).
    *
    * **NOTE**: this sanitizer does not prevent
    * SVG documents from importing external
