@@ -1,7 +1,7 @@
 /* DocJSON */
 
 .DocJSON {
-    font-size: 1em;
+    font-size: 1rem;
 }
 
 /* Scrolled Window */
@@ -14,7 +14,7 @@
     border-radius: 8px;
     background-color: var(--pl-view-color);
     border: 1px solid var(--pl-view-border-color);
-    box-shadow: 0 0 4px var(--pl-shadow-color);
+    box-shadow: 0 0 5px -1px var(--pl-shadow-color);
 }
 
 /* Overlay */
@@ -32,7 +32,7 @@
 .DocJSON div.meta-overlay > div {
     position: absolute;
     display: flex;
-    padding: 8px;
+    padding: 6px;
     bottom: 8px;
     right: 8px;
     border-radius: 8px;
@@ -42,13 +42,26 @@
 }
 
 .DocJSON div.meta-overlay:hover > div {
-    max-width: calc(100% - 16px);
+    max-width: calc(100% - 20px);
 }
 
 .DocJSON div.meta-overlay > div > span {
     margin: auto 0;
     overflow: hidden;
     text-wrap: nowrap;
+    user-select: none;
+    -webkit-user-select: none;
+    display: inline-flex;
+}
+
+.DocJSON div.meta-overlay > div > span::before {
+    content: "";
+    width: 2px;
+}
+
+.DocJSON div.meta-overlay > div > span::after {
+    content: "";
+    width: 2px;
 }
 
 .DocJSON div.meta-overlay > div > embed-svg {
@@ -130,6 +143,7 @@
 /* Block quote */
 
 .DocJSON blockquote {
+    display: flex;
     margin: 20px 0;
     padding: 8px;
     border-radius: 8px;
@@ -187,12 +201,13 @@
     border: 1px solid  var(--pl-table-border);
     background-color: var(--pl-table-background);
     min-width: 500px;
+    width: 100%;
 }
 
 .DocJSON table caption {
     padding: 8px;
     border-radius: 8px 8px 0 0;
-    border-bottom: 1px solid var(--pl-table-border);
+    border-bottom: 1px solid var(--pl-table-border2);
     background-color: var(--pl-table-caption);
 }
 
@@ -230,30 +245,35 @@
 .DocJSON .meta-scrolled-window > table > caption {
     border: none;
     border-radius: 0;
-    border-bottom: 1px solid var(--pl-table-border);
+    border-bottom: 1px solid var(--pl-table-border2);
 }
 
 /* Rules */
 
-@media only screen and (pointer: coarse) {
+@media (pointer: coarse) {
 
     .DocJSON div.meta-overlay {
-        position: static;
-        font-size: 0.9em;
-        background-color: var(--pl-overlay-color);
-    }
-
-    .DocJSON div.meta-overlay > div > span {
-        padding-right: 4px;
+        position: initial;
+        display: block;
+        font-size: 0.8rem;
     }
 
     .DocJSON div.meta-overlay > div {
-        position: static;
-        margin: auto;
-        padding: 2px;
-        display: flex;
+        position: initial;
+        bottom: 0;
+        padding: 2px 0 2px 4px;
         max-width: unset;
-        background-color: transparent;
+        backdrop-filter: none;
+        background-color: var(--pl-overlay-color2);
+        border-radius: 0 !important;
+    }
+
+    .DocJSON div.meta-overlay > div > span {
+        transition: none;
+    }
+
+    .DocJSON div.meta-overlay > div > embed-svg {
+        margin: auto 0 auto auto;
     }
 
 }
