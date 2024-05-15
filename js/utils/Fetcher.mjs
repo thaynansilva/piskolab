@@ -91,6 +91,21 @@ export const Fetcher = {
   },
 
   /**
+   * Tests if a URL is valid, that being, if it
+   * points to a resource that exists.
+   *
+   * @param {string} url
+   *  resource URL
+   * @param {boolean} urgent
+   *  defines the request urgency.
+   * @returns
+   *  a boolean indicating wether the URL is valid.
+   */
+  async probe(url, urgent=false) {
+    return (await this.getRequest(url, urgent)).ok;
+  },
+
+  /**
    * Creates a request for a resource.
    *
    * @param {string} url
