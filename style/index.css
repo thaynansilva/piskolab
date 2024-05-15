@@ -492,66 +492,85 @@ div.About section:first-child > h1:first-child {
     margin-top: 0;
 }
 
-div.About section div.profile {
+div.About div.profile {
     display: flex;
+    width: fit-content;
+    margin: auto;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: var(--pl-view-color);
+    border: 1px solid var(--pl-view-border-color);
+    box-shadow: 0 0 5px -1px var(--pl-shadow-color);
 }
 
-div.About section div.profile > img.picture {
+div.About div.profile > img.picture {
     display: block;
     width: 150px;
     height: 150px;
     max-width: 200px;
     max-width: 200px;
     aspect-ratio: 1;
+    border: 1px solid var(--pl-border-color);
     border-radius: 8px;
-    border: 1px solid var(--pl-view-border-color);
-    box-shadow: 0 0 3px var(--pl-shadow-color);
 }
 
-div.About section div.profile > div {
-    margin-left: 15px;
+div.About div.profile > div {
+    margin: auto 0 auto 15px;
 }
 
-div.About section div.profile div.info {
+div.About div.profile > div hr {
+    margin: 15px auto;
+}
+
+div.About div.profile div.info {
     display: block;
-    margin: 0 0 20px;
 }
 
-div.About section div.profile div.info h2 {
-    margin: 0 0 10px;
+div.About div.profile div.info h2 {
+    margin: 0 0 15px;
 }
 
-div.About section div.profile div.info p {
+div.About div.profile div.info p {
     margin: 0;
 }
 
-div.About section div.profile ul.socials {
+div.About div.profile ul.socials {
     display: flex;
     margin: 0 auto;
     padding: 0;
     width: fit-content;
 }
 
-div.About section div.profile ul.socials li {
+div.About div.profile ul.socials li {
     display: flex;
 }
 
-div.About section div.profile ul.socials li + li {
-    margin-left: 15px;
+div.About div.profile ul.socials li:not(:last-child)::after {
+    content: "";
+    width: 1px;
+    height: 80%;
+    margin: auto 10px;
+    background-color: var(--pl-border-color);
 }
 
-div.About section div.profile ul.socials li a {
-    border-radius: 100%;
+div.About div.profile ul.socials li a {
+    border-radius: 8px;
     outline-offset: 2px;
+    filter: drop-shadow(0 0 3px var(--pl-shadow-color));
 }
 
-div.About section div.profile ul.socials li a embed-svg {
-    width: 32px;
-    min-width: 32px;
+div.About div.profile ul.socials li a embed-svg {
+    width: 24px;
+    min-width: 24px;
+    margin-right: 4px;
     aspect-ratio: 1;
 }
 
-div.About section div.profile ul.socials li a:hover embed-svg {
+div.About div.profile ul.socials li a span {
+    margin: auto;
+}
+
+div.About div.profile ul.socials li a:hover embed-svg {
     filter: brightness(1.2);
 }
 
@@ -636,10 +655,6 @@ span.spinner::after {
         height: 40px;
     }
 
-}
-
-@media (width <= 400px) {
-
     div.About div.profile {
         flex-flow: column;
     }
@@ -647,15 +662,29 @@ span.spinner::after {
     div.About div.profile img.picture {
         width: 100% !important;
         height: 100% !important;
-        margin: auto;
+        margin: auto auto 20px;
     }
 
     div.About div.profile img.picture + div {
-        margin: 20px 0 0;
+        margin: 0;
     }
 
     div.About div.profile div.info {
         text-align: center;
+    }
+
+}
+
+@media (width <= 450px) {
+
+    div.About div.profile ul.socials {
+        display: grid;
+        gap: 20px 30px;
+        grid-template-columns: auto auto;
+    }
+
+    div.About div.profile ul.socials li::after {
+        display: none;
     }
 
 }
