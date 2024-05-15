@@ -1,5 +1,4 @@
 import { Fetcher } from "../utils/Fetcher.mjs";
-import { Text } from "../utils/Text.mjs";
 
 /**
  * @type {Map<string, XMLDocument>}
@@ -19,17 +18,16 @@ async function getSVG(url, urgent=false) {
     return;
   }
 
-  let svg = svgCache.get(url);
-
-  if (!svg) {
-    svg = await Fetcher.get(url, "svg", { urgent });
-    svg.documentElement.ariaHidden = true;
-    svg.documentElement.style.width = "100%";
-    svg.documentElement.style.height = "100%";
-    svgCache[url] = svg;
+  if (!(svgCache.has(url) && svgCache.get(url))) {
+    let svgDoc = await Fetcher.get(url, "svg", { urgent});
+    let svg = document.importNode(svgDoc.documentElement, true);
+    svg.ariaHidden = true;
+    svg.style.width = "100%";
+    svg.style.height = "100%";
+    svgCache.set(url, svg);
   }
 
-  return document.importNode(svg.documentElement, true);
+  return svgCache.get(url).cloneNode(true);
 }
 
 /**
@@ -60,7 +58,11 @@ export class EmbedSVG extends HTMLElement {
     this.#update();
   }
 
-  attributeChangedCallback(name, _oldValue, newValue) {
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (oldValue == newValue) {
+      return;
+    }
+
     if (name == "alt") {
       this.#internals.ariaLabel = newValue;
     }
@@ -69,27 +71,52 @@ export class EmbedSVG extends HTMLElement {
   }
 
   #update() {
-    if (!this.ownerDocument.defaultView) {
+    if (!this.isConnected) {
       return;
     }
 
-    getSVG(this.src, this.loading == "eager").then((svg) => {
-      if (this.isolated) {
-        this.style.backgroundImage = `url('${this.src}')`;
-        this.#shadow.replaceChildren();
-      } else {
-        this.style.removeProperty("background-image");
-        this.#shadow.replaceChildren(svg);
+    const isUrgent = (this.loading == "eager");
+
+    const embedContent = ((content) => {
+      this.#shadow.replaceChildren(content);
+      this.dispatchEvent(new Event("load", { cancelable: false }));
+    });
+
+    const isolatedContent = ((good) => {
+      if (!good) {
+        throw new Error(`Resource not found: ${this.src}`);
       }
 
+      let content = document.createElement("img");
+      content.src = this.src;
+      content.ariaHidden = true;
+      content.draggable = false;
+
+      this.#shadow.replaceChildren(content);
       this.dispatchEvent(new Event("load", { cancelable: false }));
-    }).catch((reason) => {
-      console.debug(`[embed-svg] ${reason}`);
-      const text = Text.escape(this.alt) ?? "⨯";
-      const style = "margin:auto;-webkit-user-select:none;user-select:none;";
-      this.#shadow.innerHTML = `<span style="${style}">${text}</span>`;
+    });
+
+    const errorContent = ((error) => {
+      console.debug(`[EmbedSVG] ${error}`);
+
+      let content = document.createElement("span");
+      content.innerText = this.alt ?? "⨯";
+      content.style.margin = "auto";
+      content.style.userSelect = "none";
+
+      this.#shadow.replaceChildren(content);
       this.dispatchEvent(new Event("error", { cancelable: false }));
     });
+
+    if (!this.isolated) {
+      getSVG(this.src, isUrgent)
+        .then(embedContent)
+        .catch(errorContent);
+    } else {
+      Fetcher.probe(this.src, isUrgent)
+        .then(isolatedContent)
+        .catch(errorContent);
+    }
   }
 
   set src(value) {
@@ -101,7 +128,7 @@ export class EmbedSVG extends HTMLElement {
   }
 
   set loading(value) {
-    if (value == "eager" || value == "lazy") {
+    if (["eager", "lazy"].includes(value)) {
       this.setAttribute("loading", value);
     } else {
       this.setAttribute("loading", "eager");
@@ -146,4 +173,5 @@ export class EmbedSVG extends HTMLElement {
       </style>`
     ));
   }
+
 }
