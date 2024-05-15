@@ -5,10 +5,14 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-const validAnimations = ["pop-in", "pop-out", "zoom-in", "zoom-out"];
+const validAnimations = {
+  "pop-in": 1,  "pop-out": 1,
+  "zoom-in": 1, "zoom-out": 1,
+  "slide-up": 1
+};
 
 /**
- * @typedef {"none"|"zoom-in"|"zoom-out"|"pop-in"|"pop-out"} Animations
+ * @typedef {keyof validAnimations} Animations
  */
 export const Animator = Object.freeze({
 
@@ -25,7 +29,7 @@ export const Animator = Object.freeze({
       return;
     }
 
-    if (!validAnimations.includes(animation)) {
+    if (!validAnimations[animation]) {
       console.debug(`[Animator] Invalid animation: ${animation}`);
       return;
     }
