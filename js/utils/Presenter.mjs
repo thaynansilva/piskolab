@@ -60,8 +60,14 @@ export const Presenter = {
    *  an async function that returns the new content.
    * @param {?(reason: string) => Promise<ContentType>} reject
    *  an async function that returns a fallback content.
+   * @param {{in?: string, out?: string}} [animations=undefined]
+   *  the in and out animations animations (defauts to `zoom-in`
+   *  and `zoom-out` for the in and out animations, respectively)
    */
-  async present(element, resolve, reject=null) {
+  async present(element, resolve, reject=null, animations=undefined) {
+    const animIn = animations?.in ?? "zoom-in";
+    const animOut = animations?.out ?? "zoom-out";
+
     await Animator.animateInAndOut(async () => {
       this.replace(element, "<span class='spinner'></span>");
       element.ariaBusy = true;
@@ -76,7 +82,7 @@ export const Presenter = {
 
       this.replace(element, data);
       element.ariaBusy = false;
-    }, "pop-in", "pop-out", element);
+    }, animIn, animOut, element);
   }
 
 };
