@@ -39,7 +39,7 @@ async function initApp() {
   };
 
   let root = document.querySelector("#root");
-  await Presenter.present(root, build, null, { in: "zoom-out", out: "none" });
+  await Presenter.present(root, build, null, { in: "zoom-in" });
 }
 
 PiskoLab.initialize();
