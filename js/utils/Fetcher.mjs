@@ -8,23 +8,36 @@
 import { SVGUtils } from "../utils/SVGUtils.mjs";
 
 /**
- * @enum {"text"|"json"|"svg"|"html"|"none"}
+ * Request options
  */
-const FetchTypes = "none";
+const RequestOptions = {
+
+  /**
+   * Defines whether the request is urgent or not.
+   *
+   * @default false
+   */
+  urgent: false,
+
+  /**
+   * Defines wether the SVG should NOT be sanitized.
+   *
+   * @default false
+   */
+  unsanitized: false,
+
+  /**
+   * Defines the accepted mime type of the requested resource.
+   *
+   * @default '*\/*'
+   */
+  mimeType: "*/*"
+
+};
 
 /**
- * Request options
- *
- * @param {boolean?} urgent
- * defines whether the request is urgent or not.
- *
- * @param {boolean?} unsanitized
- * defines whether the SVG should NOT be sanitized.
- *
- * @typedef {{ urgent?: boolean, unsanitized?: boolean }}
+ * @typedef {"text"|"json"|"svg"|"html"|"none"} FetchTypes
  */
-const RequestOptions = {};
-
 export const Fetcher = {
 
   /**
@@ -56,27 +69,28 @@ export const Fetcher = {
       throw new Error(`Invalid type: '${type}'.`);
     }
 
-    let request = await this.getRequest(url, options?.urgent, mimeType);
-    let data = null;
-    let parser = null;
+    let newOptions = Object.assign({}, options, { mimeType });
 
-    if (!request.ok)
+    let response = await this.getRequest(url, newOptions);
+    let data, parser;
+
+    if (!response.ok)
       return null;
 
     switch (type) {
       case "json":
-        data = await request.json();
+        data = await response.json();
         break;
       case "text":
-        data = await request.text();
+        data = await response.text();
         break;
       case "html":
-        data = await request.text();
+        data = await response.text();
         parser = new DOMParser();
         data = parser.parseFromString(data, mimeType);
         break;
       case "svg":
-        data = await request.text();
+        data = await response.text();
         parser = new DOMParser();
         data = parser.parseFromString(data, mimeType);
         if (!options?.unsanitized) {
@@ -96,13 +110,13 @@ export const Fetcher = {
    *
    * @param {string} url
    *  resource URL
-   * @param {boolean} urgent
-   *  defines the request urgency.
-   * @returns
-   *  a boolean indicating wether the URL is valid.
+   * @param {RequestOptions} [options=undefined]
+   *  request options
+   * @returns {boolean}
+   *  a boolean indicating wether the resource is valid.
    */
-  async probe(url, urgent=false) {
-    return (await this.getRequest(url, urgent)).ok;
+  async probe(url, options=undefined) {
+    return (await this.getRequest(url, options)).ok;
   },
 
   /**
@@ -110,11 +124,15 @@ export const Fetcher = {
    *
    * @param {string} url
    *  resource URL
+   * @param {RequestOptions} [options=undefined]
+   *  request options
    */
-  async getRequest(url, urgent=false, mimeType=undefined) {
+  async getRequest(url, options=undefined) {
+    let newOptions = Object.assign({}, RequestOptions, options);
+
     return await fetch(url, {
-      priority: urgent ? "high" : "auto",
-      headers: { Accept: mimeType ?? "*/*" }
+      priority: newOptions.urgent ? "high" : "auto",
+      headers: { Accept: newOptions.mimeType }
     });
   }
 
