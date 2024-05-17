@@ -18,7 +18,7 @@ export const Timer = {
    * @returns {Promise<void>}
    */
   async sleep(timeout) {
-    return new Promise((r, _) => setTimeout(r, timeout));
+    return await new Promise((r, _) => setTimeout(r, timeout));
   }
 
 };
