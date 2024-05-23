@@ -1,14 +1,14 @@
 @keyframes pop-in {
     0% {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.90);
     }
 }
 
 @keyframes pop-out {
     100% {
         opacity: 0;
-        transform: scale(0.95);
+        transform: scale(0.90);
     }
 }
 
