@@ -14,17 +14,21 @@ const validAnimations = {
 /**
  * @typedef {keyof validAnimations} Animations
  */
-export const Animator = Object.freeze({
+export class Animator {
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
 
   /**
    * Animates an element.
    *
-   * @param {Animations} animation
+   * @param {Animation} animation
    *  animation name
    * @param {HTMLElement} element
    *  target element
    */
-  async animate(animation, element) {
+  static async animate(animation, element) {
     if (animation === "none") {
       return;
     }
@@ -47,7 +51,7 @@ export const Animator = Object.freeze({
     element.classList.add(animClassName);
 
     await new Promise((r) => { animationEnded = r });
-  },
+  }
 
   /**
    * Animates an element with an 'out'
@@ -56,6 +60,9 @@ export const Animator = Object.freeze({
    * The `midTask` is a function called when the
    * element fades out of view, so that it gets
    * prepared for being shown again.
+   *
+   * NOTE: the 'out' animation won't be played if
+   * `element` has no child elements.
    *
    * @param {() => Promise<void>} midTask
    *  this task is performed
@@ -66,10 +73,12 @@ export const Animator = Object.freeze({
    * @param {HTMLElement} element
    *  target element
    */
-  async animateInAndOut(midTask, animationIn, animationOut, element) {
-    await this.animate(animationOut, element);
+  static async animateInAndOut(midTask, animationIn, animationOut, element) {
+    if (element.firstElementChild) {
+      await this.animate(animationOut, element);
+    }
     await midTask();
     await this.animate(animationIn, element);
   }
 
-});
+}

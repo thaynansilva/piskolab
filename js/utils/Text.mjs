@@ -5,10 +5,12 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-/**
- * Formats text
- */
-export const Text = {
+
+export class Text {
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
 
   /**
    * Replaces HTML syntatic symbols by their
@@ -17,7 +19,7 @@ export const Text = {
    * @param {string} text
    *  unsanitized text
    */
-  escape(text) {
+  static escape(text) {
     const unsafe = {
       "<": "&lt;",
       ">": "&gt;",
@@ -38,7 +40,7 @@ export const Text = {
     }
 
     return result;
-  },
+  }
 
   /**
    * Replaces HTML syntatic symbols by their
@@ -47,7 +49,7 @@ export const Text = {
    * @param {string[]} lines
    *  the strings
    */
-  escapeLines(lines) {
+  static escapeLines(lines) {
     if (!lines) {
       return;
     }
@@ -58,4 +60,4 @@ export const Text = {
     return lines?.map(x => this.escape(x));
   }
 
-};
+}

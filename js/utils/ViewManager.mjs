@@ -15,22 +15,22 @@ import { PortfolioView } from "../views/PortfolioView.mjs";
 import { AboutView } from "../views/AboutView.mjs";
 import { PostReaderView } from "../views/PostReaderView.mjs";
 import { ProjectViewerView } from "../views/ProjectViewerView.mjs";
-import { ErrorView } from "../views/ErrorView.mjs";
 
-/**
- * Views
- */
-const ViewRegistry = Object.freeze({
 
-  store: {
+class ViewRegistry {
+
+  static #store = {
     "Home":          HomeView,
     "PostFeed":      PostFeedView,
     "Portfolio":     PortfolioView,
     "About":         AboutView,
     "PostReader":    PostReaderView,
     "ProjectViewer": ProjectViewerView,
-    "Error":         ErrorView,
-  },
+  };
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
 
   /**
    * Activates a view.
@@ -44,7 +44,7 @@ const ViewRegistry = Object.freeze({
    *  can be activated
    * @returns {Promise<DocumentFragment>|undefined}
    */
-  async activate(view, options=undefined, allowSecret=false) {
+  static async activate(view, options=undefined, allowSecret=false) {
     if (!this.isValid(view)) {
       return;
     }
@@ -53,21 +53,8 @@ const ViewRegistry = Object.freeze({
       throw new Error(`Invalid access to secret view: "${view}"`);
     }
 
-    return await this.store[view].build(options ?? {});
-  },
-
-  /**
-   *
-   * @param {string} view
-   * @returns {string|undefined}
-   */
-  getParent(view) {
-    if (!this.isValid(view)) {
-      return;
-    }
-
-    return this.store[view].parent;
-  },
+    return await this.#store[view].build(options ?? {});
+  }
 
   /**
    * Gets the name of the parent view
@@ -81,9 +68,13 @@ const ViewRegistry = Object.freeze({
    *  the name of the parent view, or the
    *  fallback name if `view` is not valid.
    */
-  getParentOr(view, fallback="Home") {
-    return this.getParent(view) ?? fallback;
-  },
+  static getParent(view, fallback="Home") {
+    if (!this.isValid(view)) {
+      return fallback;
+    }
+
+    return this.#store[view]?.parent;
+  }
 
   /**
    * Checks if a view is secret or not.
@@ -99,13 +90,13 @@ const ViewRegistry = Object.freeze({
    *  is secret or not. If the specified view is
    *  not valid, `undefined` is returned instead.
    */
-  isSecret(view) {
+  static isSecret(view) {
     if (!this.isValid(view)) {
       return;
     }
 
-    return this.store[view].secret;
-  },
+    return this.#store[view].secret;
+  }
 
   /**
    * Tests if a view is valid.
@@ -117,21 +108,20 @@ const ViewRegistry = Object.freeze({
    *  target view
    * @returns {boolean}
    */
-  isValid(view) {
-    return !!this.store[view];
+  static isValid(view) {
+    return !!this.#store[view];
   }
 
-});
+}
 
-/**
- * View Manager
- */
-export const ViewManager = Object.freeze({
 
-  /**
-   * Initializes the View Manager.
-   */
-  initialize() {
+export class ViewManager {
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
+
+  static async initialize() {
     if (Search.q) {
       switch (Search.q) {
         case "view-post":
@@ -152,44 +142,48 @@ export const ViewManager = Object.freeze({
     } else {
       this.showView("Home");
     }
-  },
+  }
 
   /**
-   * Sets a view.
+   * Shows a view.
    *
-   * @param {string} view
+   * @param {string} viewName
    *  the view name
    * @param {{}?} options
    *  the view options
    * @emits ViewChangedEvent
    *  When the view is activated or refreshed
    */
-  showView(view, options=null) {
+  static showView(view, options=null) {
     const pane = document.getElementById("pane");
 
     if (!ViewRegistry.isValid(view)) {
       this.reset();
     }
 
-    Presenter.present(pane,
-      async () => {
-        ViewEventManager.dispatchEvent("view-changed", {
-          view, parent: ViewRegistry.getParent(view)
-        });
+    const build = async () => {
+      ViewEventManager.dispatchEvent("view-changed", {
+        view, parent: ViewRegistry.getParent(view)
+      });
 
-        Session.previousView = Session.currentView;
-        Session.previousViewOptions = Session.currentViewOptions;
-        Session.currentView = view;
-        Session.currentViewOptions = options;
+      Session.previousView = Session.currentView;
+      Session.previousViewOptions = Session.currentViewOptions;
+      Session.currentView = view;
+      Session.currentViewOptions = options;
 
-        return await ViewRegistry.activate(view, options);
-      },
-      async (reason) => {
+      let result;
+
+      try {
+        result = ViewRegistry.activate(view, options);
+      } catch (reason) {
         console.error(reason);
-        return await ViewRegistry.activate("Error", { reason }, true);
       }
-    );
-  },
+
+      return await result;
+    };
+
+    Presenter.present(build, pane);
+  }
 
   /**
    * Restores the previous view.
@@ -202,55 +196,52 @@ export const ViewManager = Object.freeze({
    * @returns {boolean}
    *  A value indicating whether the session was restored.
    */
-  showPreviousView(fallbackParent=false) {
+  static showPreviousView(fallbackParent=false) {
     if (Session.previousView) {
       this.showView(Session.previousView, Session.previousViewOptions);
       return true;
     }
 
     if (fallbackParent) {
-      this.showView(Session.previousView, ViewRegistry.getParentOr(Session.previousView));
+      const parentView = ViewRegistry.getParent(Session.previousView);
+      this.showView(Session.previousView, parentView);
       return true;
     }
 
     return false;
-  },
+  }
 
-  showPost(postId) {
+  static showPost(postId) {
     this.showView("PostReader", { postId });
-  },
+  }
 
-  showProject(projectUuid) {
+  static showProject(projectUuid) {
     this.showView("ProjectViewer", { projectUuid });
-  },
+  }
 
   /**
    * Reloads the current view.
    */
-  reload() {
+  static reload() {
     this.showView(Session.currentView, Session.currentViewOptions);
-  },
+  }
 
   /**
    * Resets the session and reloads the page.
    */
-  reset() {
+  static reset() {
     Session.reset();
     window.location.reload();
-  },
+  }
 
-});
+}
 
-/**
- * View Event Manager
- */
-const ViewEventManager = Object.freeze({
 
-  events: {
-    "view-changed": new CustomEvent("view-changed", {
-      detail: { view: "", parent: "" }
-    })
-  },
+class ViewEventManager {
+
+  static #events = {
+    "view-changed": new CustomEvent("view-changed", { detail: { view: "", parent: "" } })
+  };
 
   /**
    * Triggers a view changed event.
@@ -260,17 +251,17 @@ const ViewEventManager = Object.freeze({
    * @param {{}} detail
    *  event details
    */
-  dispatchEvent(eventName, detail={}) {
-    if (!this.events[eventName]) {
-      console.error(`Invalid event: ${eventName}`);
+  static dispatchEvent(eventName, detail={}) {
+    if (!this.#events[eventName]) {
+      console.error(`[ViewManager] Invalid event: ${eventName}`);
       return;
     }
 
     for (let [k, v] of Object.entries(detail)) {
-      this.events[eventName].detail[k] = v;
+      this.#events[eventName].detail[k] = v;
     }
 
-    document.dispatchEvent(this.events[eventName]);
+    document.dispatchEvent(this.#events[eventName]);
   }
 
-});
+}

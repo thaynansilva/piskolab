@@ -7,10 +7,15 @@
 
 import { Text } from "./Text.mjs";
 
+
 /**
  * DocJSON parser
  */
-export const DocJSON = {
+export class DocJSON {
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
 
   /**
    * Parses DocJSON into HTML.
@@ -19,10 +24,11 @@ export const DocJSON = {
    *  the json
    * @returns {Promise<string>}
    */
-  parse(data) {
+  static parse(data) {
     return parseNodes(data);
   }
-};
+
+}
 
 /**
  * Selects properties from a node and

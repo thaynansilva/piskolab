@@ -5,48 +5,52 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-export const Session = {
+export class Session {
 
-  set currentView(x) {
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
+
+  static set currentView(x) {
     sessionStorage.currentView = x;
-  },
+  }
 
-  set currentViewOptions(x) {
+  static set currentViewOptions(x) {
     sessionStorage.currentViewOptions = JSON.stringify(x, null, 0);
-  },
+  }
 
-  set previousView(x) {
+  static set previousView(x) {
     sessionStorage.previousView = x;
-  },
+  }
 
-  set previousViewOptions(x) {
+  static set previousViewOptions(x) {
     sessionStorage.previousViewOptions = JSON.stringify(x, null, 0);
-  },
+  }
 
-  get currentView() {
+  static get currentView() {
     return sessionStorage.currentView;
-  },
+  }
 
-  get currentViewOptions() {
+  static get currentViewOptions() {
     return JSON.parse(sessionStorage.currentViewOptions ?? "null");
-  },
+  }
 
-  get previousView() {
+  static get previousView() {
     return sessionStorage.previousView;
-  },
+  }
 
-  get previousViewOptions() {
+  static get previousViewOptions() {
     return JSON.parse(sessionStorage.previousViewOptions ?? "null");
-  },
+  }
 
   /**
    * Resets the session.
    */
-  reset() {
+  static reset() {
     delete sessionStorage.currentView;
     delete sessionStorage.currentViewOptions;
     delete sessionStorage.previousView;
     delete sessionStorage.previousViewOptions;
-  },
+  }
 
-};
+}

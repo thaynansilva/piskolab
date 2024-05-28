@@ -7,6 +7,7 @@
 
 import { SVGUtils } from "../utils/SVGUtils.mjs";
 
+
 /**
  * Request options
  */
@@ -35,10 +36,15 @@ const RequestOptions = {
 
 };
 
+
 /**
  * @typedef {"text"|"json"|"svg"|"html"|"none"} FetchTypes
  */
-export const Fetcher = {
+export class Fetcher {
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
 
   /**
    * Fetches a resource.
@@ -53,7 +59,7 @@ export const Fetcher = {
    *  The resource data according to `type`
    *  or `null` if the response was not ok.
    */
-  async get(url, type="text", options=undefined) {
+  static async get(url, type="text", options=undefined) {
     const mimeType = {
       "json": "application/json",
       "text": "text/plain",
@@ -102,7 +108,7 @@ export const Fetcher = {
     }
 
     return data;
-  },
+  }
 
   /**
    * Tests if a URL is valid, that being, if it
@@ -115,9 +121,9 @@ export const Fetcher = {
    * @returns {boolean}
    *  a boolean indicating wether the resource is valid.
    */
-  async probe(url, options=undefined) {
+  static async probe(url, options=undefined) {
     return (await this.getRequest(url, options)).ok;
-  },
+  }
 
   /**
    * Creates a request for a resource.
@@ -127,7 +133,7 @@ export const Fetcher = {
    * @param {RequestOptions} [options=undefined]
    *  request options
    */
-  async getRequest(url, options=undefined) {
+  static async getRequest(url, options=undefined) {
     let newOptions = Object.assign({}, RequestOptions, options);
 
     return await fetch(url, {
@@ -136,4 +142,4 @@ export const Fetcher = {
     });
   }
 
-};
+}

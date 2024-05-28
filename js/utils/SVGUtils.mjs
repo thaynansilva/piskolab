@@ -5,7 +5,12 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-export const SVGUtils = Object.freeze({
+
+export class SVGUtils {
+
+  constructor() {
+    throw new TypeError("This class can't be instantiated.");
+  }
 
   /**
    * Removes potentially unsafe nodes
@@ -25,7 +30,7 @@ export const SVGUtils = Object.freeze({
    *
    * @param {XMLDocument} doc
    */
-  sanitize(doc) {
+  static sanitize(doc) {
     doc.querySelectorAll("*").forEach((node) => {
       if (node.tagName == "script") {
         node.remove();
@@ -42,4 +47,5 @@ export const SVGUtils = Object.freeze({
       }
     });
   }
-});
+
+}
