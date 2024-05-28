@@ -30,16 +30,12 @@ async function getSVG(url, urgent=false) {
   return svgCache.get(url).cloneNode(true);
 }
 
-/**
- * Embed SVG element
- */
+
 export class EmbedSVG extends HTMLElement {
 
   static observedAttributes = ["src", "alt", "isolated"];
 
-  /** @type {ShadowRoot} */
   #shadow;
-
   #internals;
 
   constructor() {
@@ -155,12 +151,8 @@ export class EmbedSVG extends HTMLElement {
     return this.hasAttribute("isolated");
   }
 
-  static registerElement() {
+  static {
     const tagName = "embed-svg";
-
-    if (customElements.get(tagName)) {
-      return;
-    }
 
     customElements.define(tagName, EmbedSVG);
 
