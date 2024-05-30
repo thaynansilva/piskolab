@@ -8,23 +8,14 @@
 import { Template } from "../utils/Template.mjs";
 import { Presenter } from "../utils/Presenter.mjs";
 import { ViewManager } from "../utils/ViewManager.mjs";
-import { EmbedSVG } from "../elements/EmbedSVG.mjs";
-
-const template = new Template("html/PiskoLab.html");
-
-export const PiskoLab = Object.freeze({
-  async initialize() {
-    await initApp();
-
-    ViewManager.initialize();
-  }
-});
 
 async function initApp() {
-  EmbedSVG.registerElement();
+  const root = document.querySelector("#root");
 
   const build = async () => {
-    return await template.buildAndSetup(root => {
+    const app = new Template("html/PiskoLab.html");
+
+    return await app.buildAndSetup((root) => {
       for (let tab of root.querySelectorAll("#tabs>button")) {
         let view = tab.getAttribute("data-view");
         tab.addEventListener("click", () => ViewManager.showView(view));
@@ -38,8 +29,9 @@ async function initApp() {
     })
   };
 
-  let root = document.querySelector("#root");
-  await Presenter.present(root, build, null, { in: "zoom-in" });
+  await Presenter.present(build, root);
+
+  ViewManager.initialize();
 }
 
-PiskoLab.initialize();
+initApp();
