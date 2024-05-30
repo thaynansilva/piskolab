@@ -39,16 +39,14 @@ async function build(options) {
     time.textContent = DateFormatter.longDate(postInfo.date);
     time.dateTime = postInfo.date.toISOString();
 
-    let content = root.querySelector("[data-name='content']");
+    let contentRoot = root.querySelector("[data-name='content']");
 
-    Presenter.present(content,
+    Presenter.present(
       async () => {
         let data = await Fetcher.get(postInfo.resourcePath, "json");
         return DocJSON.parse(data);
       },
-      async (reason) => {
-        throw reason;
-      }
+      contentRoot, { in: "slide-up", out: "none" }
     );
   });
 }
