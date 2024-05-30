@@ -46,7 +46,7 @@
 }
 
 .anim-zoom-out {
-    animation: zoom-out 0.2s ease;
+    animation: zoom-out 0.1s ease;
 }
 
 .anim-slide-up {
