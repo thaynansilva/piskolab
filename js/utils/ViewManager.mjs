@@ -9,6 +9,8 @@ import { Presenter } from "./Presenter.mjs";
 import { Search } from "./Search.mjs";
 import { Session } from "./Session.mjs";
 
+import { Dialog } from "../core/Dialog.mjs";
+
 import { HomeView } from "../views/HomeView.mjs";
 import { PostFeedView } from "../views/PostFeedView.mjs";
 import { PortfolioView } from "../views/PortfolioView.mjs";
@@ -177,6 +179,24 @@ export class ViewManager {
         result = ViewRegistry.activate(view, options);
       } catch (reason) {
         console.error(reason);
+
+        Dialog.showDialog(
+          "An error occurred while loading the page.",
+          [{ text: "Return Home" }, { text: "Retry", hint: "suggested" }],
+          "Oops!",
+          reason
+        ).then((answer) => {
+          switch (answer) {
+            case "Return Home":
+              this.reset();
+              break;
+            case "Retry":
+              this.reload();
+              break;
+            default:
+              break;
+          }
+        });
       }
 
       return await result;
