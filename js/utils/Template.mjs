@@ -7,16 +7,35 @@
 
 import { Fetcher } from "./Fetcher.mjs";
 
+
 export class Template {
 
   /** @type {Document?} */
   #doc = null;
 
-  /** @type {string} */
   #url;
 
+  /**
+   * Creates a new template.
+   *
+   * @param {string} url
+   *  URL to the template html.
+   */
   constructor(url) {
     this.#url = url;
+  }
+
+  /**
+   * Creates a new template and loads
+   * it immediately.
+   *
+   * @param {string} url
+   *  url to the template
+   */
+  static async newPreload(url) {
+    let t = new Template(url);
+    await t.loadTemplate();
+    return t;
   }
 
   /**
@@ -38,7 +57,7 @@ export class Template {
    *  the constructed UI.
    */
   async buildAndSetup(setup) {
-    await this.#loadTemplate();
+    await this.loadTemplate();
 
     let root = this.queryRoot();
 
@@ -92,7 +111,7 @@ export class Template {
   /**
    * Loads the template document.
    */
-  async #loadTemplate() {
+  async loadTemplate() {
     if (this.#doc) {
       return;
     }
