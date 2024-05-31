@@ -173,33 +173,20 @@ export class ViewManager {
       Session.currentView = view;
       Session.currentViewOptions = options;
 
-      let result;
-
       try {
-        result = ViewRegistry.activate(view, options);
-      } catch (reason) {
-        console.error(reason);
+        return await ViewRegistry.activate(view, options);
+      } catch (error) {
+        console.error(error);
 
-        Dialog.showDialog(
-          "An error occurred while loading the page.",
-          [{ text: "Return Home" }, { text: "Retry", hint: "suggested" }],
-          "Oops!",
-          reason
-        ).then((answer) => {
-          switch (answer) {
-            case "Return Home":
-              this.reset();
-              break;
-            case "Retry":
-              this.reload();
-              break;
-            default:
-              break;
-          }
-        });
+        // DO NOT AWAIT! Or the app will die upon dialog disposal.
+        Dialog.show(
+          "Oops!", "An error occurred while loading the page.", error,
+          [
+            { text: "Home", callback: () => this.reset() },
+            { text: "Retry", hint: "suggested", callback: () => this.reload() }
+          ]
+        );
       }
-
-      return await result;
     };
 
     Presenter.present(build, pane);
