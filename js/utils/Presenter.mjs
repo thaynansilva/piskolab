@@ -33,20 +33,22 @@ export class Presenter {
       content instanceof HTMLElement ||
       content instanceof DocumentFragment);
 
+    let validContent = content ?? "";
+
     switch (mode) {
       case "replaceChildren":
         if (isFragmentOrElement) {
-          element.replaceChildren(content);
+          element.replaceChildren(validContent);
         } else {
-          element.innerHTML = content;
+          element.innerHTML = validContent;
         }
 
         break;
       case "replaceNode":
         if (isFragmentOrElement) {
-          element.replaceWith(content);
+          element.replaceWith(validContent);
         } else {
-          element.outerHTML = content;
+          element.outerHTML = validContent;
         }
 
         break;
