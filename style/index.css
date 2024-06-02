@@ -357,23 +357,6 @@ div.PostFeed div.paginator > div {
 
 /* == Post Reader View == */
 
-div.PostReader div.toolbar {
-    display: flex;
-    flex-flow: row;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid var(--pl-border-color);
-    margin: 0 auto 20px;
-}
-
-div.PostReader div.toolbar > div {
-    display: flex;
-}
-
-div.PostReader div.toolbar div.align-right {
-    margin-left: auto;
-}
-
 div.PostReader article {
     padding: 0 4px;
 }

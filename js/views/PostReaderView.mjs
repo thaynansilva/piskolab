@@ -11,7 +11,6 @@ import { Indexer } from "../core/Indexer.mjs";
 import { Fetcher } from "../utils/Fetcher.mjs";
 import { Presenter } from "../utils/Presenter.mjs";
 import { DocJSON } from "../utils/DocJSON.mjs";
-import { ViewManager } from "../utils/ViewManager.mjs";
 import { DateFormatter } from "../utils/DateFormatter.mjs";
 
 const template = new Template("html/PostReader.html");
@@ -26,9 +25,6 @@ async function build(options) {
   let postInfo = await Indexer.getPostInfo(options.postId);
 
   return await template.buildAndSetup((root) => {
-    let back = root.querySelector("[data-name='go-back']");
-    back.addEventListener("click", () => ViewManager.showPreviousView(true));
-
     let title = root.querySelector("[data-name='title']");
     title.textContent = postInfo.title;
 
