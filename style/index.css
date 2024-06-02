@@ -2,7 +2,6 @@
 @import url("animations.css");
 
 :root {
-    --pl-font-mono: "Fira Mono", Consolas, monospace;
     --pl-max-content-width: 800px;
 }
 
@@ -14,8 +13,12 @@
 /* General elements */
 
 html {
-    font-family: "Fira Sans", Arial, sans-serif;
+    font-family: "Noto Sans", "Segoe UI", sans-serif;
     font-size: 14pt;
+}
+
+pre, code, kbd {
+    font-family: "Noto Mono", Consolas, monospace;
 }
 
 body {
@@ -244,51 +247,56 @@ span.status-badge[data-status="deprecated"]::before {
 
 div.PiskoLab header {
     display: flex;
-    background-image: linear-gradient(to top, var(--pl-shadow-color), transparent 5%);
-    background-repeat: no-repeat;
-    background-color: var(--pl-header-color);
-    color: var(--pl-control-text-normal);
     max-width: 100vw;
-    transition: color 0.3s ease,
-                background-color 0.3s ease;
+    overflow-x: hidden;
+    background-color: var(--pl-header-color);
+    border-bottom: 2px solid var(--pl-control-border-color);
 }
 
-div.PiskoLab header embed-svg.logo {
+div.PiskoLab header > div {
+    display: flex;
+    margin: 8px auto;
+}
+
+div.PiskoLab header div.logo {
     display: flex;
     margin: auto;
-    color: var(--pl-text-normal);
-    transition: outline 0.1s ease, opacity 0.3s ease;
-    padding: 8px 0;
-    height: 48px;
-    aspect-ratio: 200/48;
+}
+
+div.PiskoLab header div.logo span {
+    margin: auto;
+    font-size: 1.75rem;
+    font-weight: bold;
 }
 
 div.PiskoLab header div#tabs {
     display: flex;
-    padding: 8px 8px 0;
+    margin: auto;
     width: fit-content;
-    max-width: calc(100% - 16px);
-    margin: auto auto 0;
-    overflow-x: auto;
+    border: 2px solid var(--pl-tab-border-color);
+    gap: 1px;
 }
 
 div.PiskoLab header div#tabs > button {
-    border-top: 2px solid transparent;
-    border-radius: 4px 4px 0 0;
+    font-size: 0.9rem;
+    padding: 6px 10px;
     text-transform: lowercase;
+    border-radius: 0;
     cursor: pointer;
 }
 
 div.PiskoLab header div#tabs > button[data-selected] {
     color: var(--pl-control-text-selected);
     background-color: var(--pl-control-selected);
-    box-shadow: 0 0 3px var(--pl-shadow-color);
-    border-color: var(--pl-control-accent);
     cursor: default;
 }
 
-div.PiskoLab header div#tabs > button + button {
-    margin-left: 8px;
+div.PiskoLab header div#tabs > button:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+div.PiskoLab header div#tabs > button:last-child {
+    border-radius: 0 8px 8px 0;
 }
 
 div.PiskoLab div#pane {
@@ -362,13 +370,14 @@ div.PostReader article {
 }
 
 div.PostReader article header {
+    all: unset;
     display: flex;
     flex-flow: column;
     margin: 0 0 20px;
 }
 
 div.PostReader article header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin: 0;
 }
 
@@ -426,7 +435,6 @@ div.Portfolio ul li.project a > div > div p {
 
 div.ProjectViewer div.project {
     text-align: center;
-    padding: 8px;
 }
 
 div.ProjectViewer div.project > embed-svg {
@@ -714,12 +722,17 @@ span.spinner::after {
 @media (width <= 560px) {
 
     div.PiskoLab header {
-        flex-flow: column;
-        border-bottom-color: var(--pl-border-color);
+        display: block;
     }
 
-    div.PiskoLab header embed-svg.logo {
-        height: 40px;
+    div.PiskoLab header div.logo embed-svg {
+        height: 36px;
+    }
+
+    div.PiskoLab header div.logo span {
+        margin: auto;
+        font-size: 1.25rem;
+        font-weight: bold;
     }
 
     div.About div.profile {

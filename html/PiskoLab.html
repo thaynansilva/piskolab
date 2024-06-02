@@ -1,12 +1,19 @@
 <template id="root">
   <div class="PiskoLab" role="application">
     <header>
-      <embed-svg class="logo" src="img/brand.svg" alt="Pisko Lab"></embed-svg>
-      <div id="tabs" role="tablist" aria-roledescription="Website sections">
-        <button type="button" role="tab" data-view="Home">Home</button>
-        <button type="button" role="tab" data-view="PostFeed">Posts</button>
-        <button type="button" role="tab" data-view="Portfolio">Portfolio</button>
-        <button type="button" role="tab" data-view="About">About</button>
+      <div>
+        <div class="logo">
+          <embed-svg src="img/logo.svg" alt="Pisko Lab"></embed-svg>
+          <span>Pisko Lab</span>
+        </div>
+      </div>
+      <div>
+        <div id="tabs" role="tablist" aria-roledescription="Website sections">
+          <button type="button" role="tab" data-view="Home">Home</button>
+          <button type="button" role="tab" data-view="PostFeed">Posts</button>
+          <button type="button" role="tab" data-view="Portfolio">Portfolio</button>
+          <button type="button" role="tab" data-view="About">About</button>
+        </div>
       </div>
     </header>
     <div id="pane" role="tabpanel"></div>
