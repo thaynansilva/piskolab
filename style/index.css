@@ -242,7 +242,7 @@ span.status-badge[data-status="deprecated"]::before {
 
 /* == Pisko Lab == */
 
-div.PiskoLab header#header {
+div.PiskoLab header {
     display: flex;
     background-image: linear-gradient(to top, var(--pl-shadow-color), transparent 5%);
     background-repeat: no-repeat;
@@ -253,7 +253,7 @@ div.PiskoLab header#header {
                 background-color 0.3s ease;
 }
 
-div.PiskoLab header#header embed-svg.logo {
+div.PiskoLab header embed-svg.logo {
     display: flex;
     margin: auto;
     color: var(--pl-text-normal);
@@ -263,7 +263,7 @@ div.PiskoLab header#header embed-svg.logo {
     aspect-ratio: 200/48;
 }
 
-div.PiskoLab header#header div#tabs {
+div.PiskoLab header div#tabs {
     display: flex;
     padding: 8px 8px 0;
     width: fit-content;
@@ -272,14 +272,14 @@ div.PiskoLab header#header div#tabs {
     overflow-x: auto;
 }
 
-div.PiskoLab header#header div#tabs > button {
+div.PiskoLab header div#tabs > button {
     border-top: 2px solid transparent;
     border-radius: 4px 4px 0 0;
     text-transform: lowercase;
     cursor: pointer;
 }
 
-div.PiskoLab header#header div#tabs > button[data-selected="true"] {
+div.PiskoLab header div#tabs > button[data-selected] {
     color: var(--pl-control-text-selected);
     background-color: var(--pl-control-selected);
     box-shadow: 0 0 3px var(--pl-shadow-color);
@@ -287,7 +287,7 @@ div.PiskoLab header#header div#tabs > button[data-selected="true"] {
     cursor: default;
 }
 
-div.PiskoLab header#header div#tabs > button + button {
+div.PiskoLab header div#tabs > button + button {
     margin-left: 8px;
 }
 
@@ -713,12 +713,12 @@ span.spinner::after {
 
 @media (width <= 560px) {
 
-    header#header {
+    div.PiskoLab header {
         flex-flow: column;
         border-bottom-color: var(--pl-border-color);
     }
 
-    header#header embed-svg.logo {
+    div.PiskoLab header embed-svg.logo {
         height: 40px;
     }
 

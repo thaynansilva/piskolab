@@ -22,7 +22,7 @@ async function initApp() {
 
         document.addEventListener("view-changed", (e) => {
           let selected = Object.values(e.detail).includes(view);
-          tab.setAttribute("data-selected", selected);
+          tab.toggleAttribute("data-selected", selected);
           tab.ariaSelected = selected;
         });
       }
