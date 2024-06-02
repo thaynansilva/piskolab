@@ -1,3 +1,10 @@
+/*
+ * Pisko Lab - Personal website
+ * Copyright (C) Thaynan Silva
+ *
+ * SPDX-License-Identifier: LGPL-3.0
+ */
+
 import { Fetcher } from "../utils/Fetcher.mjs";
 
 /**
