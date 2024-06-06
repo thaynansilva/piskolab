@@ -1,5 +1,5 @@
 <template id="root">
-  <div class="ProjectViewer">
+  <div id="ProjectViewer">
     <div class="project">
       <embed-svg src="img/icons/project.svg" aria-hidden="true" data-name="logo"></embed-svg>
       <h1 translate="no" data-name="name"></h1>
@@ -7,7 +7,7 @@
       <div class="resources">
         <span class="status-badge" data-name="status"></span>
         <div class="vl"></div>
-        <a class="text-icon-link" href="" target="_blank" data-name="link">
+        <a class="text-and-icon" href="" target="_blank" data-name="link">
           <div>
             <embed-svg src="img/icons/link.svg" aria-hidden="true"></embed-svg>
             <span>Source Code</span>
@@ -53,7 +53,7 @@
 </template>
 <template id="item">
   <li>
-    <a class="text-icon-link" href="" target="_blank">
+    <a class="text-and-icon" href="" target="_blank">
       <div>
         <span></span>
         <embed-svg src="img/icons/open-in-new.svg" aria-hidden="true" loading="eager"></embed-svg>

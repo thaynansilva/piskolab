@@ -7,11 +7,11 @@
 
 import { Template } from "../utils/Template.mjs";
 import { Indexer } from "../core/Indexer.mjs";
-import { ViewManager } from "../utils/ViewManager.mjs"
+import { Pages } from "../core/Pages.mjs"
 
-const template = new Template("html/Portfolio.html");
+const template = new Template("html/pages/projects.html");
 
-export const PortfolioView = Object.freeze({
+export const ProjectsPage = Object.freeze({
   build,
   parent: null,
   secret: false
@@ -39,10 +39,10 @@ async function build(_options) {
       brief.textContent = projectInfo.brief;
 
       let link = li.querySelector("[data-name='link']");
-      link.href = `/?q=view-project&uuid=${projectInfo.uuid}`;
+      link.href = `/?q=project&uuid=${projectInfo.uuid}`;
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        ViewManager.showProject(projectInfo.uuid);
+        Pages.showProject(projectInfo.uuid);
       });
 
       ul.appendChild(li);

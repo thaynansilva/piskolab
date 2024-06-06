@@ -168,6 +168,7 @@ export class EmbedSVG extends HTMLElement {
         ${tagName} {
           display: flex;
           background-size: cover;
+          aspect-ratio: 1;
         }
       </style>`
     ));

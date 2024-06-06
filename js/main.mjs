@@ -5,23 +5,24 @@
  * SPDX-License-Identifier: LGPL-3.0
  */
 
-import { Template } from "../utils/Template.mjs";
-import { Presenter } from "../utils/Presenter.mjs";
-import { ViewManager } from "../utils/ViewManager.mjs";
+import { Template } from "./utils/Template.mjs";
+import { Presenter } from "./utils/Presenter.mjs";
+import { Pages } from "./core/Pages.mjs";
+
 
 async function initApp() {
   const root = document.querySelector("#root");
 
   const build = async () => {
-    const app = new Template("html/PiskoLab.html");
+    const app = new Template("html/ui/main.html");
 
     return await app.buildAndSetup((root) => {
       for (let tab of root.querySelectorAll("#tabs>button")) {
-        let view = tab.getAttribute("data-view");
-        tab.addEventListener("click", () => ViewManager.showView(view));
+        let page = tab.getAttribute("data-page");
+        tab.addEventListener("click", () => Pages.showPage(page));
 
-        document.addEventListener("view-changed", (e) => {
-          let selected = Object.values(e.detail).includes(view);
+        document.addEventListener("page-changed", (e) => {
+          let selected = Object.values(e.detail).includes(page);
           tab.toggleAttribute("data-selected", selected);
           tab.ariaSelected = selected;
         });
@@ -31,7 +32,7 @@ async function initApp() {
 
   await Presenter.present(build, root);
 
-  ViewManager.initialize();
+  Pages.initialize();
 }
 
 initApp();

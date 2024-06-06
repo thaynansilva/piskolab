@@ -13,33 +13,33 @@ import { Presenter } from "../utils/Presenter.mjs";
 import { DocJSON } from "../utils/DocJSON.mjs";
 import { DateFormatter } from "../utils/DateFormatter.mjs";
 
-const template = new Template("html/PostReader.html");
+const template = new Template("html/pages/article-reader.html");
 
-export const PostReaderView = Object.freeze({
+export const ArticleReaderPage = Object.freeze({
   build,
-  parent: "PostFeed",
+  parent: "News",
   secret: false
 });
 
 async function build(options) {
-  let postInfo = await Indexer.getPostInfo(options.postId);
+  let articleInfo = await Indexer.getArticleInfo(options.articleId);
 
   return await template.buildAndSetup((root) => {
     let title = root.querySelector("[data-name='title']");
-    title.textContent = postInfo.title;
+    title.textContent = articleInfo.title;
 
     let subtitle = root.querySelector("[data-name='description']");
-    subtitle.textContent = postInfo.description;
+    subtitle.textContent = articleInfo.description;
 
     let time = root.querySelector("[data-name='date']");
-    time.textContent = DateFormatter.longDate(postInfo.date);
-    time.dateTime = postInfo.date.toISOString();
+    time.textContent = DateFormatter.longDate(articleInfo.date);
+    time.dateTime = articleInfo.date.toISOString();
 
     let contentRoot = root.querySelector("[data-name='content']");
 
     Presenter.present(
       async () => {
-        let data = await Fetcher.get(postInfo.resourcePath, "json");
+        let data = await Fetcher.get(articleInfo.resourcePath, "json");
         return DocJSON.parse(data);
       },
       contentRoot, { in: "slide-up", out: "none" }

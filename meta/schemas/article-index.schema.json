@@ -2,14 +2,14 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "required": [
-    "posts"
+    "articles"
   ],
   "properties": {
-    "posts": {
-      "title": "List of posts",
+    "articles": {
+      "title": "List of articles",
       "type": "array",
       "items": {
-        "title": "A post entry",
+        "title": "An article entry",
         "type": "object",
         "required": [
           "id",
@@ -18,20 +18,20 @@
         ],
         "properties": {
           "id": {
-            "title": "Post ID",
+            "title": "Article ID",
             "type": "string"
           },
           "date": {
-            "title": "Post date",
+            "title": "Article date",
             "description": "Formatted in ISO 8601, e.g. `1970-12-31 07:00 -03`",
             "type": "string"
           },
           "title": {
-            "title": "Post title",
+            "title": "Article title",
             "type": "string"
           },
           "description": {
-            "title": "Brief description about the post",
+            "title": "Brief description about the article",
             "type": "string"
           }
         }

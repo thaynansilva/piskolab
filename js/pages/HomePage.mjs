@@ -7,9 +7,9 @@
 
 import { Template } from "../utils/Template.mjs";
 
-const template = new Template("html/About.html");
+const template = new Template("html/pages/home.html");
 
-export const AboutView = Object.freeze({
+export const HomePage = Object.freeze({
   build: async () => await template.build(),
   parent: null,
   secret: false

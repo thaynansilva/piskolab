@@ -8,7 +8,7 @@
 import { Template } from "../utils/Template.mjs";
 import { Animator } from "../utils/Animator.mjs";
 
-const template = await Template.newPreload("html/Dialog.html");
+const template = await Template.newPreload("html/ui/dialog.html");
 
 
 class ModalRoot {

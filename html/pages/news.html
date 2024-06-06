@@ -1,6 +1,6 @@
 <template id="root">
-  <div class="PostFeed">
-    <ul class="standard-list separators" role="feed" aria-roledescription="Blog posts" data-name="feed"></ul>
+  <div id="News">
+    <ul class="standard-list separators" role="feed" aria-roledescription="News articles" data-name="feed"></ul>
     <div class="paginator" role="group" aria-label="Paginator controllers" data-name="paginator">
       <button class="flat icon-small" aria-label="Previous page" data-name="prev-page">
         <embed-svg src="img/icons/nav-prev.svg" aria-hidden="true"></embed-svg>
@@ -16,8 +16,8 @@
     </div>
   </div>
 </template>
-<template id="post">
-  <li class="post">
+<template id="article">
+  <li class="article">
     <a href="" data-name="link">
       <div>
         <time data-name="publish-date"></time>

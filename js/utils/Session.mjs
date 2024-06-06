@@ -11,46 +11,46 @@ export class Session {
     throw new TypeError("This class can't be instantiated.");
   }
 
-  static set currentView(x) {
-    sessionStorage.currentView = x;
+  static set currentPage(x) {
+    sessionStorage.currentPage = x;
   }
 
-  static set currentViewOptions(x) {
-    sessionStorage.currentViewOptions = JSON.stringify(x, null, 0);
+  static set currentPageOptions(x) {
+    sessionStorage.currentPageOptions = JSON.stringify(x, null, 0);
   }
 
-  static set previousView(x) {
-    sessionStorage.previousView = x;
+  static set previousPage(x) {
+    sessionStorage.previousPage = x;
   }
 
-  static set previousViewOptions(x) {
-    sessionStorage.previousViewOptions = JSON.stringify(x, null, 0);
+  static set previousPageOptions(x) {
+    sessionStorage.previousPageOptions = JSON.stringify(x, null, 0);
   }
 
-  static get currentView() {
-    return sessionStorage.currentView;
+  static get currentPage() {
+    return sessionStorage.currentPage;
   }
 
-  static get currentViewOptions() {
-    return JSON.parse(sessionStorage.currentViewOptions ?? "null");
+  static get currentPageOptions() {
+    return JSON.parse(sessionStorage.currentPageOptions ?? "null");
   }
 
-  static get previousView() {
-    return sessionStorage.previousView;
+  static get previousPage() {
+    return sessionStorage.previousPage;
   }
 
-  static get previousViewOptions() {
-    return JSON.parse(sessionStorage.previousViewOptions ?? "null");
+  static get previousPageOptions() {
+    return JSON.parse(sessionStorage.previousPageOptions ?? "null");
   }
 
   /**
    * Resets the session.
    */
   static reset() {
-    delete sessionStorage.currentView;
-    delete sessionStorage.currentViewOptions;
-    delete sessionStorage.previousView;
-    delete sessionStorage.previousViewOptions;
+    delete sessionStorage.currentPage;
+    delete sessionStorage.currentPageOptions;
+    delete sessionStorage.previousPage;
+    delete sessionStorage.previousPageOptions;
   }
 
 }

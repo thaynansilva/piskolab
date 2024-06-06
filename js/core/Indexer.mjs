@@ -59,43 +59,43 @@ class Index {
 
 export class Indexer {
 
-  static #posts = new Index("meta/posts/index.json", this.#processPosts);
+  static #articles = new Index("meta/articles/index.json", this.#processArticles);
   static #projects = new Index("meta/projects/index.json", this.#processProjects);
 
   constructor() {
     throw new TypeError("This class can't be instantiated.");
   }
 
-  static async getPosts(forceRefresh=false) {
-    return await this.#posts.get(forceRefresh);
+  static async getArticles(forceRefresh=false) {
+    return await this.#articles.get(forceRefresh);
   }
 
   static async getProjects(forceRefresh=false) {
     return await this.#projects.get(forceRefresh);
   }
 
-  static async getPostInfo(id) {
-    return (await this.getPosts())?.find(p => p.id == id);
+  static async getArticleInfo(id) {
+    return (await this.getArticles())?.find(p => p.id == id);
   }
 
   static async getProjectInfo(uuid) {
     return (await this.getProjects())?.find(p => p.uuid == uuid);
   }
 
-  static #processPosts(data) {
+  static #processArticles(data) {
     let items = [];
 
-    for (let post of data.posts) {
+    for (let article of data.articles) {
       items.push({
-        id: post.id,
-        date: new Date(post.date ?? 0),
-        title: post.title,
-        description: post.description,
-        resourcePath: `meta/posts/repo/${post.id}.json`
+        id: article.id,
+        date: new Date(article.date ?? 0),
+        title: article.title,
+        description: article.description,
+        resourcePath: `meta/articles/repo/${article.id}.json`
       });
     }
 
-    /* sort posts by recency */
+    /* sort articles by recency */
     return items.sort((a, b) => b.date - a.date);
   }
 

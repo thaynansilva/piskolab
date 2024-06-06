@@ -8,11 +8,11 @@
 import { Template } from "../utils/Template.mjs";
 import { Indexer } from "../core/Indexer.mjs";
 
-const template = new Template("html/ProjectViewer.html")
+const template = new Template("html/pages/project-viewer.html")
 
-export const ProjectViewerView = Object.freeze({
+export const ProjectViewerPage = Object.freeze({
   build,
-  parent: "Portfolio",
+  parent: "Projects",
   secret: false
 });
 

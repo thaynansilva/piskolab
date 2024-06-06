@@ -151,7 +151,7 @@
       {
         "type": "image",
         "alt": "example image with link",
-        "src": "meta/posts/assets/docjson-testing-article/example.png"
+        "src": "meta/articles/assets/docjson-testing-article/example.png"
       }
     ]
   },
