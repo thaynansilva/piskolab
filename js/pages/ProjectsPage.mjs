@@ -39,7 +39,7 @@ async function build(_options) {
       brief.textContent = projectInfo.brief;
 
       let link = li.querySelector("[data-name='link']");
-      link.href = `/?q=project&uuid=${projectInfo.uuid}`;
+      link.href = `/?viewProject=${projectInfo.uuid}`;
       link.addEventListener("click", (e) => {
         e.preventDefault();
         Pages.showProject(projectInfo.uuid);

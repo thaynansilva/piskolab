@@ -124,21 +124,10 @@ export class Pages {
   }
 
   static async initialize() {
-    if (Search.q) {
-      switch (Search.q) {
-        case "page-News":
-          Session.currentPage = "NewsReader";
-          Session.currentPageOptions = { NewsId: Search.id };
-          break;
-        case "page-project":
-          Session.currentPage = "ProjectViewer";
-          Session.currentPageOptions = { projectUuid: Search.uuid };
-          break;
-        default:
-          break;
-      }
-
-      window.location.search = "";
+    if (Search.viewArticle) {
+      this.showArticle(Search.viewArticle);
+    } else if (Search.viewProject) {
+      this.showProject(Search.viewProject);
     } else if (Session.currentPage) {
       this.reload();
     } else {

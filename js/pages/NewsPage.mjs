@@ -55,7 +55,7 @@ function showArticles(root, paginator, controller) {
     title.textContent = article.title;
 
     let link = li.querySelector("[data-name='link']");
-    link.href = `/?q=view-article&id=${article.id}`;
+    link.href = `/?viewArticle=${article.id}`;
     link.addEventListener("click", (e) => {
       e.preventDefault();
       Pages.showArticle(article.id);
