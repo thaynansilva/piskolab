@@ -8,18 +8,16 @@
       "brief": "Pisko's little space – A personal website",
       "status": "active",
       "url": "https://github.com/thaynansilva/piskolab",
-      "details": {
-        "licenses": [
-          {
-            "identifier": "LGPL-3.0",
-            "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE.txt"
-          },
-          {
-            "identifier": "CC BY-SA 4.0",
-            "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE_CC-BY-SA-4.0.txt"
-          }
-        ]
-      }
+      "licenses": [
+        {
+          "name": "LGPL-3.0",
+          "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE.txt"
+        },
+        {
+          "name": "CC BY-SA 4.0",
+          "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE_CC-BY-SA-4.0.txt"
+        }
+      ]
     },
     {
       "uuid": "453cf657-0c44-4e6c-9c7c-784187d382bb",
@@ -27,20 +25,18 @@
       "brief": "A powerful versatile cross-platform programming language",
       "status": "active",
       "url": "https://gitlab.com/versa-lang",
-      "details": {
-        "licenses": [
-          {
-            "identifier": "LGPL-3.0",
-            "url": "https://gitlab.com/versa-lang/versa/-/blob/main/COPYING"
-          }
-        ],
-        "docs": [
-          {
-            "title": "Documentation",
-            "url": "https://gitlab.com/versa-lang/versa-docs"
-          }
-        ]
-      }
+      "licenses": [
+        {
+          "name": "LGPL-3.0",
+          "url": "https://gitlab.com/versa-lang/versa/-/blob/main/COPYING"
+        }
+      ],
+      "docs": [
+        {
+          "title": "Documentation",
+          "url": "https://gitlab.com/versa-lang/versa-docs"
+        }
+      ]
     }
   ]
 }

@@ -17,9 +17,9 @@ export const ProjectViewerPage = Object.freeze({
 });
 
 const statusMessages = {
-  "drafting": "Drafting phase",
+  "draft": "Draft",
   "canceled": "Canceled",
-  "active": "Active development",
+  "active": "Active",
   "unmaintained": "Unmaintained",
   "deprecated": "Deprecated"
 };
@@ -59,15 +59,15 @@ async function build(options) {
 
     let licensing = root.querySelector("[data-name='licensing']");
     let licensingSection = root.querySelector("[data-name='sect-licensing']");
-    putItems(projectInfo.details?.licenses, "licensing", licensing, licensingSection);
+    putItems(projectInfo.licenses, "licensing", licensing, licensingSection);
 
     let docs = root.querySelector("[data-name='docs']");
     let docsSection = root.querySelector("[data-name='sect-docs']");
-    putItems(projectInfo.details?.docs, "docs", docs, docsSection);
+    putItems(projectInfo.docs, "docs", docs, docsSection);
 
     let links = root.querySelector("[data-name='links']");
     let linksSection = root.querySelector("[data-name='sect-links']")
-    putItems(projectInfo.details?.links, "links", links, linksSection);
+    putItems(projectInfo.links, "links", links, linksSection);
   });
 }
 
@@ -85,7 +85,7 @@ function putItems(items, type, container, targetSection) {
       items.forEach((x) => {
         let line = x.trim();
         if (line.length > 0) {
-          let p = template.queryById("item-paragraph")
+          let p = template.queryById("item-paragraph");
           p.textContent = line;
           container.appendChild(p);
         }
@@ -96,7 +96,7 @@ function putItems(items, type, container, targetSection) {
         let item = template.queryById("item");
         let a = item.querySelector("a");
         let t = a.querySelector("span");
-        t.textContent = x.identifier;
+        t.textContent = x.name;
         a.href = x.url;
         container.appendChild(item);
       });

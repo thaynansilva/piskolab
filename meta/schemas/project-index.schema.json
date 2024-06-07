@@ -40,7 +40,7 @@
             "description": "Defines the health status of the project.",
             "type": "string",
             "enum": [
-              "drafting",
+              "draft",
               "canceled",
               "active",
               "deprecated",
@@ -61,72 +61,71 @@
               "type": "string"
             }
           },
-          "details": {
-            "title": "Project details",
-            "description": "Licensing, documentation, links and notes.",
-            "type": "object",
+          "licenses": {
+            "title": "Licensing details",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "title": "License name",
+                  "type": "string"
+                },
+                "url": {
+                  "title": "URL to the license file or website",
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "name",
+                "url"
+              ]
+            }
+          },
+          "docs": {
+            "title": "An array of links to documentation",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "title": "A title to the URL page",
+                  "type": "string"
+                },
+                "url": {
+                  "title": "URL to the documentation page",
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            },
+            "required": [
+              "title",
+              "url"
+            ]
+          },
+          "links": {
+            "title": "An array of links",
+            "type": "array",
             "properties": {
-              "licenses": {
-                "title": "Licensing details",
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "identifier": {
-                      "title": "License identifier",
-                      "type": "string"
-                    },
-                    "url": {
-                      "title": "URL to the license file or website",
-                      "type": "string",
-                      "format": "uri"
-                    }
-                  },
-                  "required": [
-                    "identifier"
-                  ]
-                }
-              },
-              "docs": {
-                "title": "An array of links to documentation",
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "title": {
-                      "title": "A title to the URL page",
-                      "type": "string"
-                    },
-                    "url": {
-                      "title": "URL to the documentation page",
-                      "type": "string",
-                      "format": "uri"
-                    }
-                  }
-                }
-              },
-              "links": {
-                "title": "An array of links",
-                "type": "array",
+              "items": {
+                "type": "object",
                 "properties": {
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "title": {
-                        "title": "The title of the link",
-                        "type": "string"
-                      },
-                      "url": {
-                        "title": "The URL of the link",
-                        "type": "string",
-                        "format": "uri"
-                      }
-                    },
-                    "required": [
-                      "url"
-                    ]
+                  "title": {
+                    "title": "The title of the link",
+                    "type": "string"
+                  },
+                  "url": {
+                    "title": "The URL of the link",
+                    "type": "string",
+                    "format": "uri"
                   }
-                }
+                },
+                "required": [
+                  "title",
+                  "url"
+                ]
               }
             }
           }
