@@ -90,8 +90,7 @@ export class Indexer {
         id: article.id,
         date: new Date(article.date ?? 0),
         title: article.title,
-        description: article.description,
-        resourcePath: `meta/articles/repo/${article.id}.json`
+        description: article.description
       });
     }
 

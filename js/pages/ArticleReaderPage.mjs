@@ -23,6 +23,7 @@ export const ArticleReaderPage = Object.freeze({
 
 async function build(options) {
   let articleInfo = await Indexer.getArticleInfo(options.articleId);
+  let articleId = articleInfo.id;
 
   return await template.buildAndSetup((root) => {
     let title = root.querySelector("[data-name='title']");
@@ -39,7 +40,7 @@ async function build(options) {
 
     Presenter.present(
       async () => {
-        let data = await Fetcher.get(articleInfo.resourcePath, "json");
+        let data = await Fetcher.get(`meta/articles/repo/${articleId}.json`, "json");
         return DocJSON.parse(data);
       },
       contentRoot, { in: "slide-up", out: "none" }
