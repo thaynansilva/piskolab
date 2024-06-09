@@ -129,11 +129,11 @@ export class Dialog {
       let _message = root.querySelector("[data-name='message']");
       _message.textContent = message ?? "";
 
-      let _details = root.querySelector("details");
-      _details.toggleAttribute("hidden", !details);
+      let expander = root.querySelector("details");
+      expander.toggleAttribute("hidden", !details);
 
-      let content = _details.querySelector("[data-name='content']");
-      content.textContent = details ?? "";
+      let reason = expander.querySelector("div.reason");
+      reason.textContent = details.message ?? details ?? "";
 
       let actionsContainer = root.querySelector("div.actions");
       this.#createActionButtons(actions, actionsContainer, resolve);

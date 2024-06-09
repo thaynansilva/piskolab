@@ -113,6 +113,9 @@ div#modal-root {
     background-color: var(--pl-backdrop-color);
     backdrop-filter: blur(5px) grayscale(0.5);
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 15px;
+    box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 div#modal-root[hidden] {
@@ -715,19 +718,15 @@ div.dialog details[open] summary {
     border-bottom: 1px solid var(--pl-dark-border-color);
 }
 
-div.dialog details > pre {
-    padding: 10px 8px;
+div.dialog details > div.reason {
+    padding: 10px 4px;
     margin: 0;
 }
 
 div.dialog div.actions {
-    display: block;
+    display: flex;
     margin: 0 0 0 auto;
     width: fit-content;
-}
-
-div.dialog div.actions button {
-    padding: 8px;
 }
 
 div.dialog div.actions button + button {
