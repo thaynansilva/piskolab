@@ -67,8 +67,8 @@
             "items": {
               "type": "object",
               "properties": {
-                "name": {
-                  "title": "License name",
+                "title": {
+                  "title": "License title",
                   "type": "string"
                 },
                 "url": {
@@ -78,7 +78,7 @@
                 }
               },
               "required": [
-                "name",
+                "title",
                 "url"
               ]
             }

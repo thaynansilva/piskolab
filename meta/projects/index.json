@@ -10,11 +10,11 @@
       "url": "https://github.com/thaynansilva/piskolab",
       "licenses": [
         {
-          "name": "LGPL-3.0",
+          "title": "LGPL-3.0",
           "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE.txt"
         },
         {
-          "name": "CC BY-SA 4.0",
+          "title": "CC BY-SA 4.0",
           "url": "https://github.com/thaynansilva/piskolab/blob/main/LICENSE_CC-BY-SA-4.0.txt"
         }
       ]
@@ -27,13 +27,13 @@
       "url": "https://gitlab.com/versa-lang",
       "licenses": [
         {
-          "name": "LGPL-3.0",
+          "title": "LGPL-3.0",
           "url": "https://gitlab.com/versa-lang/versa/-/blob/main/COPYING"
         }
       ],
       "docs": [
         {
-          "title": "Documentation",
+          "title": "Versa Docs",
           "url": "https://gitlab.com/versa-lang/versa-docs"
         }
       ]

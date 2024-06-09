@@ -92,14 +92,6 @@ function putItems(items, type, container, targetSection) {
       });
       break;
     case "licensing":
-      items.forEach((x) => {
-        let item = template.queryById("item");
-        let a = item.querySelector("a");
-        a.textContent = x.name;
-        a.href = x.url;
-        container.appendChild(item);
-      });
-      break;
     case "docs":
     case "links":
       items.forEach((x) => {
