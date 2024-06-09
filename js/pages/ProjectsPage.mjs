@@ -26,9 +26,9 @@ async function build(_options) {
     for (let projectInfo of projects) {
       let li = template.queryById("project");
 
-      let logo = li.querySelector("[data-name='logo']");
+      let logo = li.querySelector("img.logo");
+
       if (projectInfo.logo) {
-        logo.isolated = true;
         logo.src = projectInfo.logo;
       }
 

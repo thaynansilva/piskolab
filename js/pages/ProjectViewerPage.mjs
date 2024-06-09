@@ -95,8 +95,7 @@ function putItems(items, type, container, targetSection) {
       items.forEach((x) => {
         let item = template.queryById("item");
         let a = item.querySelector("a");
-        let t = a.querySelector("span");
-        t.textContent = x.name;
+        a.textContent = x.name;
         a.href = x.url;
         container.appendChild(item);
       });
@@ -106,8 +105,7 @@ function putItems(items, type, container, targetSection) {
       items.forEach((x) => {
         let item = template.queryById("item");
         let a = item.querySelector("a");
-        let t = a.querySelector("span");
-        t.textContent = x.title ?? x.url;
+        a.textContent = x.title;
         a.href = x.url;
         container.appendChild(item);
       });

@@ -32,41 +32,26 @@
 .DocJSON div.meta-overlay > div {
     position: absolute;
     display: flex;
-    padding: 6px;
+    padding: 6px 4px;
     bottom: 8px;
     right: 8px;
     border-radius: 8px;
     background-color: var(--pl-overlay-color);
     transition: max-width 0.5s ease;
-    max-width: 24px;
+    max-width: 30px;
 }
 
 .DocJSON div.meta-overlay:hover > div {
     max-width: calc(100% - 20px);
 }
 
-.DocJSON div.meta-overlay > div > span {
+.DocJSON div.meta-overlay > div > span.text {
     margin: auto 0;
     overflow: hidden;
     text-wrap: nowrap;
     user-select: none;
+    -moz-user-select: none;
     -webkit-user-select: none;
-    display: inline-flex;
-}
-
-.DocJSON div.meta-overlay > div > span::before {
-    content: "";
-    width: 2px;
-}
-
-.DocJSON div.meta-overlay > div > span::after {
-    content: "";
-    width: 2px;
-}
-
-.DocJSON div.meta-overlay > div > embed-svg {
-    min-width: 24px;
-    min-height: 24px;
 }
 
 /* Styles */

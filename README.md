@@ -67,8 +67,8 @@ project.
 
 This project uses some third-party icons from the following authors:
 
-- [Material Design](https://fonts.google.com/icons): symbolic action icons
-- [Font Awesome Team](https://fontawesome.com/): GitHub, GitLab, and Mastodon logos
+- [Material Symbols](https://fonts.google.com/icons): symbolic action icons
+- [Font Awesome](https://fontawesome.com/): GitHub, GitLab, and Mastodon logos
 
 ## Licensing
 
@@ -76,9 +76,9 @@ This website is free software, which means you can modify or redistribute as
 you wish!
 
 This project is available under [LGPL 3.0](LICENSE.txt), and the Pisko Lab
-logo is available under [CC Attribution-ShareAlike 4.0](LICENSE_CC-BY-SA-4.0.txt).
+logo and icons are available under [CC BY-SA 4.0](LICENSE_CC-BY-SA-4.0.txt).
 
 Each third-party resource is available on its respective licenses:
 
-- Material design: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-- Font Awesome Team: [CC Attribution 4.0.](https://creativecommons.org/licenses/by/4.0/)
+- Material Symbols: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- Font Awesome: [CC BY 4.0.](https://creativecommons.org/licenses/by/4.0/)

@@ -1,24 +1,19 @@
 <template id="root">
   <div id="ProjectViewer">
     <div class="project">
-      <embed-svg src="img/icons/project.svg" aria-hidden="true" data-name="logo"></embed-svg>
+      <img class="logo" src="img/project.svg" draggable="false" aria-hidden="true" data-name="logo">
       <h1 translate="no" data-name="name"></h1>
       <p data-name="brief"></p>
       <div class="resources">
         <span class="status-badge" data-name="status"></span>
-        <div class="vl"></div>
-        <a class="text-and-icon" href="" target="_blank" data-name="link">
-          <div>
-            <embed-svg src="img/icons/link.svg" aria-hidden="true"></embed-svg>
-            <span>Source Code</span>
-          </div>
-        </a>
+        <div class="vl" role="separator"></div>
+        <a href="" target="_blank" data-name="link" data-prefix-icon="code">Source Code</a>
       </div>
     </div>
     <div class="details">
       <section data-name="sect-description">
         <div>
-          <embed-svg src="img/icons/notes.svg" aria-hidden="true"></embed-svg>
+          <span class="material-symbols">description</span>
           <h3>Description</h3>
         </div>
         <hr>
@@ -26,7 +21,7 @@
       </section>
       <section data-name="sect-licensing">
         <div>
-          <embed-svg src="img/icons/licensing.svg" aria-hidden="true"></embed-svg>
+          <span class="material-symbols" aria-hidden="true">license</span>
           <h3>Licensing</h3>
         </div>
         <hr>
@@ -34,7 +29,7 @@
       </section>
       <section data-name="sect-docs">
         <div>
-          <embed-svg src="img/icons/docs.svg" aria-hidden="true"></embed-svg>
+          <span class="material-symbols" aria-hidden="true">description</span>
           <h3>Documentation</h3>
         </div>
         <hr>
@@ -42,7 +37,7 @@
       </section>
       <section data-name="sect-links">
         <div>
-          <embed-svg src="img/icons/link.svg" aria-hidden="true"></embed-svg>
+          <span class="material-symbols" aria-hidden="true">link</span>
           <h3>Links</h3>
         </div>
         <hr>
@@ -53,12 +48,7 @@
 </template>
 <template id="item">
   <li>
-    <a class="text-and-icon" href="" target="_blank">
-      <div>
-        <span></span>
-        <embed-svg src="img/icons/open-in-new.svg" aria-hidden="true" loading="eager"></embed-svg>
-      </div>
-    </a>
+    <a href="" target="_blank" data-postfix-icon="open_in_new"></a>
   </li>
 </template>
 <template id="item-paragraph">

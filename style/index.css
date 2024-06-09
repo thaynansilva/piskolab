@@ -1,14 +1,59 @@
 @import url("colors.css");
 @import url("animations.css");
 
-:root {
-    --pl-max-content-width: 800px;
+/* Material Symbols */
+
+@font-face {
+    font-family: 'Material Symbols';
+    src: url("../fonts/MaterialSymbolsRounded-Regular.ttf");
+}
+
+span.material-symbols {
+    all: unset;
+    font-family: 'Material Symbols';
+    font-size: 24px;
+    width: 30px;
+    min-width: 30px;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    font-smooth: never;
+    -webkit-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+}
+
+span.material-symbols.tiny {
+    font-size: 16px;
+    min-width: 16px;
+}
+
+a[data-prefix-icon]::before,
+a[data-postfix-icon]::after {
+    font-family: 'Material Symbols';
+    /* font-size: 24px; */
+    text-align: center;
+    vertical-align: middle;
+    margin: auto 2px;
+}
+
+a[data-prefix-icon]::before {
+    content: attr(data-prefix-icon);
+}
+
+a[data-postfix-icon]::after {
+    content: attr(data-postfix-icon);
+    font-size: 16px;
 }
 
 /* Animations */
 
-@keyframes spinner-fade-in { 0%   { opacity: 0; } }
-@keyframes spinner-spin    { 0%   { transform: rotate(-1turn); } }
+@keyframes spinner-fade-in { 0% { opacity: 0; } }
+@keyframes spinner-spin    { 0% { transform: rotate(-1turn); } }
 
 /* General elements */
 
@@ -78,6 +123,7 @@ div#modal-root[hidden] {
 /* Button */
 
 button {
+    display: flex;
     border: none;
     border-radius: 8px;
     color: var(--pl-control-text-normal);
@@ -94,11 +140,11 @@ button {
 }
 
 button.icon {
-    padding: 8px !important;
+    padding: 4px !important;
 }
 
 button.icon-small {
-    padding: 4px !important;
+    padding: 2px !important;
 }
 
 button.flat {
@@ -147,16 +193,11 @@ button.destructive:active {
 
 a {
     color: var(--pl-link-color);
-    display: inline-flex;
     text-decoration: none;
     min-width: fit-content;
     outline: 0px solid var(--pl-control-accent);
     transition: outline 0.1s ease;
     border-radius: 8px;
-}
-
-a:hover {
-    text-decoration: auto underline;
     box-sizing: content-box;
 }
 
@@ -166,6 +207,10 @@ a:focus-visible {
 
 a:visited {
     color: var(--pl-link-visited-color);
+}
+
+a:hover {
+    color: var(--pl-link-hover-color);
 }
 
 a.text-and-icon {
@@ -273,6 +318,12 @@ span.status-badge[data-status="deprecated"]::before {
     margin: auto;
 }
 
+#Main header div.logo img {
+    display: flex;
+    width: 48px;
+    aspect-ratio: 1;
+}
+
 #Main header div.logo span {
     margin: auto;
     font-size: 1.75rem;
@@ -314,7 +365,7 @@ span.status-badge[data-status="deprecated"]::before {
     margin: auto;
     padding: 20px;
     min-height: 64px;
-    max-width: var(--pl-max-content-width);
+    max-width: 800px;
 }
 
 /* == News == */
@@ -415,7 +466,7 @@ span.status-badge[data-status="deprecated"]::before {
     margin: 5px 0;
 }
 
-#Projects ul li.project a > div > embed-svg {
+#Projects ul li.project a > div img.logo {
     display: flex;
     margin: 0 0 auto;
     min-width: 48px;
@@ -444,7 +495,7 @@ span.status-badge[data-status="deprecated"]::before {
     text-align: center;
 }
 
-#ProjectViewer div.project > embed-svg {
+#ProjectViewer div.project > img.logo {
     margin: 0 auto;
     width: 100%;
     max-width: 256px;
@@ -496,12 +547,8 @@ span.status-badge[data-status="deprecated"]::before {
     display: flex;
 }
 
-#ProjectViewer div.details > section embed-svg {
-    min-width: 24px;
-}
-
 #ProjectViewer div.details > section h3 {
-    margin: 0 0 0 8px;
+    margin: 0 0 0 4px;
 }
 
 #ProjectViewer div.details > section hr {
@@ -677,7 +724,6 @@ div.dialog div.actions {
 
 div.dialog div.actions button {
     padding: 8px;
-    min-width: 80px;
 }
 
 div.dialog div.actions button + button {

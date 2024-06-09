@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Project logo
+SPDX-License-Identifier: CC-BY-SA-4.0
+Copyright (C) 2024 Thaynan Silva <thaynan.mdsilva@gmail.com>
+-->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="gray" x1="0" y1="0" x2="100%" y2="100%">
+      <stop stop-color="#aaa" offset="10%"/>
+      <stop stop-color="#888" offset="50%"/>
+      <stop stop-color="#444" offset="100%"/>
+    </linearGradient>
+  </defs>
+  <rect x="8" y="8" width="32" height="32" rx="4" fill="#fff2" stroke="#ddd" stroke-width="2" />
+  <path d="m20 32l0 -15l6 0c6 0 6 8 0 8l-2 0l0 7z" fill="url(#gray)" stroke="#ddd" stroke-width="2" stroke-linejoin="round"/>
+</svg>

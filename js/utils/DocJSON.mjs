@@ -296,18 +296,18 @@ function composeOverlay(overlay) {
   }
 
   const icons = {
-    "link": "img/icons/link.svg",
-    "external-link": "img/icons/open-in-new.svg",
+    "link": "link",
+    "external-link": "open_in_new"
   };
 
   let result = "<div>";
 
   if (overlay.label) {
-    result += `<span>${overlay.label}</span>`;
+    result += `<span class="text">${overlay.label}</span>`;
   }
 
   if (overlay.icon && icons[overlay.icon]) {
-    result += `<embed-svg src='${icons[overlay.icon]}'></embed-svg>`;
+    result += `<span class='material-symbols'>${icons[overlay.icon]}</span>`;
   }
 
   result += "</div>"
