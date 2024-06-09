@@ -561,8 +561,12 @@ span.status-badge[data-status="deprecated"]::before {
 }
 
 #ProjectViewer div.details > section ul li {
-    padding: 2px 0;
-    list-style-type: '〉';
+    list-style-type: '› ';
+}
+
+#ProjectViewer div.details > section ul li::marker {
+    font-weight: bold;
+    font-size: 1.15rem;
 }
 
 #ProjectViewer div.details > section p {
