@@ -196,7 +196,7 @@ button.destructive:active {
 
 a {
     display: inline-flex;
-    color: var(--pl-link-color);
+    color: var(--pl-link-normal);
     text-decoration: none;
     min-width: fit-content;
     outline: 0px solid var(--pl-control-accent);
@@ -210,11 +210,11 @@ a:focus, a:focus-visible {
 }
 
 a:visited {
-    color: var(--pl-link-visited-color);
+    color: var(--pl-link-visited);
 }
 
 a:hover {
-    color: var(--pl-link-hover-color);
+    color: var(--pl-link-hover);
 }
 
 a.text-and-icon {
@@ -649,11 +649,11 @@ div.status[data-status="deprecated"] > span.material-symbols {
     padding: 8px 0;
     font-size: 0.8rem;
     font-weight: bold;
-    color: var(--pl-link-color);
+    color: var(--pl-link-normal);
 }
 
 #About div.profile ul.socials li a:hover {
-    color: var(--pl-link-hover-color);
+    color: var(--pl-link-hover);
     background-color: var(--pl-control-hover);
 }
 

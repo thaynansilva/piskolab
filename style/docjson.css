@@ -184,7 +184,7 @@
     border-spacing: 0px;
     border-collapse: separate;
     border: 1px solid  var(--pl-table-border);
-    background-color: var(--pl-table-background);
+    background-color: var(--pl-table-color);
     min-width: 500px;
     width: 100%;
 }

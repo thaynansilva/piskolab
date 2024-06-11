@@ -18,9 +18,9 @@
     --pl-text-bright: #fff;
     --pl-text-marker: #fff;
     --pl-text-shadow: #5555;
-    --pl-link-color: #8cf;
-    --pl-link-hover-color: #aef;
-    --pl-link-visited-color: #c8f;
+    --pl-link-normal: #8cf;
+    --pl-link-hover: #aef;
+    --pl-link-visited: #c8f;
     --pl-control-accent: #c5e;
     --pl-control-normal: #bbb3;
     --pl-control-hover: #bbb5;
@@ -38,7 +38,7 @@
     --pl-control-text-selected: #000c;
     --pl-control-border-color: #aaa3;
     --pl-table-accent: var(--pl-view-color);
-    --pl-table-background: var(--pl-view-color);
+    --pl-table-color: var(--pl-view-color);
     --pl-table-border: #aaa3;
     --pl-table-border2: #aaa3;
     --pl-table-caption: #0003;
