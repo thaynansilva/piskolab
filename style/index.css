@@ -633,30 +633,43 @@ div.status[data-status="deprecated"] > span.material-symbols {
 }
 
 #About div.profile ul.socials {
-    display: grid;
-    margin: auto;
+    display: flex;
+    margin: 0 auto;
     padding: 0;
-    width: fit-content;
-    gap: 15px 20px;
-    grid-template-columns: auto auto;
 }
 
 #About div.profile ul.socials li {
-    display: flex;
-}
-
-#About div.profile ul.socials li a embed-svg {
-    width: 24px;
-    min-width: 24px;
-    margin-right: 6px;
-}
-
-#About div.profile ul.socials li a span {
+    display: block;
     margin: auto;
 }
 
-#About div.profile ul.socials li a:hover embed-svg {
-    filter: brightness(1.2);
+#About div.profile ul.socials li a {
+    display: block;
+    width: 90px;
+    padding: 8px 0;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--pl-link-color);
+}
+
+#About div.profile ul.socials li a:hover {
+    color: var(--pl-link-hover-color);
+    background-color: var(--pl-control-hover);
+}
+
+#About div.profile ul.socials li a div {
+    display: flex;
+    margin: auto;
+    flex-flow: column;
+}
+
+#About div.profile ul.socials li a div embed-svg {
+    margin: auto;
+    width: 32px;
+}
+
+#About div.profile ul.socials li a div span {
+    margin: auto;
 }
 
 /* == Dialog == */
