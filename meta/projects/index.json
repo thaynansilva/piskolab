@@ -25,6 +25,9 @@
       "brief": "A powerful versatile cross-platform programming language",
       "status": "active",
       "url": "https://gitlab.com/versa-lang",
+      "description": [
+        "Versa is a programming language designed to be simple and powerful."
+      ],
       "licenses": [
         {
           "title": "LGPL-3.0",

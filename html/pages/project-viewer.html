@@ -1,56 +1,67 @@
 <template id="root">
   <div id="ProjectViewer">
     <div class="project">
-      <img class="logo" src="img/project.svg" draggable="false" aria-hidden="true" data-name="logo">
-      <h1 translate="no" data-name="name"></h1>
-      <p data-name="brief"></p>
-      <div class="resources">
-        <span class="status-badge" data-name="status"></span>
-        <div class="vl" role="separator"></div>
-        <a href="" target="_blank" data-name="link" data-prefix-icon="code">Source Code</a>
+      <div class="top">
+        <img class="logo" src="img/project.svg" draggable="false" aria-hidden="true" data-name="logo">
+        <h1 translate="no" data-name="name"></h1>
+        <p data-name="brief"></p>
+      </div>
+      <div class="bottom">
+        <div class="resources">
+          <div class="material-symbols-base status" data-name="status">
+            <span class="material-symbols" aria-hidden="true" data-name="icon"></span>
+            <span data-name="text"></span>
+          </div>
+          <div class="sep" role="separator"></div>
+          <a class="material-symbols-base" href="" target="_blank" data-name="link" data-prefix-icon="code">
+            <span class="material-symbols" aria-hidden="true">code</span>
+            <span>Source Code</span>
+          </a>
+        </div>
       </div>
     </div>
-    <div class="details">
-      <section data-name="sect-description">
-        <div>
-          <span class="material-symbols">description</span>
-          <h3>Description</h3>
-        </div>
-        <hr>
-        <div data-name="description"></div>
-      </section>
-      <section data-name="sect-licensing">
-        <div>
+    <dl class="info">
+      <div data-name="description" hidden>
+        <dt>
+          <span class="material-symbols" aria-hidden="true">notes</span>
+          <span class="title">Description</span>
+        </dt>
+        <div></div>
+      </div>
+      <div data-name="licensing" hidden>
+        <dt>
           <span class="material-symbols" aria-hidden="true">license</span>
-          <h3>Licensing</h3>
-        </div>
-        <hr>
-        <ul data-name="licensing"></ul>
-      </section>
-      <section data-name="sect-docs">
-        <div>
+          <span class="title">Licensing</span>
+        </dt>
+        <div></div>
+      </div>
+      <div data-name="docs" hidden>
+        <dt>
           <span class="material-symbols" aria-hidden="true">description</span>
-          <h3>Documentation</h3>
-        </div>
-        <hr>
-        <ul data-name="docs"></ul>
-      </section>
-      <section data-name="sect-links">
-        <div>
+          <span class="title">Documentation</span>
+        </dt>
+        <div></div>
+      </div>
+      <div data-name="links" hidden>
+        <dt>
           <span class="material-symbols" aria-hidden="true">link</span>
-          <h3>Links</h3>
-        </div>
-        <hr>
-        <ul data-name="links"></ul>
-      </section>
-    </div>
+          <span class="title">Related Links</span>
+        </dt>
+        <div></div>
+      </div>
+    </dl>
   </div>
 </template>
-<template id="item">
-  <li>
-    <a href="" target="_blank" data-postfix-icon="open_in_new"></a>
-  </li>
+<template id="item-generic">
+  <dd></dd>
 </template>
-<template id="item-paragraph">
-  <p></p>
+<template id="item-link">
+  <dd>
+    <a class="material-symbols-base" href="" target="_blank">
+      <div>
+        <span class="title"></span>
+        <span class="material-symbols tiny" aria-hidden="true">open_in_new</span>
+      </div>
+    </a>
+  </dd>
 </template>

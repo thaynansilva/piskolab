@@ -32,22 +32,9 @@ span.material-symbols.tiny {
     min-width: 16px;
 }
 
-a[data-prefix-icon]::before,
-a[data-postfix-icon]::after {
-    font-family: 'Material Symbols';
-    /* font-size: 24px; */
-    text-align: center;
+.material-symbols-base > div {
+    display: inline;
     vertical-align: middle;
-    margin: auto 2px;
-}
-
-a[data-prefix-icon]::before {
-    content: attr(data-prefix-icon);
-}
-
-a[data-postfix-icon]::after {
-    content: attr(data-postfix-icon);
-    font-size: 16px;
 }
 
 /* Animations */
@@ -123,6 +110,19 @@ div#modal-root[hidden] {
     visibility: hidden;
 }
 
+/* Separator */
+
+div.sep {
+    display: flex;
+    width: 0.5ch;
+    height: 0.5ch;
+    min-width: 0.5ch;
+    min-height: 0.5ch;
+    margin: auto 10px;
+    background-color: var(--pl-border-color);
+    border-radius: 50%;
+}
+
 /* Button */
 
 button {
@@ -195,6 +195,7 @@ button.destructive:active {
 /* Link */
 
 a {
+    display: inline-flex;
     color: var(--pl-link-color);
     text-decoration: none;
     min-width: fit-content;
@@ -204,7 +205,7 @@ a {
     box-sizing: content-box;
 }
 
-a:focus-visible {
+a:focus, a:focus-visible {
     outline: 3px solid var(--pl-control-accent);
 }
 
@@ -262,42 +263,29 @@ ul.separators li:not(:last-child)::after {
 
 /* == Status Badge == */
 
-span.status-badge {
+div.status {
     display: flex;
     color: var(--pl-badge-text-color);
 }
 
-span.status-badge::before {
-    display: inline-flex;
-    content: "";
-    width: 0.8rem;
-    height: 0.8rem;
-    min-width: 0.8rem;
-    min-height: 0.8rem;
-    border-radius: 25%;
-    margin: auto 6px auto 0;
-    border: 1px solid var(--pl-view-border-color);
-    background-color: #fff;
+div.status[data-status="draft"] > span.material-symbols {
+    color: var(--pl-badge-draft);
 }
 
-span.status-badge[data-status="drafting"]::before {
-    background-color: var(--pl-badge-drafting);
+div.status[data-status="canceled"] > span.material-symbols {
+    color: var(--pl-badge-canceled);
 }
 
-span.status-badge[data-status="canceled"]::before {
-    background-color: var(--pl-badge-canceled);
+div.status[data-status="active"] > span.material-symbols {
+    color: var(--pl-badge-active);
 }
 
-span.status-badge[data-status="active"]::before {
-    background-color: var(--pl-badge-active);
+div.status[data-status="unmaintained"] > span.material-symbols {
+    color: var(--pl-badge-unmaintained);
 }
 
-span.status-badge[data-status="unmaintained"]::before {
-    background-color: var(--pl-badge-unmaintained);
-}
-
-span.status-badge[data-status="deprecated"]::before {
-    background-color: var(--pl-badge-deprecated);
+div.status[data-status="deprecated"] > span.material-symbols {
+    color: var(--pl-badge-deprecated);
 }
 
 /* == Main == */
@@ -495,89 +483,105 @@ span.status-badge[data-status="deprecated"]::before {
 /* == Project Viewer == */
 
 #ProjectViewer div.project {
+    display: block;
     text-align: center;
+    border-radius: 8px;
 }
 
-#ProjectViewer div.project > img.logo {
+#ProjectViewer div.project > div.top {
+    display: block;
+    padding: 20px;
+}
+
+#ProjectViewer div.project > div.top img.logo {
     margin: 0 auto;
     width: 100%;
-    max-width: 256px;
-    background-color: var(--pl-view-color);
-    box-shadow: 0 0 5px var(--pl-shadow-color);
+    max-width: 224px;
     border-radius: 8px;
+    border: 1px solid var(--pl-view-border-color);
+    background-color: var(--pl-view-color);
 }
 
-#ProjectViewer div.project > div.resources {
-    display: inline-flex;
+#ProjectViewer div.project > div.top h1 {
+    font-size: 1.75rem;
+    margin: 15px 0;
 }
 
-#ProjectViewer div.project > div.resources > div.vl {
-    display: flex;
-    width: 1px;
-    min-width: 1px;
-    height: 90%;
-    min-height: 2ch;
-    margin: auto 10px;
-    background-color: var(--pl-border-color);
+#ProjectViewer div.project > div.top p {
+    margin: 0;
 }
 
-#ProjectViewer div.details {
+#ProjectViewer div.project > div.bottom {
     display: block;
-    margin: auto;
+    border-top: 1px solid var(--pl-control-border-color);
 }
 
-#ProjectViewer div.details > section {
-    overflow: hidden;
+#ProjectViewer div.project > div.bottom div.resources {
+    display: flex;
+    width: fit-content;
+    margin: auto;
+    padding: 10px;
+}
+
+/* #ProjectViewer div.project > div.bottom > div.resources > * {
+    display: inline-block;
+    align-self: center;
+} */
+
+#ProjectViewer dl.info {
+    margin: 20px auto auto;
+}
+
+#ProjectViewer dl.info > div {
     display: flex;
     flex-flow: column;
-    padding: 20px;
-    min-height: 50px;
     border-radius: 8px;
     background-color: var(--pl-view-color);
+    overflow: hidden;
     border: 1px solid var(--pl-view-border-color);
-    box-shadow: 0 0 5px var(--pl-shadow-color);
+    box-shadow: 0 0 5px -1px var(--pl-shadow-color);
 }
 
-#ProjectViewer div.details > section[hidden] {
+#ProjectViewer dl.info > div[hidden] {
     display: none;
 }
 
-#ProjectViewer div.details > section + section {
-    margin-top: 15px;
-}
-
-#ProjectViewer div.details > section > div {
-    display: flex;
-}
-
-#ProjectViewer div.details > section h3 {
-    margin: 0 0 0 4px;
-}
-
-#ProjectViewer div.details > section hr {
-    margin-bottom: 20px;
-}
-
-#ProjectViewer div.details > section ul {
-    margin: 0;
-    padding-left: 30px;
-}
-
-#ProjectViewer div.details > section ul li {
-    list-style-type: '› ';
-}
-
-#ProjectViewer div.details > section ul li::marker {
-    font-weight: bold;
-    font-size: 1.15rem;
-}
-
-#ProjectViewer div.details > section p {
-    margin: 0;
-}
-
-#ProjectViewer div.details > section p + p {
+#ProjectViewer dl.info > div + div {
     margin-top: 20px;
+}
+
+#ProjectViewer dl.info > div > div {
+    padding: 15px 20px;
+}
+
+#ProjectViewer dl.info dt {
+    background-color: var(--pl-view-color);
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--pl-border-color);
+}
+
+#ProjectViewer dl.info dt span {
+    vertical-align: middle;
+}
+
+#ProjectViewer dl.info dt span.title {
+    font-weight: 500;
+}
+
+#ProjectViewer dl.info dd {
+    margin: 0;
+}
+
+#ProjectViewer dl.info dd + dd {
+    margin-top: 5px;
+}
+
+#ProjectViewer dl.info dd p {
+    margin: 0;
+}
+
+#ProjectViewer dl.info dd p + p {
+    margin-top: 5px;
 }
 
 /* == About == */
@@ -767,7 +771,7 @@ span.spinner::after {
         display: block;
     }
 
-    #Main header div.logo embed-svg {
+    #Main header div.logo img {
         height: 36px;
     }
 

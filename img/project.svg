@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Project logo
+Construction logo
 SPDX-License-Identifier: CC-BY-SA-4.0
 Copyright (C) 2024 Thaynan Silva <thaynan.mdsilva@gmail.com>
 -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
-  <defs>
-    <linearGradient id="gray" x1="0" y1="0" x2="100%" y2="100%">
-      <stop stop-color="#aaa" offset="10%"/>
-      <stop stop-color="#888" offset="50%"/>
-      <stop stop-color="#444" offset="100%"/>
-    </linearGradient>
-  </defs>
-  <rect x="8" y="8" width="32" height="32" rx="4" fill="#fff2" stroke="#ddd" stroke-width="2" />
-  <path d="m20 32l0 -15l6 0c6 0 6 8 0 8l-2 0l0 7z" fill="url(#gray)" stroke="#ddd" stroke-width="2" stroke-linejoin="round"/>
+  <rect x="6" y="6" width="36" height="36" fill="#111" />
+  <!--
+  Path derived from Google's Material Symbols, icon 'Texture'.
+  Edited with SVGPathEditor <https://yqnn.github.io/svg-path-editor/>
+  https://fonts.google.com/icons?selected=Material+Symbols+Outlined:texture:FILL@0;wght@0;GRAD@0;opsz@24
+  -->
+  <path d="m8.8 42q-.95-.2-1.775-1.025t-1.025-1.775l33.2-33.2q1.05.25 1.8 1.025t1.05 1.775l-33.25 33.2zm-2.8-12.6v-5.6l17.8-17.8h5.6l-23.4 23.4zm0-15.4v-4q0-1.65 1.175-2.825t2.825-1.175h4l-8 8zm28 28 8-8v4q0 1.65-1.175 2.825t-2.825 1.175h-4zm-15.4 0 23.4-23.4v5.6l-17.8 17.8h-5.6z" fill="#fc0"/>
+  <rect x="6" y="6" width="36" height="36" rx="4" fill="none" stroke="#111" stroke-width="4" />
 </svg>

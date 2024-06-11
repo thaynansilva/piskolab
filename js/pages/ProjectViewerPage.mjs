@@ -16,14 +16,6 @@ export const ProjectViewerPage = Object.freeze({
   secret: false
 });
 
-const statusMessages = {
-  "draft": "Draft",
-  "canceled": "Canceled",
-  "active": "Active",
-  "unmaintained": "Unmaintained",
-  "deprecated": "Deprecated"
-};
-
 async function build(options) {
   let projectUuid = options.projectUuid;
   let projectInfo = await Indexer.getProjectInfo(projectUuid);
@@ -50,59 +42,77 @@ async function build(options) {
     brief.textContent = projectInfo.brief;
 
     let status = root.querySelector("[data-name='status']");
-    status.setAttribute("data-status", projectInfo.status);
-    status.textContent = statusMessages[projectInfo.status];
+    setStatus(projectInfo.status, status);
 
     let description = root.querySelector("[data-name='description']");
-    let descriptionSection = root.querySelector("[data-name='sect-description']");
-    putItems(projectInfo.description, "description", description, descriptionSection);
+    putItems(projectInfo.description, "description", description);
 
     let licensing = root.querySelector("[data-name='licensing']");
-    let licensingSection = root.querySelector("[data-name='sect-licensing']");
-    putItems(projectInfo.licenses, "licensing", licensing, licensingSection);
+    putItems(projectInfo.licenses, "licensing", licensing);
 
     let docs = root.querySelector("[data-name='docs']");
-    let docsSection = root.querySelector("[data-name='sect-docs']");
-    putItems(projectInfo.docs, "docs", docs, docsSection);
+    putItems(projectInfo.docs, "docs", docs);
 
     let links = root.querySelector("[data-name='links']");
-    let linksSection = root.querySelector("[data-name='sect-links']")
-    putItems(projectInfo.links, "links", links, linksSection);
+    putItems(projectInfo.links, "links", links);
   });
 }
 
-function putItems(items, type, container, targetSection) {
+function putItems(items, type, root) {
   if (!items) {
-    if (targetSection) {
-      targetSection.hidden = true;
-    }
-
     return;
   }
 
+  root.hidden = false;
+
+  let itemsRoot = root.querySelector("div");
+
   switch (type) {
     case "description":
+      let item = template.queryById("item-generic");
+      let dd = item.querySelector("dd");
       items.forEach((x) => {
-        let line = x.trim();
-        if (line.length > 0) {
-          let p = template.queryById("item-paragraph");
-          p.textContent = line;
-          container.appendChild(p);
+        if (x.trim().length == 0) {
+          return;
         }
+
+        let p = document.createElement("p");
+        p.innerText = x;
+        dd.appendChild(p);
       });
+      itemsRoot.append(item);
       break;
     case "licensing":
     case "docs":
     case "links":
       items.forEach((x) => {
-        let item = template.queryById("item");
+        let item = template.queryById("item-link");
         let a = item.querySelector("a");
-        a.textContent = x.title;
+        let s = a.querySelector("span.title");
+        s.textContent = x.title;
         a.href = x.url;
-        container.appendChild(item);
+        itemsRoot.appendChild(item);
       });
       break;
     default:
       break;
   }
+}
+
+function setStatus(projectStatus, root) {
+  const validStatus = {
+    "draft":        { text: "Draft",        icon: "design_services" },
+    "canceled":     { text: "Canceled",     icon: "cancel" },
+    "active":       { text: "Active",       icon: "check_circle" },
+    "unmaintained": { text: "Unmaintained", icon: "warning" },
+    "deprecated":   { text: "Deprecated",   icon: "inventory_2" }
+  };
+
+  root.setAttribute("data-status", projectStatus);
+
+  let statusIcon = root.querySelector("[data-name='icon']");
+  statusIcon.textContent = validStatus[projectStatus].icon;
+
+  let statusText = root.querySelector("[data-name='text']");
+  statusText.textContent = validStatus[projectStatus].text;
 }

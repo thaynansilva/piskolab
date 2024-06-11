@@ -46,9 +46,9 @@
     --pl-table-row-color-body1: #0004;
     --pl-table-row-color-body2: #0002;
     --pl-badge-text-color: #fffd;
-    --pl-badge-drafting: #08fd;
-    --pl-badge-canceled: #e33d;
-    --pl-badge-active: #3e39;
-    --pl-badge-unmaintained: #5568;
-    --pl-badge-deprecated: #445c;
+    --pl-badge-draft: #08fe;
+    --pl-badge-canceled: #e33e;
+    --pl-badge-active: #3e3c;
+    --pl-badge-unmaintained: #fc0;
+    --pl-badge-deprecated: #888;
 }
