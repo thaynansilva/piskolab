@@ -133,7 +133,7 @@ export class Dialog {
       expander.toggleAttribute("hidden", !details);
 
       let reason = expander.querySelector("div.reason");
-      reason.textContent = details.message ?? details ?? "";
+      reason.textContent = details?.message ?? details ?? "";
 
       let actionsContainer = root.querySelector("div.actions");
       this.#createActionButtons(actions, actionsContainer, resolve);
