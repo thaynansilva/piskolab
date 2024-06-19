@@ -22,7 +22,6 @@ export class DocJSON {
    *
    * @param {{}[]} data
    *  the json
-   * @returns {Promise<string>}
    */
   static parse(data) {
     return parseNodes(data);
