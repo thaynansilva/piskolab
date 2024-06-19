@@ -75,10 +75,9 @@ This project uses some third-party icons from the following authors:
 This website is free software, which means you can modify or redistribute as
 you wish!
 
-This project is available under [LGPL 3.0](LICENSE.txt), and the Pisko Lab
-logo and icons are available under [CC BY-SA 4.0](LICENSE_CC-BY-SA-4.0.txt).
+This project and its logos are available under [CC BY-SA 4.0](LICENSE.txt).
 
 Each third-party resource is available on its respective licenses:
 
 - Material Symbols (font): [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
-- Font Awesome: [CC BY 4.0.](https://creativecommons.org/licenses/by/4.0/)
+- Font Awesome: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
