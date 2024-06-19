@@ -11,46 +11,46 @@ export class Session {
     throw new TypeError("This class can't be instantiated.");
   }
 
-  static set currentPage(x) {
-    sessionStorage.currentPage = x;
+  static set activeTabId(x) {
+    sessionStorage.activeTabId = x;
   }
 
-  static set currentPageOptions(x) {
-    sessionStorage.currentPageOptions = JSON.stringify(x, null, 0);
+  static set activeTabOptions(x) {
+    sessionStorage.activeTabOptions = JSON.stringify(x, null, 0);
   }
 
-  static set previousPage(x) {
-    sessionStorage.previousPage = x;
+  static set showErrorDetails(x) {
+    sessionStorage.showErrorDetails = JSON.stringify(!!x, null, 0);
   }
 
-  static set previousPageOptions(x) {
-    sessionStorage.previousPageOptions = JSON.stringify(x, null, 0);
+  /**
+   * @returns {string}
+   */
+  static get activeTabId() {
+    return sessionStorage.activeTabId;
   }
 
-  static get currentPage() {
-    return sessionStorage.currentPage;
+  /**
+   * @returns {{}}
+   */
+  static get activeTabOptions() {
+    return JSON.parse(sessionStorage.activeTabOptions ?? "null");
   }
 
-  static get currentPageOptions() {
-    return JSON.parse(sessionStorage.currentPageOptions ?? "null");
-  }
-
-  static get previousPage() {
-    return sessionStorage.previousPage;
-  }
-
-  static get previousPageOptions() {
-    return JSON.parse(sessionStorage.previousPageOptions ?? "null");
+  /**
+   * @returns {boolean}
+   */
+  static get showErrorDetails() {
+    return JSON.parse(sessionStorage.showErrorDetails ?? "false");
   }
 
   /**
    * Resets the session.
    */
   static reset() {
-    delete sessionStorage.currentPage;
-    delete sessionStorage.currentPageOptions;
-    delete sessionStorage.previousPage;
-    delete sessionStorage.previousPageOptions;
+    delete sessionStorage.activeTabId;
+    delete sessionStorage.activeTabOptions;
+    delete sessionStorage.showErrorDetails;
   }
 
 }

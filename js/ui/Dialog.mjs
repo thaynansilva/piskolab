@@ -8,6 +8,9 @@
 import { Template } from "../utils/Template.mjs";
 import { Animator } from "../utils/Animator.mjs";
 
+import { Session } from "../utils/Session.mjs";
+
+
 const template = await Template.newPreload("html/ui/dialog.html");
 
 
@@ -95,8 +98,8 @@ export class Dialog {
    * @param {DialogAction[]} actions
    *  dialog actions
    * @returns {Promise<string>}
-   *  the activated action. If `undefined`, an 'OK'
-   *  action will be used as fallback.
+   *  the activated action. If `undefined`, an
+   *  'OK' action will be used as fallback.
    */
   static async show(title, message, details=undefined, actions=undefined) {
     const modal = await ModalRoot.acquire();
@@ -112,9 +115,7 @@ export class Dialog {
         try {
           action.callback?.();
         } catch(error) {
-          console.warn(
-            "[Dialog] An action callback has thrown an error",
-            `(action: '${action.text}')`);
+          console.warn(`[Dialog] Action callback failed (action: '${action.text}')`);
           console.error(error);
         }
 
@@ -131,6 +132,11 @@ export class Dialog {
 
       let expander = root.querySelector("details");
       expander.toggleAttribute("hidden", !details);
+      expander.toggleAttribute("open", Session.showErrorDetails);
+
+      expander.addEventListener("toggle", () => {
+        Session.showErrorDetails = expander.hasAttribute("open");
+      });
 
       let reason = expander.querySelector("div.reason");
       reason.textContent = details?.message ?? details ?? "";
