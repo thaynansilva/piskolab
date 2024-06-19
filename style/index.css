@@ -84,13 +84,6 @@ div.noscript {
     text-align: center;
 }
 
-/* Root */
-
-div#root {
-    width: 100%;
-    height: 100%;
-}
-
 /* Modal Root */
 
 div#modal-root {
@@ -293,7 +286,14 @@ div.status[data-status="deprecated"] > span.material-symbols {
 
 /* == Main == */
 
-#Main header {
+/* Root */
+
+div#root {
+    width: 100%;
+    height: 100%;
+}
+
+#root header {
     display: flex;
     padding: 0 8px;
     max-width: 100vw;
@@ -302,23 +302,23 @@ div.status[data-status="deprecated"] > span.material-symbols {
     border-bottom: 2px solid var(--pl-control-border-color);
 }
 
-#Main header > div {
+#root header > div {
     display: flex;
     margin: 8px auto;
 }
 
-#Main header div.logo {
+#root header div.logo {
     display: flex;
     margin: auto;
 }
 
-#Main header div.logo img {
+#root header div.logo img {
     display: flex;
     width: 48px;
     aspect-ratio: 1;
 }
 
-#Main header div.logo span {
+#root header div.logo span {
     margin: auto;
     font-size: 1.75rem;
     font-weight: bold;
@@ -328,13 +328,13 @@ div.status[data-status="deprecated"] > span.material-symbols {
     -webkit-user-drag: none;
 }
 
-#Main header div#tabs {
+#root header div#tabs {
     display: flex;
     margin: auto;
     width: fit-content;
 }
 
-#Main header div#tabs > button {
+#root header div#tabs > button {
     font-size: 0.9rem;
     padding: 6px 8px;
     text-transform: lowercase;
@@ -342,21 +342,23 @@ div.status[data-status="deprecated"] > span.material-symbols {
     cursor: pointer;
 }
 
-#Main header div#tabs > button[data-selected] {
+#root header div#tabs > button[aria-selected="true"] {
     color: var(--pl-control-text-selected);
     background-color: var(--pl-control-selected);
     cursor: default;
 }
 
-#Main header div#tabs > button:first-child {
+#root header div#tabs > button:first-child {
     border-radius: 8px 0 0 8px;
 }
 
-#Main header div#tabs > button:last-child {
+#root header div#tabs > button:last-child {
     border-radius: 0 8px 8px 0;
 }
 
-#Main div#pane {
+/* Panel Root */
+
+#root div#panel-root {
     display: flex;
     flex-flow: column;
     overflow-x: hidden;
@@ -714,13 +716,26 @@ div.dialog details:has(summary:focus-visible) {
 }
 
 div.dialog details summary {
-    padding: 10px 16px;
+    display: flex;
+    margin: auto;
+    padding: 8px 10px;
     user-select: none;
     -webkit-user-select: none;
     -webkit-user-drag: none;
     transition: color 0.3s ease, background-color 0.3s ease;
     color: var(--pl-control-text-normal);
     background-color: var(--pl-control-normal);
+}
+
+div.dialog details summary::before {
+    content: "expand_circle_right";
+    margin-right: 4px;
+    font-family: 'Material Symbols';
+    font-size: 22px;
+}
+
+div.dialog details[open] summary::before {
+    content: "expand_circle_down";
 }
 
 div.dialog details summary:hover {
@@ -743,7 +758,7 @@ div.dialog details[open] summary {
 }
 
 div.dialog details > div.reason {
-    padding: 10px 4px;
+    padding: 8px 8px;
     margin: 0;
 }
 
@@ -787,15 +802,15 @@ span.spinner::after {
 
 @media (width <= 560px) {
 
-    #Main header {
+    #root header {
         display: block;
     }
 
-    #Main header div.logo img {
+    #root header div.logo img {
         width: 36px;
     }
 
-    #Main header div.logo span {
+    #root header div.logo span {
         font-size: 1.25rem;
     }
 

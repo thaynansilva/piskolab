@@ -1,15 +1,15 @@
 <template id="root">
-  <div id="About">
+  <div id="About" role="tabpanel" aria-label="About" hidden>
     <section>
       <h1>About me</h1>
-      <div class="profile">
+      <div class="profile" role="region" aria-label="Profile card">
         <div class="info">
           <img class="picture" src="img/profile.jpg" alt="Profile picture" draggable="false">
           <span class="title" translate="no">Pisko</span>
           <p>Developer, Linux lover and FLOSS enthusiast</p>
         </div>
         <hr>
-        <ul class="socials" aria-roledescription="My socials">
+        <ul class="socials" aria-label="My socials">
           <li>
             <a href="https://tech.lgbt/@piskomauz" target="_blank" referrerpolicy="no-referrer">
               <div>

@@ -13,22 +13,30 @@
   <title>Pisko Lab</title>
 </head>
 <body>
-  <!-- SEO stuff -->
-  <nav hidden>
-    <ul>
-      <li><a href="/?p=Home">Home</a></li>
-      <li><a href="/?p=News">News</a></li>
-      <li><a href="/?p=Projects">Projects</a></li>
-      <li><a href="/?p=About">About</a></li>
-    </ul>
-  </nav>
-  <div id="root">
+  <div id="root" role="application" aria-label="Pisko Lab">
+    <header>
+      <div>
+        <div class="logo">
+          <img src="img/logo.svg" draggable="false" aria-hidden="true">
+          <span>Pisko Lab</span>
+        </div>
+      </div>
+      <div>
+        <div id="tabs" role="tablist" aria-label="Website sections">
+          <button type="button" role="tab" aria-selected="false" aria-controls="Home">Home</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="News">News</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="Projects">Projects</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="About">About</button>
+        </div>
+      </div>
+    </header>
     <noscript>
       <div class="noscript">
         <h1>Sorry, it won't work</h1>
         <p>You need JavaScript support to run this site.</p>
       </div>
     </noscript>
+    <div id="panel-root"></div>
   </div>
   <div id="modal-root" hidden></div>
 </body>
