@@ -49,7 +49,7 @@ to have installed in VS Code the **Live Server extension from Ritwick Dey**.
 > **NOTE**: VS Code may ask you to trust the repository in order to continue.
 
 1. Open the repository folder with VS Code;
-2. Go to the search bar and search for `>live server`;
+2. Go to the search bar and type `>live server`;
 3. Click on the option: `Live Server: Open with Live Server`.
 
 VS Code will host the server and your default browser will open with the main
@@ -67,7 +67,7 @@ project.
 
 This project uses some third-party icons from the following authors:
 
-- [Material Symbols](https://fonts.google.com/icons): symbolic action icons
+- [Material Symbols (font)](https://fonts.google.com): symbolic icons
 - [Font Awesome](https://fontawesome.com/): GitHub, GitLab, and Mastodon logos
 
 ## Licensing
@@ -80,5 +80,5 @@ logo and icons are available under [CC BY-SA 4.0](LICENSE_CC-BY-SA-4.0.txt).
 
 Each third-party resource is available on its respective licenses:
 
-- Material Symbols: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+- Material Symbols (font): [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 - Font Awesome: [CC BY 4.0.](https://creativecommons.org/licenses/by/4.0/)
