@@ -1,0 +1,20 @@
+{
+  "name": "Pisko Lab",
+  "short_name": "Pisko Lab",
+  "description": "Pisko's little space",
+  "theme_color": "#8800aa",
+  "background_color": "#1a1a1a",
+  "display": "standalone",
+  "orientation": "any",
+  "lang": "en",
+  "dir": "ltr",
+  "id": "piskolab",
+  "url": "/",
+  "icons": [
+    {
+      "src": "img/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
+    }
+  ]
+}
