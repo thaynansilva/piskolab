@@ -8,7 +8,7 @@
 const validAnimations = {
   "pop-in": 1,  "pop-out": 1,
   "zoom-in": 1, "zoom-out": 1,
-  "slide-up": 1
+  "slide-up": 1, "fade-out": 1,
 };
 
 /**
